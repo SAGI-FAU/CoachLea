@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">CoachLea</string>
+
+    <string-array name="Minimal_Pairs">
+        <item>gold</item>
+        <item>geld</item>
+        <item>sand</item>
+        <item>wand</item>
+        <item>see</item>
+        <item>tee</item>
+        <item>hose</item>
+        <item>rose</item>
+        <item>huhn</item>
+        <item>hut</item>
+        <item>baum</item>
+        <item>schaum</item>
+        <item>geld</item>
+        <item>welt</item>
+        <item>tasche</item>
+        <item>tasse</item>
+    </string-array>
 </resources>
