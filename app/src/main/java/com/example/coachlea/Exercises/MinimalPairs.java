@@ -1,5 +1,6 @@
 package com.example.coachlea.Exercises;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.coachlea.MinimalPairsExerciseFinished;
 import com.example.coachlea.R;
 
 import java.util.ArrayList;
@@ -68,44 +70,30 @@ public class MinimalPairs extends AppCompatActivity {
                 if (playPressed) {
                     if (oldPos >= 8) {
 
-                        //TODO
-                    } else {
-                        playPressed = false;
+                        Intent intent = new Intent(MinimalPairs.this, MinimalPairsExerciseFinished.class);
 
                         if(topIMG.getTag() == "correct"){
                             minimal_pairs_result[choose] = 1;
                         } else {
                             minimal_pairs_result[choose] = 0;
                         }
-                        choose++;
 
-                        Random random = new Random();
-                        int position = random.nextInt(2);
+                        intent.putExtra("correct_words",minimal_pairs_correct_str);
+                        intent.putExtra("results",minimal_pairs_result);
 
-                        int a= oldPos + (position % 2);
-                        int b= oldPos + ((position + 1) % 2);
+                        //TODO store data
+                        v.getContext().startActivity(intent);
 
-                        topIMG.setImageResource(minimal_pairs[a]);
-                        botIMG.setImageResource(minimal_pairs[b]);
+                    } else {
+                        playPressed = false;
 
-                        if(minimal_pairs[a] == minimal_pairs_correct[choose]){
-                            topIMG.setTag("correct");
-                            botIMG.setTag("false");
-                        } else {
-                            topIMG.setTag("false");
-                            botIMG.setTag("correct");
-                        }
-
-                        oldPos += 2;
-
+                        nextButtons(topIMG);
 
                         if (player != null) {
                             player.stop();
                             player.release();
                             player = null;
                         }
-
-
                     }
 
                 }
@@ -118,28 +106,31 @@ public class MinimalPairs extends AppCompatActivity {
 
             public void onClick(View v) {
                 if (oldPos >= 8) {
+                    Intent intent = new Intent(MinimalPairs.this, MinimalPairsExerciseFinished.class);
 
-                    //TODO
+                    if(botIMG.getTag() == "correct"){
+                        minimal_pairs_result[choose] = 1;
+                    } else {
+                        minimal_pairs_result[choose] = 0;
+                    }
+
+                    intent.putExtra("correct_words",minimal_pairs_correct_str);
+                    intent.putExtra("results",minimal_pairs_result);
+
+                    //TODO store data
+                    v.getContext().startActivity(intent);
+
+
                 } else {
                     playPressed = false;
-                    minimal_pairs_result[choose] = 1;
 
-                    Random random = new Random();
-                    int position = random.nextInt(2);
-
-                    topIMG.setImageResource(minimal_pairs[oldPos + (position % 2)]);
-                    botIMG.setImageResource(minimal_pairs[oldPos + ((position + 1) % 2)]);
-
-
-                    oldPos += 2;
-                    choose++;
+                    nextButtons(botIMG);
 
                     if (player != null) {
                         player.stop();
                         player.release();
                         player = null;
                     }
-
                 }
 
             }
@@ -172,6 +163,35 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
+    private void nextButtons(ImageButton imageButton){
+
+        if(imageButton.getTag() == "correct"){
+            minimal_pairs_result[choose] = 1;
+        } else {
+            minimal_pairs_result[choose] = 0;
+        }
+        choose++;
+
+        Random random = new Random();
+        int position = random.nextInt(2);
+
+        int a= oldPos + (position % 2);
+        int b= oldPos + ((position + 1) % 2);
+
+        topIMG.setImageResource(minimal_pairs[a]);
+        botIMG.setImageResource(minimal_pairs[b]);
+
+        if(minimal_pairs[a] == minimal_pairs_correct[choose]){
+            topIMG.setTag("correct");
+            botIMG.setTag("false");
+        } else {
+            topIMG.setTag("false");
+            botIMG.setTag("correct");
+        }
+
+        oldPos += 2;
+    }
+
 
     private void setMinimal_pairs(){
         Random random = new Random();
@@ -199,5 +219,17 @@ public class MinimalPairs extends AppCompatActivity {
     private void setMinimal_pairs_all(){
         minimal_pairs_all = new int[]{R.drawable.gold, R.drawable.geld, R.drawable.sand, R.drawable.wand, R.drawable.see, R.drawable.tee, R.drawable.hose,
                 R.drawable.rose, R.drawable.huhn, R.drawable.hut, R.drawable.baum, R.drawable.schaum, R.drawable.geld, R.drawable.welt, R.drawable.tasche, R.drawable.tasse};
+    }
+
+    public int[] getMinimal_pairs_result(){
+        return minimal_pairs_result;
+    }
+
+    public String[] getMinimal_pairs_all_str() {
+        return minimal_pairs_all_str;
+    }
+
+    public String[] getMinimal_pairs_correct_str(){
+        return minimal_pairs_correct_str;
     }
 }

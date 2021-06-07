@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachLea">
-        <activity android:name=".Exercises.MinimalPairs"></activity>
+        <activity android:name=".MinimalPairsExerciseFinished"></activity>
+        <activity android:name=".Exercises.MinimalPairs" />
         <activity android:name=".ExercisesMain" />
         <activity android:name=".MainActivity">
             <intent-filter>
