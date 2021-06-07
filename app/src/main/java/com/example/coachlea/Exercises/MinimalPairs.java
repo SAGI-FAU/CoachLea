@@ -15,21 +15,23 @@ import java.util.Random;
 
 public class MinimalPairs extends AppCompatActivity {
 
-    private Random random = new Random();
 
     private int[] minimal_pairs_all;
     private String[] minimal_pairs_all_str;
     private int[] minimal_pairs = new int[8];
-    private String[] minimal_pairs_result;
+    private int[] minimal_pairs_result = new int[8];
     private String[] minimal_pairs_correct_str = new String[8];
     private int[] minimal_pairs_correct = new int[8];
     private boolean playPressed = false;
     private int choose = 0;
+    private int oldPos = 2;
+
 
 
     private ImageButton topIMG;
     private ImageButton botIMG;
     private MediaPlayer player;
+
 
 
     @Override
@@ -50,24 +52,101 @@ public class MinimalPairs extends AppCompatActivity {
         topIMG.setImageResource(minimal_pairs[0]);
         botIMG.setImageResource(minimal_pairs[1]);
 
-        /*
+        //setting tags for correct or false button
+        if(minimal_pairs[0] == minimal_pairs_correct[0]){
+            topIMG.setTag("correct");
+            botIMG.setTag("false");
+        } else {
+            topIMG.setTag("false");
+            botIMG.setTag("correct");
+        }
+
+        // top ImageButton
         topIMG.setOnClickListener(new View.OnClickListener(){
 
-            public void onClick(View v){
+            public void onClick(View v) {
+                if (playPressed) {
+                    if (oldPos >= 8) {
 
+                        //TODO
+                    } else {
+                        playPressed = false;
+
+                        if(topIMG.getTag() == "correct"){
+                            minimal_pairs_result[choose] = 1;
+                        } else {
+                            minimal_pairs_result[choose] = 0;
+                        }
+                        choose++;
+
+                        Random random = new Random();
+                        int position = random.nextInt(2);
+
+                        int a= oldPos + (position % 2);
+                        int b= oldPos + ((position + 1) % 2);
+
+                        topIMG.setImageResource(minimal_pairs[a]);
+                        botIMG.setImageResource(minimal_pairs[b]);
+
+                        if(minimal_pairs[a] == minimal_pairs_correct[choose]){
+                            topIMG.setTag("correct");
+                            botIMG.setTag("false");
+                        } else {
+                            topIMG.setTag("false");
+                            botIMG.setTag("correct");
+                        }
+
+                        oldPos += 2;
+
+
+                        if (player != null) {
+                            player.stop();
+                            player.release();
+                            player = null;
+                        }
+
+
+                    }
+
+                }
             }
 
         });
 
+        // bottom ImageButton
         botIMG.setOnClickListener(new View.OnClickListener(){
 
-            public void onClick(View v){
+            public void onClick(View v) {
+                if (oldPos >= 8) {
+
+                    //TODO
+                } else {
+                    playPressed = false;
+                    minimal_pairs_result[choose] = 1;
+
+                    Random random = new Random();
+                    int position = random.nextInt(2);
+
+                    topIMG.setImageResource(minimal_pairs[oldPos + (position % 2)]);
+                    botIMG.setImageResource(minimal_pairs[oldPos + ((position + 1) % 2)]);
+
+
+                    oldPos += 2;
+                    choose++;
+
+                    if (player != null) {
+                        player.stop();
+                        player.release();
+                        player = null;
+                    }
+
+                }
 
             }
         });
 
-         */
 
+        //play Button
         play.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 playPressed = true;
@@ -76,6 +155,7 @@ public class MinimalPairs extends AppCompatActivity {
                     player.seekTo(0);
                     player.start();
                 } else {
+                    //TODO replace ä ö ü ß?
                     String file = minimal_pairs_correct_str[choose];
                     int resId = getResources().getIdentifier(file,"raw",getPackageName());
                     String path = "a" + resId;
@@ -92,7 +172,9 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
+
     private void setMinimal_pairs(){
+        Random random = new Random();
         int position = random.nextInt(8)*2;
 
 
