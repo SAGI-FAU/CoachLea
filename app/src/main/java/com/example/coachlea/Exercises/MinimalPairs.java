@@ -21,7 +21,10 @@ public class MinimalPairs extends AppCompatActivity {
     private String[] minimal_pairs_all_str;
     private int[] minimal_pairs = new int[8];
     private String[] minimal_pairs_result;
-    private String[] minimal_pairs_correct = new String[8];
+    private String[] minimal_pairs_correct_str = new String[8];
+    private int[] minimal_pairs_correct = new int[8];
+    private boolean playPressed = false;
+    private int choose = 0;
 
 
     private ImageButton topIMG;
@@ -47,12 +50,41 @@ public class MinimalPairs extends AppCompatActivity {
         topIMG.setImageResource(minimal_pairs[0]);
         botIMG.setImageResource(minimal_pairs[1]);
 
+        /*
         topIMG.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
 
             }
 
+        });
+
+        botIMG.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+
+            }
+        });
+
+         */
+
+        play.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                playPressed = true;
+
+                if(player != null){
+                    player.seekTo(0);
+                    player.start();
+                } else {
+                    String file = minimal_pairs_correct_str[choose];
+                    int resId = getResources().getIdentifier(file,"raw",getPackageName());
+                    String path = "a" + resId;
+                    String path2 = path.substring(1);
+                    player = MediaPlayer.create(v.getContext(), Integer.parseInt(path2));
+                    player.start();
+                }
+
+            }
         });
 
 
@@ -71,7 +103,8 @@ public class MinimalPairs extends AppCompatActivity {
                 position = random.nextInt(8)*2;
             }
             int corr = random.nextInt(2);
-            minimal_pairs_correct[i] = minimal_pairs_all_str[position + corr];
+            minimal_pairs_correct_str[i] = minimal_pairs_all_str[position + corr];
+            minimal_pairs_correct[i] = minimal_pairs_all[position + corr];
             minimal_pairs[i*2] = minimal_pairs_all[position];
             minimal_pairs[i*2+1] = minimal_pairs_all[position + 1];
 
