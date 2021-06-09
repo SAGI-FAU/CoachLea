@@ -3,6 +3,7 @@ package com.example.coachlea.Exercises;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -52,7 +53,11 @@ public class MinimalPairs extends AppCompatActivity {
         setMinimal_pairs();
 
         topIMG.setImageResource(minimal_pairs[0]);
+        //topIMG.setBackgroundResource(R.color.limegreen);
+        topIMG.setBackgroundResource(0);
+
         botIMG.setImageResource(minimal_pairs[1]);
+        botIMG.setBackgroundResource(0);
 
         //setting tags for correct or false button
         if(minimal_pairs[0] == minimal_pairs_correct[0]){
@@ -73,6 +78,7 @@ public class MinimalPairs extends AppCompatActivity {
                         Intent intent = new Intent(MinimalPairs.this, MinimalPairsExerciseFinished.class);
 
                         if(topIMG.getTag() == "correct"){
+                            topIMG.setBackgroundResource(R.color.limegreen);
                             minimal_pairs_result[choose] = 1;
                         } else {
                             minimal_pairs_result[choose] = 0;
@@ -82,7 +88,16 @@ public class MinimalPairs extends AppCompatActivity {
                         intent.putExtra("results",minimal_pairs_result);
 
                         //TODO store data
-                        v.getContext().startActivity(intent);
+                        // time delay for green frame
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+
+                            public void run(){
+                                v.getContext().startActivity(intent);
+                            }
+
+                        },400);
+
 
                     } else {
                         playPressed = false;
@@ -109,6 +124,7 @@ public class MinimalPairs extends AppCompatActivity {
                     Intent intent = new Intent(MinimalPairs.this, MinimalPairsExerciseFinished.class);
 
                     if(botIMG.getTag() == "correct"){
+                        botIMG.setBackgroundResource(R.color.limegreen);
                         minimal_pairs_result[choose] = 1;
                     } else {
                         minimal_pairs_result[choose] = 0;
@@ -118,7 +134,15 @@ public class MinimalPairs extends AppCompatActivity {
                     intent.putExtra("results",minimal_pairs_result);
 
                     //TODO store data
-                    v.getContext().startActivity(intent);
+                    // time delay for green frame
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+
+                        public void run(){
+                            v.getContext().startActivity(intent);
+                        }
+
+                    },400);
 
 
                 } else {
@@ -166,6 +190,7 @@ public class MinimalPairs extends AppCompatActivity {
     private void nextButtons(ImageButton imageButton){
 
         if(imageButton.getTag() == "correct"){
+            imageButton.setBackgroundResource(R.color.limegreen);
             minimal_pairs_result[choose] = 1;
         } else {
             minimal_pairs_result[choose] = 0;
@@ -178,8 +203,23 @@ public class MinimalPairs extends AppCompatActivity {
         int a= oldPos + (position % 2);
         int b= oldPos + ((position + 1) % 2);
 
-        topIMG.setImageResource(minimal_pairs[a]);
-        botIMG.setImageResource(minimal_pairs[b]);
+
+        //Time delay for green frame as feedback
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+
+            public void run(){
+                imageButton.setBackgroundResource(0);
+                topIMG.setImageResource(minimal_pairs[a]);
+                botIMG.setImageResource(minimal_pairs[b]);
+
+            }
+
+        },400);
+
+
+
+
 
         if(minimal_pairs[a] == minimal_pairs_correct[choose]){
             topIMG.setTag("correct");
