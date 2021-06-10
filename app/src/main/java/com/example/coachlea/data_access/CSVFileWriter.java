@@ -1,6 +1,5 @@
 package com.example.coachlea.data_access;
 
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
@@ -19,9 +18,9 @@ public class CSVFileWriter {
     private final String DELIMITER = ";";
     private final String NEW_LINE = "\r\n";
     private final String FILE_ENDING = ".csv";
-    public final String PATH = Environment.getExternalStorageDirectory() + "/CITA/METADATA/";
+    //public final String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/";
     private static final String TAG = CSVFileWriter.class.getSimpleName();
-    public static String file_path = Environment.getExternalStorageDirectory() + "/CITA/METADATA/";
+    //public static String file_path = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/";
     private String filename;
     private BufferedWriter mBufferedWriter = null;
 

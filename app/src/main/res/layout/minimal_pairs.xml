@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffe4c4"
     tools:context=".Exercises.MinimalPairs">
 
     <ImageButton
         android:id="@+id/topIMG"
-        android:layout_width="275dp"
-        android:layout_height="275dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/botIMG"
-        android:layout_width="275dp"
-        android:layout_height="275dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher_background"
@@ -34,12 +35,14 @@
 
     <Button
         android:id="@+id/playBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Play"
+        android:layout_width="160dp"
+        android:layout_height="125dp"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/play_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botIMG" />
+        app:layout_constraintTop_toBottomOf="@+id/botIMG"
+        app:layout_constraintVertical_bias="0.456" />
 </androidx.constraintlayout.widget.ConstraintLayout>
