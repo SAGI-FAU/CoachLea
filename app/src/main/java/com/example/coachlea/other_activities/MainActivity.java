@@ -1,10 +1,12 @@
-package com.example.coachlea;
+package com.example.coachlea.other_activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.coachlea.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.coachlea;
+package com.example.coachlea.other_activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.coachlea.R;
 
 public class MinimalPairsExerciseFinished extends AppCompatActivity {
 

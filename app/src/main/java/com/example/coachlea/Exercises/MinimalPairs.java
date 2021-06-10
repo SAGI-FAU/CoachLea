@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.coachlea.MinimalPairsExerciseFinished;
+import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.CSVFileWriter;
 
