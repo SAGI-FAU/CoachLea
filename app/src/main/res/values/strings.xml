@@ -19,4 +19,6 @@
         <item>tasche</item>
         <item>tasse</item>
     </string-array>
+    <string name="needed">Permission needed</string>
+    <string name="permissions">"To use this application, the permission to record your voice, to write to your external storage and to use your camera is needed"</string>
 </resources>

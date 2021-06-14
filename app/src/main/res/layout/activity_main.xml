@@ -26,6 +26,7 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginBottom="184dp"
+        android:onClick="profileButtonClick"
         android:text="Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
