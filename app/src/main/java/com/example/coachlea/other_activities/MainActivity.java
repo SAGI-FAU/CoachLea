@@ -4,11 +4,13 @@ package com.example.coachlea.other_activities;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.coachlea.R;
 
@@ -26,9 +28,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void profileButtonClick(View view){
-        requestAll();
-        /*
+
+        //this and the requestAll() method will be somewhere else in the end
+
         if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestAll();
         }
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ExercisesMain.class);
             startActivity(intent);
         }
-                */
+
         //TODO
     }
 

@@ -10,10 +10,11 @@
         android:id="@+id/button3"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="64dp"
         android:onClick="minimalPairsBTNClick"
         android:text="Minimal Pairs"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,10 +22,11 @@
         android:id="@+id/button4"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="70dp"
         android:onClick="minimalPairs2BTNClick"
         android:text="Minimal Pairs 2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
@@ -32,10 +34,11 @@
         android:id="@+id/button5"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="70dp"
         android:onClick="sustainedPhonationBTNClick"
         android:text="Sustained Phonation "
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
@@ -43,10 +46,23 @@
         android:id="@+id/button6"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="70dp"
         android:onClick="vowelSpaceBTNClick"
         android:text="Vowel space area"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="70dp"
+        android:onClick="animalSoundsBTNClick"
+        android:text="Animal Sounds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

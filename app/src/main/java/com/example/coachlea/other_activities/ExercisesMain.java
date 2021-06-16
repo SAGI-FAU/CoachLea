@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.coachlea.Exercises.AnimalSounds;
 import com.example.coachlea.Exercises.MinimalPairs;
 import com.example.coachlea.R;
 
@@ -32,5 +33,10 @@ public class ExercisesMain extends AppCompatActivity {
 
     public void vowelSpaceBTNClick(View view){
         //TODO
+    }
+
+    public void animalSoundsBTNClick(View view){
+        Intent intent = new Intent(this, AnimalSounds.class);
+        startActivity(intent);
     }
 }
