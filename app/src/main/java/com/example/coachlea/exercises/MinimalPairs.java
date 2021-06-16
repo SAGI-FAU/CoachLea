@@ -1,4 +1,4 @@
-package com.example.coachlea.Exercises;
+package com.example.coachlea.exercises;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

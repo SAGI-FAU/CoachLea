@@ -6,9 +6,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.coachlea.Exercises.AnimalSounds;
-import com.example.coachlea.Exercises.MinimalPairs;
+import com.example.coachlea.exercises.AnimalSounds;
+import com.example.coachlea.exercises.MinimalPairs;
 import com.example.coachlea.R;
+import com.example.coachlea.exercises.SnailRace;
 
 public class ExercisesMain extends AppCompatActivity {
 
@@ -27,7 +28,9 @@ public class ExercisesMain extends AppCompatActivity {
         //TODO
     }
 
-    public void sustainedPhonationBTNClick(View view){
+    public void snailRaceBTNClick(View view){
+        Intent intent = new Intent(this, SnailRace.class);
+        startActivity(intent);
         //TODO
     }
 

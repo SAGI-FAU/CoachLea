@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffe4c4"
-    tools:context=".Exercises.MinimalPairs">
+    tools:context=".exercises.MinimalPairs">
 
     <ImageButton
         android:id="@+id/topIMG"

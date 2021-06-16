@@ -1,4 +1,4 @@
-package com.example.coachlea.Exercises;
+package com.example.coachlea.exercises;
 
 import android.os.Bundle;
 import android.widget.Button;
