@@ -32,6 +32,7 @@ public class MinimalPairsExerciseFinished extends AppCompatActivity {
         message.setText("Well done!");
         result.setText(score + " " + "/ 4");
 
+
         home.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){

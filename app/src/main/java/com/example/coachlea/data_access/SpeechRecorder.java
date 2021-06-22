@@ -76,8 +76,8 @@ public class SpeechRecorder {
     public String prepare(String exercise){
         String date = getCurrentDateAsString();
         Calendar c = Calendar.getInstance();
-        FILE_PCM  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + "_" + c.getTime() + exercise + ".pcm");
-        FILE_WAV  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + "_" + c.getTime() + exercise + ".wav");
+        FILE_PCM  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + exercise + ".pcm");
+        FILE_WAV  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + exercise + ".wav");
         try {
             FILE_PCM.createNewFile();
         } catch (IOException e) {
