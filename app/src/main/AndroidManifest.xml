@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachLea">
-        <activity android:name=".other_activities.SpeakingExerciseFinished"></activity>
+        <activity android:name=".exercises.ImageRecognition"></activity>
+        <activity android:name=".other_activities.SpeakingExerciseFinished" />
         <activity android:name=".exercises.SnailRace" />
         <activity android:name=".exercises.AnimalSounds" />
         <activity android:name=".other_activities.MinimalPairsExerciseFinished" />

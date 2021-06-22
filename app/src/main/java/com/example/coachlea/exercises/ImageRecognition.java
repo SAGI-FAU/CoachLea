@@ -14,47 +14,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.SpeechRecorder;
-import com.example.coachlea.other_activities.MainActivity;
 import com.example.coachlea.other_activities.SpeakingExerciseFinished;
 import com.example.coachlea.tools.RadarFeatures;
 
 import java.io.File;
-import java.util.Random;
 
-public class AnimalSounds extends AppCompatActivity {
+
+public class ImageRecognition extends AppCompatActivity {
+
+    private static final int EXERCISE_LENGTH = 4;
 
     private Button record;
-    private Button home;
     private SpeechRecorder recorder;
     private static String path;
     private ImageView imageView;
-    private int[] animals = new int[4];
+    private int[] images_all = new int[EXERCISE_LENGTH];
     private boolean isRecording = false;
     private TextView recordText;
-
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.animal_sounds);
+        setContentView(R.layout.image_recognition);
 
         //initialize
-        record = findViewById(R.id.record);
-        home = findViewById(R.id.home3);
-        imageView = findViewById(R.id.imageView);
-        recordText = findViewById(R.id.RecordAnimalText);
-
-        recorder = SpeechRecorder.getInstance(this, new AnimalSounds.VolumeHandler(), "AnimalSounds"); // TODO Volume Handler
-
-        //set animal
-        animals[0] = R.drawable.affe;
-        animals[1] = R.drawable.esel;
-        animals[2] = R.drawable.hund;
-        animals[3] = R.drawable.katze;
-
-        Random rand = new Random();
-        int choose = rand.nextInt(4);
-        imageView.setImageResource(animals[choose]);
+        record = findViewById(R.id.record2);
+        imageView = findViewById(R.id.imageRecognitionView);
+        recordText = findViewById(R.id.textView2);
 
         record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +52,7 @@ public class AnimalSounds extends AppCompatActivity {
                     recordText.setText(R.string.record);
 
                 } else {
-                    path = recorder.prepare("Animal_Sounds");
+                    path = recorder.prepare("Image_Recognition");
                     recorder.record();
                     isRecording = true;
                     recordText.setText(R.string.recording);
@@ -74,14 +61,10 @@ public class AnimalSounds extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
+    }
 
-            public void onClick(View v) {
-                Intent intent = new Intent(AnimalSounds.this, MainActivity.class);
-                v.getContext().startActivity(intent);
-
-            }
-        });
+    private void setImages(){ //TODO Bilder
+        images_all = new int[]{R.drawable.baum,R.drawable.welt,R.drawable.huhn,R.drawable.rose};
     }
 
 
@@ -97,22 +80,23 @@ public class AnimalSounds extends AppCompatActivity {
             final String state = bundle.getString("State", "Empty");
             if (state.equals("Finished")) {
                 if (path == null) {
-                    Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 File f = new File(path);
                 if (f.exists() && !f.isDirectory()) {
                     float[] int_f0 = RadarFeatures.intonation(path);
                     if (int_f0.length == 1) {
-                        Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (Float.isNaN(int_f0[0])) {
-                        Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
                         return;
                     } else {
+                        //TODO -> multiple images
                         Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
-                        intent.putExtra("exercise", "Animal sounds");
+                        intent.putExtra("exercise", "Image Recognition");
                         record.setEnabled(false);
                         recorder.release();
                         getApplicationContext().startActivity(intent);
@@ -121,6 +105,5 @@ public class AnimalSounds extends AppCompatActivity {
             }
         }
     }
-
 }
 
