@@ -2,24 +2,36 @@ package com.example.coachlea.exercises;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.R;
+import com.example.coachlea.data_access.SpeechRecorder;
 import com.example.coachlea.other_activities.MainActivity;
+import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
+import com.example.coachlea.tools.RadarFeatures;
 
+import java.io.File;
 import java.util.Random;
 
 public class AnimalSounds extends AppCompatActivity {
 
     private Button record;
     private Button home;
-    //private SpeechRecorder recorder;
+    private SpeechRecorder recorder;
+    private static String path;
     private ImageView imageView;
     private int[] animals = new int[4];
+    private boolean isRecording = false;
+    private TextView recordText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +42,9 @@ public class AnimalSounds extends AppCompatActivity {
         record = findViewById(R.id.record);
         home = findViewById(R.id.home3);
         imageView = findViewById(R.id.imageView);
+        recordText = findViewById(R.id.RecordAnimalText);
 
-        //recorder = SpeechRecorder.getInstance(this, new AnimalSounds().VolumeHandler(), "AnimalSounds"); // TODO Volume Handler
+        recorder = SpeechRecorder.getInstance(this, new AnimalSounds.VolumeHandler(), "AnimalSounds"); // TODO Volume Handler
 
         //set animal
         animals[0] = R.drawable.affe;
@@ -46,6 +59,17 @@ public class AnimalSounds extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v) {
+            if(isRecording){
+                recorder.stopRecording();
+                isRecording= false;
+                recordText.setText(R.string.record);
+
+            } else {
+                path = recorder.prepare("Animal_Sounds");
+                recorder.record();
+                isRecording= true;
+                recordText.setText(R.string.recording);
+            }
         //TODO
         }
     });
@@ -60,8 +84,8 @@ public class AnimalSounds extends AppCompatActivity {
         });
     }
 
-    /*
-    private class VolumeHandler extends Handler{
+
+    private class VolumeHandler extends Handler {
         public  VolumeHandler(){
         }
 
@@ -72,7 +96,7 @@ public class AnimalSounds extends AppCompatActivity {
 
             final String state = bundle.getString("State", "Empty");
             if (state.equals("Finished")) {
-                if(path == null) {
+                if (path == null) {
                     Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -87,9 +111,16 @@ public class AnimalSounds extends AppCompatActivity {
                         Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
                         return;
                     } else {
-
-        }
+                        Intent intent = new Intent(getApplicationContext(), MinimalPairsExerciseFinished.class);
+                        intent.putExtra("exercise", "Picture description");
+                        record.setEnabled(false);
+                        recorder.release();
+                        getApplicationContext().startActivity(intent);
+                    }
+                }
+             }
+           }
     }
-    */
+
 }
 

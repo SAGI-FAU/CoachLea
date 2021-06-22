@@ -23,6 +23,8 @@
     <string name="permissions">"To use this application, the permission to record your voice, to write to your external storage and to use your camera is needed"</string>
     <string name="Home">Home</string>
     <string name="Snail_race">Snail race</string>
-    <string name="messageAgain">"Da ist etwas schiefgegangen, bitte versuche es nochmal!!"</string>
+    <string name="messageAgain">"Da ist etwas schiefgegangen, bitte versuche es nochmal!"</string>
     <string name="messageEmpty">"Du musst etwas sagen!"</string>
+    <string name="record">"Aufnahme"</string>
+    <string name="recording">"Aufnehmen..."</string>
 </resources>
