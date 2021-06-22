@@ -9,14 +9,15 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.R;
-import com.example.coachlea.data_access.SpeechRecorder;
 import com.example.coachlea.other_activities.MainActivity;
+
+import java.util.Random;
 
 public class AnimalSounds extends AppCompatActivity {
 
     private Button record;
     private Button home;
-    private SpeechRecorder recorder;
+    //private SpeechRecorder recorder;
     private ImageView imageView;
     private int[] animals = new int[4];
 
@@ -25,17 +26,29 @@ public class AnimalSounds extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.animal_sounds);
 
+        //initialize
         record = findViewById(R.id.record);
         home = findViewById(R.id.home3);
+        imageView = findViewById(R.id.imageView);
 
         //recorder = SpeechRecorder.getInstance(this, new AnimalSounds().VolumeHandler(), "AnimalSounds"); // TODO Volume Handler
 
+        //set animal
         animals[0] = R.drawable.affe;
         animals[1] = R.drawable.esel;
         animals[2] = R.drawable.hund;
         animals[3] = R.drawable.katze;
 
-        imageView.setImageResource(animals[0]);
+        Random rand = new Random();
+        int choose = rand.nextInt(4);
+        imageView.setImageResource(animals[choose]);
+
+        record.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+        //TODO
+        }
+    });
 
         home.setOnClickListener(new View.OnClickListener() {
 
@@ -47,5 +60,36 @@ public class AnimalSounds extends AppCompatActivity {
         });
     }
 
+    /*
+    private class VolumeHandler extends Handler{
+        public  VolumeHandler(){
+        }
 
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+
+            final String state = bundle.getString("State", "Empty");
+            if (state.equals("Finished")) {
+                if(path == null) {
+                    Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                File f = new File(path);
+                if (f.exists() && !f.isDirectory()) {
+                    float[] int_f0 = RadarFeatures.intonation(path);
+                    if (int_f0.length == 1) {
+                        Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (Float.isNaN(int_f0[0])) {
+                        Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+
+        }
+    }
+    */
 }
+
