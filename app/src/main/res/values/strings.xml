@@ -27,4 +27,7 @@
     <string name="messageEmpty">"Du musst etwas sagen!"</string>
     <string name="record">"Aufnahme"</string>
     <string name="recording">"Aufnehmen..."</string>
+    <string name="done">"Fertig"</string>
+    <string name="again">"Nochmal"</string>
+    <string name="motivation">"Weiter so!"</string>
 </resources>

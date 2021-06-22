@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.SpeechRecorder;
 import com.example.coachlea.other_activities.MainActivity;
-import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
+import com.example.coachlea.other_activities.SpeakingExerciseFinished;
 import com.example.coachlea.tools.RadarFeatures;
 
 import java.io.File;
@@ -111,7 +111,7 @@ public class AnimalSounds extends AppCompatActivity {
                         Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
                         return;
                     } else {
-                        Intent intent = new Intent(getApplicationContext(), MinimalPairsExerciseFinished.class);
+                        Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
                         intent.putExtra("exercise", "Picture description");
                         record.setEnabled(false);
                         recorder.release();
