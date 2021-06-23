@@ -53,7 +53,7 @@ public class MinimalPairs extends AppCompatActivity {
         //Initialize
         topIMG = findViewById(R.id.topIMG);
         botIMG = findViewById(R.id.botIMG);
-        Button play = findViewById(R.id.playBTN);
+        ImageButton play = findViewById(R.id.playBTN);
 
         setMinimal_pairs();
 

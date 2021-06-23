@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.exercises.AnimalSounds;
+import com.example.coachlea.exercises.ImageRecognition;
 import com.example.coachlea.exercises.MinimalPairs;
 import com.example.coachlea.R;
 import com.example.coachlea.exercises.SnailRace;
@@ -24,8 +25,10 @@ public class ExercisesMain extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void minimalPairs2BTNClick(View view){
-        //TODO
+    public void imageRecognitionBTNClick(View view){
+        Intent intent = new Intent(this, ImageRecognition.class);
+        startActivity(intent);
+
     }
 
     public void snailRaceBTNClick(View view){
@@ -34,9 +37,6 @@ public class ExercisesMain extends AppCompatActivity {
         //TODO
     }
 
-    public void vowelSpaceBTNClick(View view){
-        //TODO
-    }
 
     public void animalSoundsBTNClick(View view){
         Intent intent = new Intent(this, AnimalSounds.class);

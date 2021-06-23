@@ -44,7 +44,7 @@ public class AnimalSounds extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         recordText = findViewById(R.id.RecordAnimalText);
 
-        recorder = SpeechRecorder.getInstance(this, new AnimalSounds.VolumeHandler(), "AnimalSounds"); // TODO Volume Handler
+        recorder = SpeechRecorder.getInstance(this, new AnimalSounds.VolumeHandler(), "AnimalSounds");
 
         //set animal
         animals[0] = R.drawable.affe;
@@ -70,7 +70,6 @@ public class AnimalSounds extends AppCompatActivity {
                     isRecording = true;
                     recordText.setText(R.string.recording);
                 }
-                //TODO
             }
         });
 

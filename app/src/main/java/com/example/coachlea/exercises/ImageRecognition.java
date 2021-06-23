@@ -39,17 +39,40 @@ public class ImageRecognition extends AppCompatActivity {
         setContentView(R.layout.image_recognition);
 
         //initialize
+        recorder = SpeechRecorder.getInstance(this, new ImageRecognition.VolumeHandler(), "ImageRecognition");
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
         recordText = findViewById(R.id.textView2);
+        setImages();
+
+        /*
+        Random random = new Random();
+        int choose = random.nextInt(4);
+        imageView.setImageResource(choose);
+        */
+
+        imageView.setImageResource(images_all[counter]);
 
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isRecording) {
                     recorder.stopRecording();
-                    isRecording = false;
                     recordText.setText(R.string.record);
+
+                    if (counter < (EXERCISE_LENGTH-1)) {
+                        counter++;
+                        imageView.setImageResource(images_all[counter]);
+
+
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
+                        intent.putExtra("exercise", "Image Recognition");
+                        record.setEnabled(false);
+                        recorder.release();
+                        getApplicationContext().startActivity(intent);
+                    }
+                    isRecording = false;
 
                 } else {
                     path = recorder.prepare("Image_Recognition");
@@ -63,8 +86,8 @@ public class ImageRecognition extends AppCompatActivity {
 
     }
 
-    private void setImages(){ //TODO Bilder
-        images_all = new int[]{R.drawable.baum,R.drawable.welt,R.drawable.huhn,R.drawable.rose};
+    private void setImages() { //TODO Bilder
+        images_all = new int[]{R.drawable.baum, R.drawable.welt, R.drawable.huhn, R.drawable.rose};
     }
 
 
@@ -93,17 +116,11 @@ public class ImageRecognition extends AppCompatActivity {
                     if (Float.isNaN(int_f0[0])) {
                         Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
                         return;
-                    } else {
-                        //TODO -> multiple images
-                        Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
-                        intent.putExtra("exercise", "Image Recognition");
-                        record.setEnabled(false);
-                        recorder.release();
-                        getApplicationContext().startActivity(intent);
                     }
                 }
             }
         }
     }
 }
+
 
