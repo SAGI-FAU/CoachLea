@@ -65,7 +65,7 @@ public class AnimalSounds extends AppCompatActivity {
                     recordText.setText(R.string.record);
 
                 } else {
-                    path = recorder.prepare("Animal_Sounds");
+                    path = recorder.prepare("Animal_Sounds",0);
                     recorder.record();
                     isRecording = true;
                     recordText.setText(R.string.recording);

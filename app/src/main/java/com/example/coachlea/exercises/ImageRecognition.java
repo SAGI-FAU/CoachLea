@@ -75,7 +75,7 @@ public class ImageRecognition extends AppCompatActivity {
                     isRecording = false;
 
                 } else {
-                    path = recorder.prepare("Image_Recognition");
+                    path = recorder.prepare("Image_Recognition",counter);
                     recorder.record();
                     isRecording = true;
                     recordText.setText(R.string.recording);
