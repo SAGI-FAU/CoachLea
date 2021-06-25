@@ -2,6 +2,7 @@ package com.example.coachlea.tools;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -11,15 +12,35 @@ import androidx.annotation.Nullable;
 
 import com.example.coachlea.R;
 
+import java.util.logging.Handler;
+
 
 public class SnailRaceGame extends View {
 
     private final int fieldColor;
     private final int lineColor;
+    private int lineWidth = getWidth()*(5/12);
 
     private final Paint paint = new Paint();
 
-    private int lineWidth = getWidth()*(5/12);
+    private  int leaX = lineWidth/2;
+    private int leaY = 0;
+    private int leaSpeed = 0;
+
+    private int emilyX = (lineWidth/2)+lineWidth;
+    private int emilyY = 0;
+    private int emilySpeed = 0; //TODO value?
+
+    private int screenHeight = getMeasuredHeight();
+
+    private Handler handler; //TODO ?
+    private Runnable runnable; // ?
+
+    long UPDATE_MILLIS = 30;
+
+    private Bitmap lea, emily;
+    private Context context;
+
 
     public SnailRaceGame(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
