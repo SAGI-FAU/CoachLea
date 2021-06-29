@@ -3,6 +3,7 @@ package com.example.coachlea.tools;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -44,6 +45,14 @@ public class SnailRaceGame extends View {
 
     public SnailRaceGame(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
+
+        //define Lea and Emily images
+        Bitmap tempLea = BitmapFactory.decodeResource(getResources(),R.drawable.lea);
+        Bitmap tempEmily = BitmapFactory.decodeResource(getResources(),R.drawable.emily);
+
+        lea = Bitmap.createScaledBitmap(tempLea,(int) (lineWidth*0.75),(int)(lineWidth*0.75),false);
+        emily = Bitmap.createScaledBitmap(tempEmily,(int) (lineWidth*0.75),(int)(lineWidth*0.75),false);
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SnailRaceGame, 0, 0);
 

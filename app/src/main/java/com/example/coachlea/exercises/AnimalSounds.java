@@ -49,8 +49,8 @@ public class AnimalSounds extends AppCompatActivity {
         //set animal
         animals[0] = R.drawable.affe;
         animals[1] = R.drawable.esel;
-        animals[2] = R.drawable.hund;
-        animals[3] = R.drawable.katze;
+        animals[2] = R.drawable.hund_as;
+        animals[3] = R.drawable.katze_as;
 
         Random rand = new Random();
         int choose = rand.nextInt(4);
