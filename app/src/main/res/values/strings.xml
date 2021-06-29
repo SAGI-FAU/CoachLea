@@ -19,6 +19,83 @@
         <item>tasche</item>
         <item>tasse</item>
     </string-array>
+
+    <string-array name="Minimal_Pairs_plosives">
+        <item>kanne</item>
+        <item>tanne</item>
+        <item>kopf</item>
+        <item>topf</item>
+        <item>wecker</item>
+        <item>wetter</item>
+        <item>kasse</item>
+        <item>tasse</item>
+        <item>keller</item>
+        <item>teller</item>
+        <item>kraene</item>
+        <item>traene</item>
+        <item>nagel</item>
+        <item>nadel</item>
+        <item>wabe</item>
+        <item>wade</item>
+        <item>bach</item>
+        <item>dach</item>
+        <item>geld</item>
+        <item>gelb</item>
+        <item>pass</item>
+        <item>fass</item>
+        <item>topf</item>
+        <item>zopf</item>
+        <item>tee</item>
+        <item>zeh</item>
+        <item>tasse</item>
+        <item>tatze</item>
+        <item>katze</item>
+        <item>kasse</item>
+        <item>dieb</item>
+        <item>sieb</item>
+        <item>zahn</item>
+        <item>hahn</item>
+        <item>tonne</item>
+        <item>sonne</item>
+        <item>baecker</item>
+        <item>wecker</item>
+        <item>baelle</item>
+        <item>welle</item>
+        <item>mauer</item>
+        <item>bauer</item>
+        <item>oma</item>
+        <item>opa</item>
+        <item>pferd</item>
+        <item>herd</item>
+        <item>brei</item>
+        <item>hai</item>
+        <item>bauch</item>
+        <item>lauch</item>
+        <item>dorn</item>
+        <item>horn</item>
+        <item>baum</item>
+        <item>schaum</item>
+        <item>bus</item>
+        <item>nuss</item>
+        <item>dose</item>
+        <item>rose</item>
+        <item>klammer</item>
+        <item>hammer</item>
+        <item>fisch</item>
+        <item>tisch</item>
+        <item>gitter</item>
+        <item>ritter</item>
+        <item>kuh</item>
+        <item>schuh</item>
+        <item>kutsche</item>
+        <item>rutsche</item>
+        <item>seife</item>
+        <item>pfeife</item>
+        <item>clown</item>
+        <item>zaun</item>
+        <item>kuss</item>
+        <item>bus</item>
+    </string-array>
     <string name="needed">Permission needed</string>
     <string name="permissions">"To use this application, the permission to record your voice, to write to your external storage and to use your camera is needed"</string>
     <string name="Home">Home</string>
