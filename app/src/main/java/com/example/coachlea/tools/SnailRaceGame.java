@@ -1,5 +1,6 @@
 package com.example.coachlea.tools;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -9,14 +10,18 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.coachlea.R;
 
 
-public class SnailRaceGame extends View {
+public class SnailRaceGame extends SurfaceView {
+
+    private SurfaceHolder holder;
 
     private final int fieldColor;
     private final int lineColor;
@@ -50,6 +55,29 @@ public class SnailRaceGame extends View {
     public SnailRaceGame(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+
+        holder =getHolder();
+
+        holder.addCallback(new SurfaceHolder.Callback() {
+            @SuppressLint("WrongCall")
+            @Override
+            public void surfaceCreated(@NonNull SurfaceHolder holder) {
+
+                Canvas c = holder.lockCanvas();
+                onDraw(c);
+                holder.unlockCanvasAndPost(c);
+            }
+
+            @Override
+            public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+
+            }
+        });
 
 
         //initialize
@@ -112,6 +140,7 @@ public class SnailRaceGame extends View {
     protected void onDraw(Canvas canvas){
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
+        canvas.drawColor(fieldColor);
         canvas.drawBitmap(emily,emilyX,emilyY,null);
         canvas.drawBitmap(lea,leaX,leaY,null);
 
