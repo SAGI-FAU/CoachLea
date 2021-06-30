@@ -1,6 +1,5 @@
 package com.example.coachlea.tools;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -10,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.Display;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -53,28 +51,14 @@ public class SnailRaceGame extends View {
         super(context, attrs);
         this.context = context;
 
-        //define Lea and Emily images
-        Bitmap tempLea = BitmapFactory.decodeResource(getResources(),R.drawable.lea);
-        Bitmap tempEmily = BitmapFactory.decodeResource(getResources(),R.drawable.emily);
-
-        lea = Bitmap.createScaledBitmap(tempLea,lineWidth/2, lineWidth/2,false);
-        emily = Bitmap.createScaledBitmap(tempEmily,lineWidth/2,lineWidth/2,false);
 
         //initialize
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SnailRaceGame, 0, 0);
 
-        Display display = ((Activity)context).getWindowManager().getDefaultDisplay(); //?
+        //Display display = ((Activity)context).getWindowManager().getDefaultDisplay(); //?
 
         Point size = new Point();
-        display.getSize(size);
-        screenWidth = size.x;
-        screenHeight = size.y;
-
-        emilyX= lineWidth + lineWidth/2;
-        emilyY= emily.getHeight();
-
-        leaX = lineWidth/2;
-        leaY = lea.getHeight();
+        //display.getSize(size);
 
         try {
             fieldColor = a.getInteger(R.styleable.SnailRaceGame_FieldColor,0);
@@ -83,6 +67,7 @@ public class SnailRaceGame extends View {
             a.recycle();
         }
 
+        /*
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -92,6 +77,7 @@ public class SnailRaceGame extends View {
 
         rect = new Rect(0,0,screenWidth,screenHeight);
 
+        */
 
     }
 
@@ -101,7 +87,24 @@ public class SnailRaceGame extends View {
 
         lineWidth = (int) ((getMeasuredWidth()/2) - (getMeasuredWidth()/2)*(1/(float)6));
 
+        screenWidth = getMeasuredWidth();
+        screenHeight = getMeasuredHeight();
+
         setMeasuredDimension(getMeasuredWidth(),getMeasuredHeight());
+        setSnails();
+
+    }
+
+    protected void setSnails(){
+        //define Lea and Emily images
+        Bitmap tempLea = BitmapFactory.decodeResource(getResources(),R.drawable.lea);
+        Bitmap tempEmily = BitmapFactory.decodeResource(getResources(),R.drawable.emily);
+
+        lea = Bitmap.createScaledBitmap(tempLea,(int)(lineWidth*0.75), (int)(lineWidth*0.75),false);
+        emily = Bitmap.createScaledBitmap(tempEmily,(int)(lineWidth*0.75),(int)(lineWidth*0.75),false);
+
+        emilyX = lineWidth + (lineWidth/3);
+        leaX = lineWidth/3;
 
     }
 
@@ -109,6 +112,7 @@ public class SnailRaceGame extends View {
     protected void onDraw(Canvas canvas){
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
+        canvas.drawBitmap(emily,emilyX,emilyY,null);
         drawRaceField(canvas);
 
     }
@@ -122,6 +126,7 @@ public class SnailRaceGame extends View {
 
     }
 
+    /*
     private void drawEmily(Canvas canvas){
         emilyY = emilyY + emilySpeed;
         resetState = true;
@@ -131,9 +136,11 @@ public class SnailRaceGame extends View {
         }
         canvas.drawBitmap(emily, emilyX, emilyY,null);
 
-    }
+    }*/
+
+    /*
 
     private void drawLea(Canvas canvas){
 
-    }
+    } */
 }
