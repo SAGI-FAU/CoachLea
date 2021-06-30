@@ -113,6 +113,8 @@ public class SnailRaceGame extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         canvas.drawBitmap(emily,emilyX,emilyY,null);
+        canvas.drawBitmap(lea,leaX,leaY,null);
+
         drawRaceField(canvas);
 
     }
