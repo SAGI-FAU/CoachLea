@@ -22,6 +22,7 @@ import com.example.coachlea.R;
 public class SnailRaceGame extends SurfaceView {
 
     private SurfaceHolder holder;
+    private GameThread gameThread;
 
     private final int fieldColor;
     private final int lineColor;
@@ -56,7 +57,9 @@ public class SnailRaceGame extends SurfaceView {
         super(context, attrs);
         this.context = context;
 
-        holder =getHolder();
+        //for game loop
+        gameThread = new GameThread(this);
+        holder = getHolder();
 
         holder.addCallback(new SurfaceHolder.Callback() {
             @SuppressLint("WrongCall")
@@ -109,6 +112,7 @@ public class SnailRaceGame extends SurfaceView {
 
     }
 
+    //set variables
     @Override
     protected void onMeasure(int width, int height){
         super.onMeasure(width, height);
@@ -123,6 +127,7 @@ public class SnailRaceGame extends SurfaceView {
 
     }
 
+    //set Snail Bitmaps
     protected void setSnails(){
         //define Lea and Emily images
         Bitmap tempLea = BitmapFactory.decodeResource(getResources(),R.drawable.lea);
