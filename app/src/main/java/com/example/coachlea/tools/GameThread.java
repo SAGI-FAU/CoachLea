@@ -1,5 +1,6 @@
 package com.example.coachlea.tools;
 
+import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
 public class GameThread extends Thread {
@@ -15,6 +16,7 @@ public class GameThread extends Thread {
         running = run;
     }
 
+    @SuppressLint("WrongCall")
     @Override
     public void run(){
         while (running){

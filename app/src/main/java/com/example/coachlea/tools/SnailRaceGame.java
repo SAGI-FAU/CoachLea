@@ -24,7 +24,7 @@ public class SnailRaceGame extends SurfaceView {
     private SurfaceHolder holder;
     private GameThread gameThread;
 
-    private final int fieldColor;
+    private final int fieldColor; //TODO some problem there
     private final int lineColor;
     private int lineWidth = getWidth()*(5/12);
 
@@ -37,7 +37,7 @@ public class SnailRaceGame extends SurfaceView {
 
     private int emilyX = (lineWidth/2)+lineWidth;
     private int emilyY = 0;
-    private int emilySpeed = 10; //TODO value?
+    private int emilySpeed = 1; //TODO value?
 
     private int screenHeight = 0;
     private int screenWidth = 0;
@@ -68,12 +68,6 @@ public class SnailRaceGame extends SurfaceView {
                 gameThread.setRunning(true);
                 gameThread.start();
 
-                //TODO wieder einkommentieren??
-                /*
-                Canvas c = holder.lockCanvas();
-                onDraw(c);
-                holder.unlockCanvasAndPost(c);
-                */
             }
 
             @Override
@@ -81,6 +75,7 @@ public class SnailRaceGame extends SurfaceView {
 
             }
 
+            //TODO call onPause to destroy?
             // if surface is destroyed, thread will stop
             @Override
             public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
@@ -99,6 +94,9 @@ public class SnailRaceGame extends SurfaceView {
 
             }
         });
+
+        emilySpeed = 1;
+
 
 
         //initialize
@@ -157,6 +155,9 @@ public class SnailRaceGame extends SurfaceView {
         emilyX = lineWidth + (lineWidth/3);
         leaX = lineWidth/3;
 
+        emilyY = screenHeight - emily.getHeight();
+        leaY = screenHeight - lea.getHeight();
+
     }
 
     @Override
@@ -170,6 +171,8 @@ public class SnailRaceGame extends SurfaceView {
         drawRaceField(canvas);
         drawEmily(canvas);
 
+
+
     }
 
     private void drawRaceField(Canvas canvas){
@@ -182,8 +185,17 @@ public class SnailRaceGame extends SurfaceView {
     }
 
 
+
+
     private void drawEmily(Canvas canvas){
-        emilyY++;
+        //finish line collision check
+
+        if(emilyY == 0){
+            emilySpeed = 0;
+        }
+
+
+        emilyY = emilyY - emilySpeed;
         canvas.drawBitmap(emily,emilyX,emilyY,null);
 
 

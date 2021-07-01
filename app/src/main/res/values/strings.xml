@@ -35,6 +35,14 @@
         <item>traene</item>
         <item>nagel</item>
         <item>nadel</item>
+        <item>bogen</item>
+        <item>boden</item>
+        <item>feger</item>
+        <item>feder</item>
+        <item>waage</item>
+        <item>wade</item>
+        <item>nabel</item>
+        <item>nadel</item>
         <item>wabe</item>
         <item>wade</item>
         <item>bach</item>
@@ -96,6 +104,131 @@
         <item>kuss</item>
         <item>bus</item>
     </string-array>
+
+    <string-array name="Minimal_Pairs_fricatives">
+        <item>schal</item>
+        <item>saal</item>
+        <item>schuppe</item>
+        <item>suppe</item>
+        <item>tasche</item>
+        <item>tasse</item>
+        <item>busch</item>
+        <item>bus</item>
+        <item>sand</item>
+        <item>hand</item>
+        <item>salz</item>
+        <item>hals</item>
+        <item>kirche</item>
+        <item>kirsche</item>
+        <item>weich</item>
+        <item>weiss</item>
+        <item>faecher</item>
+        <item>faesser</item>
+        <item>kueche</item>
+        <item>kuesse</item>
+        <item>topf</item>
+        <item>zopf</item>
+        <item>tee</item>
+        <item>zeh</item>
+        <item>tasse</item>
+        <item>tatze</item>
+        <item>kasse</item>
+        <item>katze</item>
+        <item>fahne</item>
+        <item>sahne</item>
+        <item>fee</item>
+        <item>see</item>
+        <item>pass</item>
+        <item>fass</item>
+        <item>dieb</item>
+        <item>sieb</item>
+        <item>zahn</item>
+        <item>hahn</item>
+        <item>tonne</item>
+        <item>sonne</item>
+        <item>schnecke</item>
+        <item>hecke</item>
+        <item>spiegel</item>
+        <item>igel</item>
+        <item>baum</item>
+        <item>schaum</item>
+        <item>kuh</item>
+        <item>schuh</item>
+        <item>seife</item>
+        <item>pfeife</item>
+        <item>clown</item>
+        <item>zaun</item>
+        <item>schal</item>
+        <item>wal</item>
+        <item>reh</item>
+        <item>see</item>
+    </string-array>
+
+    <string-array name="Minimal_Pairs_lateral">
+        <item>lunge</item>
+        <item>junge</item>
+        <item>lacke</item>
+        <item>jacke</item>
+        <item>rose</item>
+        <item>lose</item>
+        <item>gras</item>
+        <item>glas</item>
+        <item>ratte</item>
+        <item>latte</item>
+        <item>leiter</item>
+        <item>reiter</item>
+        <item>beil</item>
+        <item>bein</item>
+        <item>lupe</item>
+        <item>hupe</item>
+        <item>bauch</item>
+        <item>lauch</item>
+    </string-array>
+
+    <string-array name="Minimal_Pairs_trills">
+        <item>reis</item>
+        <item>heiss</item>
+        <item>rasen</item>
+        <item>hasen</item>
+        <item>rand</item>
+        <item>hand</item>
+        <item>rose</item>
+        <item>hose</item>
+        <item>rose</item>
+        <item>lose</item>
+        <item>gras</item>
+        <item>glas</item>
+        <item>ratte</item>
+        <item>latte</item>
+        <item>leiter</item>
+        <item>reiter</item>
+        <item>dose</item>
+        <item>rose></item>
+        <item>gitter</item>
+        <item>ritter</item>
+        <item>kutsche</item>
+        <item>rutsche</item>
+        <item>watte</item>
+        <item>ratte</item>
+        <item>reh</item>
+        <item>see</item>
+    </string-array>
+
+    <string-array name="Minimal_Pairs_others">
+        <item>maehen</item>
+        <item>naehen</item>
+        <item>schwamm</item>
+        <item>schwan</item>
+        <item>ringe</item>
+        <item>rinne</item>
+        <item>nase</item>
+        <item>hase</item>
+        <item>maus</item>
+        <item>haus</item>
+        <item>mund</item>
+        <item>hund</item>
+    </string-array>
+
     <string name="needed">Permission needed</string>
     <string name="permissions">"To use this application, the permission to record your voice, to write to your external storage and to use your camera is needed"</string>
     <string name="Home">Home</string>

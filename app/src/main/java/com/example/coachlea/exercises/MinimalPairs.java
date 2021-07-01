@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.CSVFileWriter;
+import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +24,11 @@ public class MinimalPairs extends AppCompatActivity {
 
 
     private int[] minimal_pairs_all;
+    private int[] minimal_pairs_plosives;
+    private int[] minimal_pairs_fricatives;
+    private int[] minimal_pairs_trills;
+    private int[] minimal_pairs_lateral;
+    private int[] minimal_pairs_others;
     private String[] minimal_pairs_all_str;
     private int[] minimal_pairs = new int[2 * EXERCISE_LENGTH];
     private int[] minimal_pairs_result = new int[2 * EXERCISE_LENGTH];
@@ -179,6 +183,7 @@ public class MinimalPairs extends AppCompatActivity {
                 }
 
             }
+
         });
 
 
@@ -281,11 +286,6 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
-    private void setMinimal_pairs_all() {
-        minimal_pairs_all = new int[]{R.drawable.gold, R.drawable.geld, R.drawable.sand, R.drawable.wand, R.drawable.see, R.drawable.tee, R.drawable.hose,
-                R.drawable.rose, R.drawable.huhn, R.drawable.hut, R.drawable.baum, R.drawable.schaum, R.drawable.geld, R.drawable.welt, R.drawable.tasche, R.drawable.tasse};
-    }
-
     private void export_data() throws IOException {
         String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/RESULTS/";
         CSVFileWriter mCSVFileWriter = new CSVFileWriter("MinimalPairs", PATH); // TODO exerciseName ändern falls name geändert wird
@@ -301,5 +301,48 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
+    private void setMinimal_pairs_all() {
+        minimal_pairs_all = new int[]{R.drawable.gold, R.drawable.geld, R.drawable.sand, R.drawable.wand, R.drawable.see, R.drawable.tee, R.drawable.hose,
+                R.drawable.rose, R.drawable.huhn, R.drawable.hut, R.drawable.baum, R.drawable.schaum, R.drawable.geld, R.drawable.welt, R.drawable.tasche, R.drawable.tasse};
+    }
+
+    private void setMinimal_pairs_plosives() {
+        minimal_pairs_plosives = new int[]{R.drawable.kanne, R.drawable.tanne, R.drawable.kopf, R.drawable.topf, R.drawable.wecker, R.drawable.wetter, R.drawable.kasse,
+                R.drawable.tasse, R.drawable.keller, R.drawable.teller, R.drawable.kraene, R.drawable.traene, R.drawable.nagel, R.drawable.nadel, R.drawable.bogen, R.drawable.boden,
+                R.drawable.feger, R.drawable.feder, R.drawable.waage, R.drawable.wade, R.drawable.nabel, R.drawable.nadel, R.drawable.wabe, R.drawable.wade, R.drawable.bach, R.drawable.dach,
+                R.drawable.geld, R.drawable.gelb, R.drawable.pass, R.drawable.fass, R.drawable.topf, R.drawable.zopf, R.drawable.tee, R.drawable.zeh, R.drawable.tasse, R.drawable.tatze,
+                R.drawable.kasse, R.drawable.katze, R.drawable.dieb, R.drawable.sieb, R.drawable.zahn, R.drawable.hahn, R.drawable.tonne, R.drawable.sonne, R.drawable.baecker,
+                R.drawable.wecker, R.drawable.baelle, R.drawable.welle, R.drawable.mauer, R.drawable.bauer, R.drawable.oma, R.drawable.opa, R.drawable.pferd, R.drawable.herd,
+                R.drawable.brei, R.drawable.hai, R.drawable.bauch, R.drawable.lauch, R.drawable.dorn, R.drawable.horn, R.drawable.baum, R.drawable.schaum, R.drawable.bus, R.drawable.nuss,
+                R.drawable.dose, R.drawable.rose, R.drawable.klammer, R.drawable.hammer, R.drawable.fisch, R.drawable.tisch, R.drawable.gitter, R.drawable.ritter, R.drawable.kuh,
+                R.drawable.schuh, R.drawable.kutsche, R.drawable.rutsche, R.drawable.seife, R.drawable.pfeife, R.drawable.clown, R.drawable.zaun, R.drawable.kuss, R.drawable.bus};
+    }
+
+    private void setMinimal_pairs_fricatives(){
+        minimal_pairs_fricatives = new int[]{R.drawable.schal, R.drawable.saal, R.drawable.schuppe, R.drawable.suppe, R.drawable.tasche, R.drawable.tasse, R.drawable.busch, R.drawable.bus,
+                R.drawable.sand, R.drawable.hand, R.drawable.salz, R.drawable.hals, R.drawable.kirche, R.drawable.kirsche, R.drawable.weich, R.drawable.weiss, R.drawable.faecher,
+                R.drawable.faesser, R.drawable.kueche, R.drawable.kuesse, R.drawable.topf, R.drawable.zopf, R.drawable.tee, R.drawable.zeh, R.drawable.tasse, R.drawable.tatze,
+                R.drawable.kasse, R.drawable.katze, R.drawable.fahne, R.drawable.sahne, R.drawable.fee, R.drawable.see, R.drawable.pass, R.drawable.fass, R.drawable.dieb, R.drawable.sieb,
+                R.drawable.zahn, R.drawable.hahn, R.drawable.tonne, R.drawable.sonne, R.drawable.schnecke, R.drawable.hecke, R.drawable.spiegel, R.drawable.igel, R.drawable.baum,
+                R.drawable.schaum, R.drawable.kuh, R.drawable.schuh, R.drawable.seife, R.drawable.pfeife, R.drawable.clown, R.drawable.zaun, R.drawable.schal, R.drawable.wal,
+                R.drawable.reh, R.drawable.see};
+    }
+
+    private void setMinimal_pairs_trills(){
+        minimal_pairs_trills = new int[]{R.drawable.reis, R.drawable.heiss, R.drawable.rasen, R.drawable.hasen, R.drawable.rand, R.drawable.hand, R.drawable.rose, R.drawable.hose,
+                R.drawable.rose, R.drawable.lose, R.drawable.gras, R.drawable.glas, R.drawable.ratte, R.drawable.latte, R.drawable.leiter, R.drawable.reiter, R.drawable.dose,
+                R.drawable.rose, R.drawable.gitter, R.drawable.ritter, R.drawable.kutsche, R.drawable.rutsche, R.drawable.watte, R.drawable.ratte, R.drawable.reh, R.drawable.see};
+    }
+
+    private void setMinimal_pairs_lateral(){
+        minimal_pairs_lateral = new int[]{R.drawable.lunge, R.drawable.junge, R.drawable.lacke, R.drawable.jacke, R.drawable.rose, R.drawable.lose, R.drawable.gras, R.drawable.glas,
+                R.drawable.ratte, R.drawable.latte, R.drawable.leiter, R.drawable.reiter, R.drawable.beil, R.drawable.bein, R.drawable.lupe, R.drawable.hupe, R.drawable.bauch,
+                R.drawable.lauch};
+    }
+
+    private void setMinimal_pairs_others(){
+        minimal_pairs_others = new int[]{R.drawable.maehen, R.drawable.naehen, R.drawable.schwamm, R.drawable.schwan, R.drawable.ringe, R.drawable.rinne, R.drawable.nase,
+                R.drawable.hase, R.drawable.maus, R.drawable.haus, R.drawable.mund, R.drawable.hund};
+    }
 
 }
