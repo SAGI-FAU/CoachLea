@@ -65,10 +65,15 @@ public class SnailRaceGame extends SurfaceView {
             @SuppressLint("WrongCall")
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder holder) {
+                gameThread.setRunning(true);
+                gameThread.start();
 
+                //TODO wieder einkommentieren??
+                /*
                 Canvas c = holder.lockCanvas();
                 onDraw(c);
                 holder.unlockCanvasAndPost(c);
+                */
             }
 
             @Override
@@ -76,8 +81,21 @@ public class SnailRaceGame extends SurfaceView {
 
             }
 
+            // if surface is destroyed, thread will stop
             @Override
             public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+
+                boolean retry = true;
+                gameThread.setRunning(false);
+                while(retry){
+                    try {
+                        //join method waits for this thread to die
+                        gameThread.join();
+                        retry = false;
+                    } catch (InterruptedException e){
+
+                    }
+                }
 
             }
         });
@@ -146,10 +164,11 @@ public class SnailRaceGame extends SurfaceView {
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         canvas.drawColor(fieldColor);
-        canvas.drawBitmap(emily,emilyX,emilyY,null);
+
         canvas.drawBitmap(lea,leaX,leaY,null);
 
         drawRaceField(canvas);
+        drawEmily(canvas);
 
     }
 
@@ -162,17 +181,22 @@ public class SnailRaceGame extends SurfaceView {
 
     }
 
-    /*
+
     private void drawEmily(Canvas canvas){
-        emilyY = emilyY + emilySpeed;
+        emilyY++;
+        canvas.drawBitmap(emily,emilyX,emilyY,null);
+
+
+       /* emilyY = emilyY + emilySpeed;
         resetState = true;
 
         if(emilyY >= screenHeight - emily.getHeight() ){
             resetState = false;
         }
         canvas.drawBitmap(emily, emilyX, emilyY,null);
+        */
 
-    }*/
+    }
 
     /*
 
