@@ -3,6 +3,7 @@ package com.example.coachlea.exercises;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,12 +25,19 @@ public class SnailRace extends AppCompatActivity {
     }
 
     protected void onPause(){
+        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+        snailRaceGame.destroyThread();
         super.onPause();
+    }
+
+    public void onBackPressed(){
+        this.onPause();
+        super.onBackPressed();
     }
 
     public void homeBTNClick(View view){
 
-        snailRaceGame.invalidate();
+        onPause();
         Intent intent = new Intent(this, MainActivity.class);
 
         startActivity(intent);

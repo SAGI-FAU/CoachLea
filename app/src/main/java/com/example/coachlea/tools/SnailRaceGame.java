@@ -215,4 +215,24 @@ public class SnailRaceGame extends SurfaceView {
     private void drawLea(Canvas canvas){
 
     } */
+
+    public void destroyThread(){
+
+        boolean retry = true;
+        gameThread.setRunning(false);
+        while(retry){
+            try {
+                //join method waits for this thread to die
+                gameThread.join();
+                retry = false;
+            } catch (InterruptedException e){
+
+            }
+        }
+
+        //free storage of bitmaps
+        lea.recycle();
+        emily.recycle();
+
+    }
 }
