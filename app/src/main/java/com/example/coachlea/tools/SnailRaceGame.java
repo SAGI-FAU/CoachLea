@@ -2,14 +2,12 @@ package com.example.coachlea.tools;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -17,23 +15,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.coachlea.R;
+import com.example.coachlea.exercises.SnailRace;
 
 
 public class SnailRaceGame extends SurfaceView {
 
     private SurfaceHolder holder;
     private GameThread gameThread;
+    private SrgAudioHandler audioHandler;
 
-   // private final int fieldColor; //TODO some problem there
-   // private final int lineColor;
     private int lineWidth = getWidth()*(5/12);
 
     private final Paint paint = new Paint();
-    private boolean resetState;
 
     private  int leaX = lineWidth/2;
     private int leaY = 0;
     private int leaSpeed = 0;
+    private int currentVolume = 0;
 
     private int emilyX = (lineWidth/2)+lineWidth;
     private int emilyY = 0;
@@ -42,20 +40,29 @@ public class SnailRaceGame extends SurfaceView {
     private int screenHeight = 0;
     private int screenWidth = 0;
 
-    //private Handler handler; //TODO ?
-    private Runnable runnable; // ?
 
     long UPDATE_MILLIS = 30;
 
     private Bitmap lea, emily;
     private Context context;
+    //private boolean isRecording = false;
 
-    private Rect rect;
+    private static final String TAG = SnailRace.class.getSimpleName();
+
+
+
+
 
 
     public SnailRaceGame(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+
+        //initialize
+        emilySpeed = 1;
+        audioHandler = new SrgAudioHandler(context);
+        currentVolume = 0;
+
 
         //for game loop
         gameThread = new GameThread(this);
@@ -68,6 +75,7 @@ public class SnailRaceGame extends SurfaceView {
                 gameThread.setRunning(true);
                 gameThread.start();
 
+
             }
 
             @Override
@@ -75,8 +83,6 @@ public class SnailRaceGame extends SurfaceView {
 
             }
 
-            //TODO call onPause to destroy?
-            // if surface is destroyed, thread will stop
             @Override
             public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
 
@@ -95,36 +101,8 @@ public class SnailRaceGame extends SurfaceView {
             }
         });
 
-        emilySpeed = 1;
 
 
-
-        //initialize
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SnailRaceGame, 0, 0);
-
-        //Display display = ((Activity)context).getWindowManager().getDefaultDisplay(); //?
-
-        Point size = new Point();
-        //display.getSize(size);
-
-       /* try {
-            fieldColor = a.getInteger(R.styleable.SnailRaceGame_FieldColor,0);
-            lineColor = a.getInteger(R.styleable.SnailRaceGame_LineColor,0);
-        }finally{
-            a.recycle();
-        } */
-
-        /*
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                invalidate(); //calls onDraw
-            }
-        };
-
-        rect = new Rect(0,0,screenWidth,screenHeight);
-
-        */
 
     }
 
@@ -171,6 +149,8 @@ public class SnailRaceGame extends SurfaceView {
         drawRaceField(canvas);
         drawEmily(canvas);
 
+        currentVolume = audioHandler.getCurrentVolume();
+        Log.d(TAG,"currentVolume: " + currentVolume);
 
 
     }
@@ -198,16 +178,6 @@ public class SnailRaceGame extends SurfaceView {
         emilyY = emilyY - emilySpeed;
         canvas.drawBitmap(emily,emilyX,emilyY,null);
 
-
-       /* emilyY = emilyY + emilySpeed;
-        resetState = true;
-
-        if(emilyY >= screenHeight - emily.getHeight() ){
-            resetState = false;
-        }
-        canvas.drawBitmap(emily, emilyX, emilyY,null);
-        */
-
     }
 
     /*
@@ -216,6 +186,7 @@ public class SnailRaceGame extends SurfaceView {
 
     } */
 
+    //stop thread
     public void destroyThread(){
 
         boolean retry = true;
@@ -230,9 +201,48 @@ public class SnailRaceGame extends SurfaceView {
             }
         }
 
+        if(!audioHandler.stopRecording()){
+            //TODO fehlerbehandlung
+        }
+
         //free storage of bitmaps
         lea.recycle();
         emily.recycle();
 
     }
+
+    /*
+    //for speech recording and evaluating
+    private class VolumeHandler extends Handler {
+
+        public VolumeHandler() {
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+
+            final String state = bundle.getString("State", "Empty");
+            if (state.equals("Finished")) {
+                if (path == null) {
+                    Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                File f = new File(path);
+                if (f.exists() && !f.isDirectory()) {
+                    float[] int_f0 = RadarFeatures.intonation(path);
+                    if (int_f0.length == 1) {
+                        Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (Float.isNaN(int_f0[0])) {
+                        Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    */
 }
