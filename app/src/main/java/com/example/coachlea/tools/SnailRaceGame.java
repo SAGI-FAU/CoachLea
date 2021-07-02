@@ -24,8 +24,8 @@ public class SnailRaceGame extends SurfaceView {
     private SurfaceHolder holder;
     private GameThread gameThread;
 
-    private final int fieldColor; //TODO some problem there
-    private final int lineColor;
+   // private final int fieldColor; //TODO some problem there
+   // private final int lineColor;
     private int lineWidth = getWidth()*(5/12);
 
     private final Paint paint = new Paint();
@@ -107,12 +107,12 @@ public class SnailRaceGame extends SurfaceView {
         Point size = new Point();
         //display.getSize(size);
 
-        try {
+       /* try {
             fieldColor = a.getInteger(R.styleable.SnailRaceGame_FieldColor,0);
             lineColor = a.getInteger(R.styleable.SnailRaceGame_LineColor,0);
         }finally{
             a.recycle();
-        }
+        } */
 
         /*
         runnable = new Runnable() {
@@ -164,7 +164,7 @@ public class SnailRaceGame extends SurfaceView {
     protected void onDraw(Canvas canvas){
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
-        canvas.drawColor(fieldColor);
+        canvas.drawColor(getResources().getColor(R.color.dark_red));
 
         canvas.drawBitmap(lea,leaX,leaY,null);
 
@@ -176,7 +176,7 @@ public class SnailRaceGame extends SurfaceView {
     }
 
     private void drawRaceField(Canvas canvas){
-        paint.setColor(lineColor);
+        paint.setColor(getResources().getColor(R.color.white));
         paint.setStrokeWidth(30);
         canvas.drawLine(getWidth()/2,0,getWidth()/2,canvas.getHeight(),paint);
         canvas.drawLine((getWidth()/2) - lineWidth,0,getWidth()/2 - lineWidth,canvas.getHeight(),paint);

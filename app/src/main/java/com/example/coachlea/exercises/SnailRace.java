@@ -8,14 +8,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.R;
 import com.example.coachlea.other_activities.MainActivity;
+import com.example.coachlea.tools.SnailRaceGame;
 
 public class SnailRace extends AppCompatActivity {
+
+    private SnailRaceGame snailRaceGame;
 
     //all the stuff happens in SnailRaceGame.java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.snail_race);
+
+        snailRaceGame = findViewById(R.id.snailRaceGame);
     }
 
     protected void onPause(){
@@ -24,7 +29,7 @@ public class SnailRace extends AppCompatActivity {
 
     public void homeBTNClick(View view){
 
-        this.onPause();
+        snailRaceGame.invalidate();
         Intent intent = new Intent(this, MainActivity.class);
 
         startActivity(intent);
