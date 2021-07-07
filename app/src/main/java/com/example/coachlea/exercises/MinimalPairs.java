@@ -22,6 +22,8 @@ public class MinimalPairs extends AppCompatActivity {
 
     private static final int EXERCISE_LENGTH = 4;
 
+    ArrayList<String> usedPair;
+    Random random;
 
     private int[] minimal_pairs_all;
     private int[] minimal_pairs_plosives;
@@ -29,7 +31,14 @@ public class MinimalPairs extends AppCompatActivity {
     private int[] minimal_pairs_trills;
     private int[] minimal_pairs_lateral;
     private int[] minimal_pairs_others;
+
+    private String[] minimal_pairs_plosives_str;
+    private String[] minimal_pairs_fricatives_str;
+    private String[] minimal_pairs_trills_str;
+    private String[] minimal_pairs_lateral_str;
+    private String[] minimal_pairs_others_str;
     private String[] minimal_pairs_all_str;
+
     private int[] minimal_pairs = new int[2 * EXERCISE_LENGTH];
     private int[] minimal_pairs_result = new int[2 * EXERCISE_LENGTH];
     private String[] minimal_pairs_result_str = new String[2 * EXERCISE_LENGTH];
@@ -37,9 +46,9 @@ public class MinimalPairs extends AppCompatActivity {
     private String[] minimal_pairs_false_str = new String[2 * EXERCISE_LENGTH];
     private int[] minimal_pairs_correct = new int[2 * EXERCISE_LENGTH];
     private boolean playPressed = false;
+
     private int choose = 0;
     private int oldPos = 2;
-
 
     private ImageButton topIMG;
     private ImageButton botIMG;
@@ -51,13 +60,42 @@ public class MinimalPairs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.minimal_pairs);
 
+        usedPair = new ArrayList<>(); // some minimal pairs are in multiple sets
+        random = new Random();
+
         setMinimal_pairs_all();
+
+        //set String arrays
         minimal_pairs_all_str = getResources().getStringArray(R.array.Minimal_Pairs);
+
+        minimal_pairs_plosives_str = getResources().getStringArray(R.array.Minimal_Pairs_plosives);
+        minimal_pairs_fricatives_str = getResources().getStringArray(R.array.Minimal_Pairs_fricatives);
+        minimal_pairs_lateral_str = getResources().getStringArray(R.array.Minimal_Pairs_lateral);
+        minimal_pairs_trills_str = getResources().getStringArray(R.array.Minimal_Pairs_trills);
+        minimal_pairs_others_str = getResources().getStringArray(R.array.Minimal_Pairs_others);
+
+        //set drawable arrays
+        setMinimal_pairs_plosives();
+        setMinimal_pairs_fricatives();
+        setMinimal_pairs_lateral();
+        setMinimal_pairs_trills();
+        setMinimal_pairs_others();
+
 
         //Initialize
         topIMG = findViewById(R.id.topIMG);
         botIMG = findViewById(R.id.botIMG);
         ImageButton play = findViewById(R.id.playBTN);
+
+
+        /*
+        //set minimal pairs for the game
+        setMinimal_pairs(minimal_pairs_plosives,minimal_pairs_plosives_str,3, 0);
+        setMinimal_pairs(minimal_pairs_fricatives,minimal_pairs_fricatives_str,3, 3);
+        setMinimal_pairs(minimal_pairs_lateral,minimal_pairs_lateral_str,1, 6);
+        setMinimal_pairs(minimal_pairs_trills,minimal_pairs_trills_str,1, 7);
+        setMinimal_pairs(minimal_pairs_others,minimal_pairs_others_str,1, 8);
+        */
 
         setMinimal_pairs();
 
@@ -285,6 +323,42 @@ public class MinimalPairs extends AppCompatActivity {
         }
 
     }
+
+    /*
+    private void setMinimal_pairs(int[] minimal_pairs, String[] minimal_pairs_str,int amount, int pos){
+
+        for( int i = pos; i < (pos + amount); i++ ){
+
+            int position = random.nextInt(minimal_pairs.length / 2) * 2; //always gets an even number
+
+            //check if both words were already used
+            while(usedPair.contains(minimal_pairs_str[position]) && usedPair.contains(minimal_pairs_str[position + 1])){
+                 position = random.nextInt(minimal_pairs.length / 2) * 2;
+            }
+
+
+
+            int corr = random.nextInt(2);
+            int flse = (corr + 1) % 2;
+
+            //set String arrays
+            minimal_pairs_correct_str[i] = minimal_pairs_str[position + corr];
+            minimal_pairs_false_str[i] = minimal_pairs_str[position + flse];
+
+            //set drawable arrays
+            minimal_pairs_correct[i] = minimal_pairs[position + corr];
+            minimal_pairs[i * 2] = minimal_pairs[position];
+            minimal_pairs[i * 2 + 1] = minimal_pairs[position + 1];
+
+            // add used minimal pair to arraylist
+            usedPair.add(minimal_pairs_str[position]);
+            usedPair.add(minimal_pairs_str[position+1]);
+
+        }
+
+    }
+    */
+
 
     private void export_data() throws IOException {
         String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/RESULTS/";

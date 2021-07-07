@@ -149,8 +149,11 @@ public class SnailRaceGame extends SurfaceView {
         drawRaceField(canvas);
         drawEmily(canvas);
 
+        //TODO connect currentvolume with lea speed
         currentVolume = audioHandler.getCurrentVolume();
         Log.d(TAG,"currentVolume: " + currentVolume);
+        leaSpeed = (int)(currentVolume / (float)30);
+        drawLea(canvas);
 
 
     }
@@ -180,11 +183,16 @@ public class SnailRaceGame extends SurfaceView {
 
     }
 
-    /*
+
 
     private void drawLea(Canvas canvas){
+        if(leaY <= 0){
+            leaSpeed = 0;
+        }
 
-    } */
+        leaY = leaY - leaSpeed;
+        canvas.drawBitmap(lea,leaX,leaY,null);
+    }
 
     //stop thread
     public void destroyThread(){
@@ -211,38 +219,4 @@ public class SnailRaceGame extends SurfaceView {
 
     }
 
-    /*
-    //for speech recording and evaluating
-    private class VolumeHandler extends Handler {
-
-        public VolumeHandler() {
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Bundle bundle = msg.getData();
-
-            final String state = bundle.getString("State", "Empty");
-            if (state.equals("Finished")) {
-                if (path == null) {
-                    Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                File f = new File(path);
-                if (f.exists() && !f.isDirectory()) {
-                    float[] int_f0 = RadarFeatures.intonation(path);
-                    if (int_f0.length == 1) {
-                        Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (Float.isNaN(int_f0[0])) {
-                        Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-            }
-        }
-    }
-    */
 }

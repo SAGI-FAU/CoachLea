@@ -110,7 +110,7 @@ public class SpeechRecorder {
                     while (AUDIO_RECORD.getRecordingState() == AudioRecord.RECORDSTATE_RECORDING) {
                         int size = AUDIO_RECORD.read(shorts, 0, minBufferSize);
                         double max = max(shorts);
-                        int maxPercent = (int) (max / Short.MAX_VALUE * 100);
+                        int maxPercent = (int) (max / Short.MAX_VALUE * 100); //TODO what kind of unit? MAX_VALUE = (2^15)-1  => 100%
                         Message message = HANDLER.obtainMessage();
                         Bundle data = new Bundle();
                         data.putDouble("Volume", maxPercent);
