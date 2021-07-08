@@ -149,6 +149,7 @@ public class SnailRaceGame extends SurfaceView {
         drawRaceField(canvas);
         drawEmily(canvas);
 
+        //20*log10(maxPercent)
         //TODO connect currentvolume with lea speed
         currentVolume = audioHandler.getCurrentVolume();
         Log.d(TAG,"currentVolume: " + currentVolume);
