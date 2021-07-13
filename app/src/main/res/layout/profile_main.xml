@@ -342,57 +342,6 @@
             <TableRow
                 android:background="@drawable/line_top_bot"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_weight="0.1"
-                    android:layout_width="0dp"
-                    android:layout_height="72dp"
-                    app:srcCompat="@drawable/smoker" />
-
-                <LinearLayout
-                    android:layout_weight="0.9"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/smoker"
-                        android:textColor="@color/dark_teal"
-                        android:textSize="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_weight="0.2"
-                        android:layout_height="wrap_content"
-                        android:text="@string/smoker" />
-
-                    <RadioGroup
-                        android:id="@+id/rgSmoker"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_weight="0.8"
-                        android:layout_height="wrap_content" >
-
-                        <RadioButton
-                            android:id="@+id/rbNoSmoker"
-                            android:layout_weight="0.5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="@string/no" />
-
-                        <RadioButton
-                            android:id="@+id/rbSmoker"
-                            android:layout_weight="0.5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="@string/yes" />
-                    </RadioGroup>
-                </LinearLayout>
-            </TableRow>
-            <TableRow
-                android:background="@drawable/line_top_bot"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
                 <Button

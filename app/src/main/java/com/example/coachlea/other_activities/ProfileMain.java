@@ -96,8 +96,6 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
         RadioButton rb_none = findViewById(R.id.rbNoSide);
         RadioButton rb_cochlear = findViewById(R.id.rbCochlearImplant);
         RadioButton rb_hearing_aid = findViewById(R.id.rbHearingAid);
-        RadioButton rb_smoker = findViewById(R.id.rbSmoker);
-        RadioButton rb_no_smoker = findViewById(R.id.rbNoSmoker);
         RadioButton rb_both_ci = findViewById(R.id.rbBothCI);
         RadioButton rb_none_CI = findViewById(R.id.rbNoneCI);
         File filepath = Environment.getExternalStorageDirectory();// + "/CITA/PROFILE/profile_pic.jpg";
@@ -153,11 +151,7 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
                     rb_none.setChecked(true);break;
             }
         }
-        if (pref.getBoolean("Smoker", false)) {
-            rb_smoker.setChecked(true);
-        } else {
-            rb_no_smoker.setChecked(true);
-        }
+
 
         if (!pref.getString("CochlearImplant", "noAid").equals("noAid")) {
             switch (pref.getString("CochlearImplant", "noAid")) {
@@ -204,7 +198,6 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
         rg_gender = findViewById(R.id.rgsex);
         rg_side_of_implant = findViewById(R.id.rgSideOfImplant);
         rg_implant = findViewById(R.id.rgTypeOfImplant);
-        rg_smoker = findViewById(R.id.rgSmoker);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("patientData", 0);
         SharedPreferences.Editor editor = pref.edit();
         int checkedGenderRadioButtonId = rg_gender.getCheckedRadioButtonId();
@@ -266,21 +259,6 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
                 break;
         }
 
-        int checkedSmokerRadioButtonId = rg_smoker.getCheckedRadioButtonId();
-        switch (checkedSmokerRadioButtonId) {
-            case R.id.rbSmoker:
-                editor.putBoolean("Smoker", true);
-                editor.apply();
-                patientData.setSmoker(true);
-                break;
-            case R.id.rbNoSmoker:
-                editor.putBoolean("Smoker", false);
-                editor.apply();
-                patientData.setSmoker(false);
-                break;
-            default:
-                break;
-        }
 
         String date_string = et_date.getText().toString();
         if (!date_string.isEmpty() && !date_string.equals("dd/mm/yyyy")) {

@@ -83,7 +83,6 @@ public class ProfileLogin extends AppCompatActivity implements View.OnClickListe
         RadioGroup rg_gender = findViewById(R.id.rgsex);
         RadioGroup rg_side_of_implant = findViewById(R.id.rgSideOfImplant);
         RadioGroup rg_implant = findViewById(R.id.rgTypeOfImplant);
-        RadioGroup rg_smoker = findViewById(R.id.rgSmoker);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("patientData", 0);
         SharedPreferences.Editor editor = pref.edit();
         String name = tv_username.getText().toString();
@@ -138,21 +137,6 @@ public class ProfileLogin extends AppCompatActivity implements View.OnClickListe
                 return false;
         }
 
-        int checkedSmokerRadioButtonId = rg_smoker.getCheckedRadioButtonId();
-        switch (checkedSmokerRadioButtonId) {
-            case R.id.rbSmoker:
-                editor.putBoolean("Smoker", true);
-                editor.apply();
-                patientData.setSmoker(true);
-                break;
-            case R.id.rbNoSmoker:
-                editor.putBoolean("Smoker", false);
-                editor.apply();
-                patientData.setSmoker(false);
-                break;
-            default:
-                return false;
-        }
 
         int checkedTypeRadioButtonId = rg_implant.getCheckedRadioButtonId();
         switch (checkedTypeRadioButtonId) {
