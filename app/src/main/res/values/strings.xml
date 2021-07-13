@@ -230,15 +230,38 @@
     </string-array>
 
     <string name="needed">Permission needed</string>
-    <string name="permissions">"To use this application, the permission to record your voice, to write to your external storage and to use your camera is needed"</string>
+    <string name="permissions">"Um diese Applikation nutzen zu können müssen sie zustimmen dass diese App Ihr Mikrofon, Ihre Kamera und Zugriff auf Ihren Speicher bekommt"</string>
     <string name="Home">Home</string>
     <string name="Snail_race">Schneckenrennen</string>
-    <string name="messageAgain">"Da ist etwas schiefgegangen, bitte versuche es nochmal!"</string>
-    <string name="messageEmpty">"Du musst etwas sagen!"</string>
-    <string name="record">"Aufnahme"</string>
-    <string name="recording">"Aufnehmen..."</string>
-    <string name="done">"Fertig"</string>
-    <string name="again">"Nochmal"</string>
-    <string name="motivation">"Weiter so!"</string>
-
+    <string name="messageAgain">Da ist etwas schiefgegangen, bitte versuche es nochmal!</string>
+    <string name="messageEmpty">Du musst etwas sagen!</string>
+    <string name="record">Aufnahme</string>
+    <string name="recording">Aufnehmen...</string>
+    <string name="done">Fertig</string>
+    <string name="again">Nochmal</string>
+    <string name="motivation">Weiter so!</string>
+    <string name="name">Name</string>
+    <string name="phoneNumber">Telefon Nummer</string>
+    <string name="birthdate">Geburtsdatum</string>
+    <string name="sex">Geschlecht</string>
+    <string name="male">Männlich</string>
+    <string name="female">Weiblich</string>
+    <string name="divers">Divers</string>
+    <string name="typeOfImplant">Art des Implantats</string>
+    <string name="cochlearImplant">Cochlear Implantat</string>
+    <string name="hearingAid">Hörgerät</string>
+    <string name="both">bei-\ndes</string>
+    <string name="none">kei-\nnes</string>
+    <string name="sideOfImplant">Seite des Implantats</string>
+    <string name="right">rechts</string>
+    <string name="left">links</string>
+    <string name="smoker">Raucher</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="save">Speichern</string>
+    <string name="back">Zurück</string>
+    <string name="Profile">Profil</string>
+    <string name="UploadPictures">Laden Sie Bilder hoch</string>
+    <string name="UploadPicturesGallery">Laden Sie Bilder von Ihrer Gallerie hoch!</string>
+    <string name="Gallery">Gallerie</string>
 </resources>
