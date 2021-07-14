@@ -73,7 +73,7 @@ public class ProfileLogin extends AppCompatActivity implements View.OnClickListe
                 birthdate = calendar.getTime();
                 et_date.setText(DateFormat.getDateInstance().format(birthdate));
             }
-        }, 1970, 1, 1);
+        }, 2000, 1, 1);
 
         findViewById(R.id.button_continue).setOnClickListener(this);
         findViewById(R.id.button_back1).setOnClickListener(this);
