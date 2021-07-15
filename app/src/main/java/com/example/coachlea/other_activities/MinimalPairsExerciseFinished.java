@@ -30,7 +30,7 @@ public class MinimalPairsExerciseFinished extends AppCompatActivity {
             }
         }
         message.setText("Well done!");
-        result.setText(score + " " + "/ 4");
+        result.setText(score + " " + "/ 9");
 
 
         home.setOnClickListener(new View.OnClickListener(){

@@ -161,11 +161,53 @@ public class SnailRaceGame extends SurfaceView {
     }
 
     private void drawRaceField(Canvas canvas){
+
+        //draw field
         paint.setColor(getResources().getColor(R.color.white));
         paint.setStrokeWidth(30);
         canvas.drawLine(getWidth()/2,0,getWidth()/2,canvas.getHeight(),paint);
         canvas.drawLine((getWidth()/2) - lineWidth,0,getWidth()/2 - lineWidth,canvas.getHeight(),paint);
         canvas.drawLine(getWidth()/2 + lineWidth,0,getWidth()/2 + lineWidth,canvas.getHeight(),paint);
+
+
+        int stepsize = (int)(lineWidth/(float)10);
+        int color1 = 0;
+        int color2 = 0;
+
+        paint.setStrokeWidth(stepsize);
+        //draw finish line
+        for(int i = 0; i < screenWidth; i = i + stepsize){
+
+            if(i % (2 *stepsize) == 0){
+                color1 = R.color.white;
+                color2 = R.color.dark_red;
+            } else {
+                color1 = R.color.dark_red;
+                color2 = R.color.white;
+            }
+
+            paint.setColor(getResources().getColor(color1));
+            canvas.drawLine(i, (3*lea.getHeight())/4, i + stepsize, (3*lea.getHeight())/4, paint);
+
+            paint.setColor(getResources().getColor(color2));
+            canvas.drawLine(i, (3*lea.getHeight())/4 + paint.getStrokeWidth(), i + stepsize, (3*lea.getHeight())/4 + paint.getStrokeWidth(), paint);
+
+        }
+
+
+        float y = paint.getStrokeWidth();
+        paint.setColor(getResources().getColor(R.color.dark_red));
+        paint.setStrokeWidth(10);
+        canvas.drawLine(0, (3*lea.getHeight())/4 + (3*y)/2,screenWidth, (3*lea.getHeight())/4 + (3*y)/2, paint);
+        canvas.drawLine(0, (3*lea.getHeight())/4 - y/2,screenWidth, (3*lea.getHeight())/4 - y/2, paint);
+
+        float y2 = paint.getStrokeWidth();
+        paint.setColor(getResources().getColor(R.color.white));
+        paint.setStrokeWidth(12);
+
+        canvas.drawLine(0, (3*lea.getHeight())/4 + (3*y)/2 + y2,screenWidth, (3*lea.getHeight())/4 + (3*y)/2+y2, paint);
+        canvas.drawLine(0, (3*lea.getHeight())/4 - y/2 -y2,screenWidth, (3*lea.getHeight())/4 - y/2- y2, paint);
+
 
     }
 

@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class MinimalPairs extends AppCompatActivity {
 
-    private static final int EXERCISE_LENGTH = 4;
+    private static final int EXERCISE_LENGTH = 9;
 
     ArrayList<String> usedPair;
     Random random;
@@ -88,16 +88,16 @@ public class MinimalPairs extends AppCompatActivity {
         ImageButton play = findViewById(R.id.playBTN);
 
 
-        /*
+
         //set minimal pairs for the game
         setMinimal_pairs(minimal_pairs_plosives,minimal_pairs_plosives_str,3, 0);
         setMinimal_pairs(minimal_pairs_fricatives,minimal_pairs_fricatives_str,3, 3);
         setMinimal_pairs(minimal_pairs_lateral,minimal_pairs_lateral_str,1, 6);
         setMinimal_pairs(minimal_pairs_trills,minimal_pairs_trills_str,1, 7);
         setMinimal_pairs(minimal_pairs_others,minimal_pairs_others_str,1, 8);
-        */
 
-        setMinimal_pairs();
+
+        //setMinimal_pairs();
 
         topIMG.setImageResource(minimal_pairs[0]);
         topIMG.setBackgroundResource(0);
@@ -298,6 +298,7 @@ public class MinimalPairs extends AppCompatActivity {
         oldPos += 2;
     }
 
+    /*
     //randomly choose minimal pairs & correct words
     private void setMinimal_pairs() {
         Random random = new Random();
@@ -323,8 +324,9 @@ public class MinimalPairs extends AppCompatActivity {
         }
 
     }
+     */
 
-    /*
+
     private void setMinimal_pairs(int[] minimal_pairs, String[] minimal_pairs_str,int amount, int pos){
 
         for( int i = pos; i < (pos + amount); i++ ){
@@ -347,8 +349,8 @@ public class MinimalPairs extends AppCompatActivity {
 
             //set drawable arrays
             minimal_pairs_correct[i] = minimal_pairs[position + corr];
-            minimal_pairs[i * 2] = minimal_pairs[position];
-            minimal_pairs[i * 2 + 1] = minimal_pairs[position + 1];
+            this.minimal_pairs[i * 2] = minimal_pairs[position];
+            this.minimal_pairs[i * 2 + 1] = minimal_pairs[position + 1];
 
             // add used minimal pair to arraylist
             usedPair.add(minimal_pairs_str[position]);
@@ -357,7 +359,7 @@ public class MinimalPairs extends AppCompatActivity {
         }
 
     }
-    */
+
 
 
     private void export_data() throws IOException {
