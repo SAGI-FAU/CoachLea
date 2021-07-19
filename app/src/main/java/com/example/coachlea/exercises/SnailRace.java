@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,16 @@ public class SnailRace extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setContentView(R.layout.snail_race);
+
+
+        ImageButton againBTN = findViewById(R.id.againBTN2);
+        ImageButton homeBTN = findViewById(R.id.homeBTN);
+        ImageButton backBTN = findViewById(R.id.backBTN);
+
+        //make Buttons invisible, they will appear when the game is over
+        againBTN.setVisibility(View.GONE);
+        homeBTN.setVisibility(View.GONE);
+        backBTN.setVisibility(View.GONE);
 
         snailRaceGame = findViewById(R.id.snailRaceGame);
     }

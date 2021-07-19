@@ -31,11 +31,13 @@ public class SnailRaceGame extends SurfaceView {
     private  int leaX = lineWidth/2;
     private int leaY = 0;
     private int leaSpeed = 0;
+    private boolean leaStop = false;
     private int currentVolume = 0;
 
     private int emilyX = (lineWidth/2)+lineWidth;
     private int emilyY = 0;
-    private int emilySpeed = 1; //TODO value?
+    private int emilySpeed = 1;
+    private boolean emilyStop = false;//TODO value?
 
     private int screenHeight = 0;
     private int screenWidth = 0;
@@ -54,15 +56,20 @@ public class SnailRaceGame extends SurfaceView {
 
 
 
+
     public SnailRaceGame(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         this.context = context;
 
+
+
         //initialize
         emilySpeed = 1;
         audioHandler = new SrgAudioHandler(context);
         currentVolume = 0;
+        emilyStop= false;
+        leaStop = false;
 
 
         //for game loop
@@ -141,6 +148,8 @@ public class SnailRaceGame extends SurfaceView {
 
     @Override
     protected void onDraw(Canvas canvas){
+
+
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         canvas.drawColor(getResources().getColor(R.color.dark_red));
@@ -217,10 +226,10 @@ public class SnailRaceGame extends SurfaceView {
     private void drawEmily(Canvas canvas){
         //finish line collision check
 
-        if(emilyY == 0){
+        if(emilyY <= 0){
             emilySpeed = 0;
+            emilyStop = true;
         }
-
 
         emilyY = emilyY - emilySpeed;
         canvas.drawBitmap(emily,emilyX,emilyY,null);
@@ -232,6 +241,7 @@ public class SnailRaceGame extends SurfaceView {
     private void drawLea(Canvas canvas){
         if(leaY <= 0){
             leaSpeed = 0;
+            leaStop = true;
         }
 
         leaY = leaY - leaSpeed;
