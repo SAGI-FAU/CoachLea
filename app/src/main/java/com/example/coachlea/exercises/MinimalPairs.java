@@ -63,8 +63,6 @@ public class MinimalPairs extends AppCompatActivity {
         usedPair = new ArrayList<>(); // some minimal pairs are in multiple sets
         random = new Random();
 
-        setMinimal_pairs_all();
-
         //set String arrays
         minimal_pairs_all_str = getResources().getStringArray(R.array.Minimal_Pairs);
 
@@ -234,7 +232,6 @@ public class MinimalPairs extends AppCompatActivity {
                     player.seekTo(0);
                     player.start();
                 } else {
-                    //TODO replace ä ö ü ß?
                     String file = minimal_pairs_correct_str[choose];
                     int resId = getResources().getIdentifier(file, "raw", getPackageName());
                     String path = "a" + resId;
