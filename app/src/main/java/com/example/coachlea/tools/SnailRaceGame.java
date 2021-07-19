@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +44,11 @@ public class SnailRaceGame extends SurfaceView {
     private int screenHeight = 0;
     private int screenWidth = 0;
 
+    private boolean buttonsAdded = false;
+
+    private ImageButton homeBTN;
+    private ImageButton againBTN;
+    private ImageButton backBTN;
 
     long UPDATE_MILLIS = 30;
 
@@ -63,13 +70,13 @@ public class SnailRaceGame extends SurfaceView {
         this.context = context;
 
 
-
         //initialize
         emilySpeed = 1;
         audioHandler = new SrgAudioHandler(context);
         currentVolume = 0;
         emilyStop= false;
         leaStop = false;
+        buttonsAdded = false;
 
 
         //for game loop
@@ -111,6 +118,12 @@ public class SnailRaceGame extends SurfaceView {
 
 
 
+    }
+
+    public void setButtons(ImageButton homeBTN, ImageButton againBTN, ImageButton backBTN){
+        this.homeBTN = homeBTN;
+        this.againBTN = againBTN;
+        this.backBTN = backBTN;
 
     }
 
@@ -148,6 +161,21 @@ public class SnailRaceGame extends SurfaceView {
 
     @Override
     protected void onDraw(Canvas canvas){
+
+        //Add bottom navigation Buttons
+        if(leaStop && emilyStop && !buttonsAdded){
+
+            //Buttons can only be accessed from UI Thread
+            ((SnailRace)context).runOnUiThread(new Runnable() {
+                public void run(){
+                    //TODO why are the snails at the Bottom after thisss????
+                    againBTN.setVisibility(View.VISIBLE);
+                    homeBTN.setVisibility(View.VISIBLE);
+                    backBTN.setVisibility(View.VISIBLE);
+                    buttonsAdded = true;
+                }
+            });
+        }
 
 
         paint.setStyle(Paint.Style.STROKE);
@@ -247,6 +275,7 @@ public class SnailRaceGame extends SurfaceView {
         leaY = leaY - leaSpeed;
         canvas.drawBitmap(lea,leaX,leaY,null);
     }
+
 
     //stop thread
     public void destroyThread(){

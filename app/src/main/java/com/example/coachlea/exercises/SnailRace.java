@@ -42,6 +42,9 @@ public class SnailRace extends AppCompatActivity {
         backBTN.setVisibility(View.GONE);
 
         snailRaceGame = findViewById(R.id.snailRaceGame);
+        snailRaceGame.setButtons(homeBTN,againBTN,backBTN);
+
+
     }
 
     protected void onPause(){
@@ -49,6 +52,7 @@ public class SnailRace extends AppCompatActivity {
         snailRaceGame.destroyThread();
         super.onPause();
     }
+
 
     public void onBackPressed(){
         this.onPause();
