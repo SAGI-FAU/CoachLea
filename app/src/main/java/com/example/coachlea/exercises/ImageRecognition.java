@@ -45,7 +45,6 @@ public class ImageRecognition extends AppCompatActivity {
     private ImageView imageView;
     private boolean isRecording = false;
     private int counter = 0;
-    private boolean saidSomething = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +69,11 @@ public class ImageRecognition extends AppCompatActivity {
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
         //recordText = findViewById(R.id.textView2);
-        saidSomething = true;
 
         //set images for the game
-        setImages_all(fricatives,fricatives_str,2,0);
+        setImages_all(fricatives, fricatives_str, 2, 0);
         setImages_all(plosives, plosives_str, 2, 2);
-        setImages_all(nasal, nasal_str, 1,4);
+        setImages_all(nasal, nasal_str, 1, 4);
 
 
         imageView.setImageResource(images_all[counter]);
@@ -85,10 +83,10 @@ public class ImageRecognition extends AppCompatActivity {
             public void onClick(View v) {
                 if (isRecording) {
                     recorder.stopRecording();
-                    //recordText.setText(R.string.record);
                     record.setForeground(getDrawable(R.drawable.ic_mic));
 
-                    if (counter < (EXERCISE_LENGTH-1)) {
+
+                    if (counter < (EXERCISE_LENGTH - 1)) {
                         counter++;
                         imageView.setImageResource(images_all[counter]);
 
@@ -102,11 +100,11 @@ public class ImageRecognition extends AppCompatActivity {
                     }
                     isRecording = false;
 
+
                 } else {
-                    path = recorder.prepare("Image_Recognition",images_all_str[counter]);
+                    path = recorder.prepare("Image_Recognition", images_all_str[counter]);
                     recorder.record();
                     isRecording = true;
-                    //recordText.setText(R.string.recording);
                     record.setForeground(getDrawable(R.drawable.ic_stop));
                 }
                 //TODO
@@ -115,14 +113,14 @@ public class ImageRecognition extends AppCompatActivity {
 
     }
 
-    private void setImages_all(int[] images, String[] images_str, int amount, int pos){
+    private void setImages_all(int[] images, String[] images_str, int amount, int pos) {
 
-        for( int i = pos; i < (pos + amount); i++ ){
+        for (int i = pos; i < (pos + amount); i++) {
 
             int position = random.nextInt(images.length);
 
             //check if both words were already used
-            while(used.contains(images_str[position]) && used.contains(images_str[position + 1])){
+            while (used.contains(images_str[position]) && used.contains(images_str[position + 1])) {
                 position = random.nextInt(images.length);
             }
 
@@ -140,14 +138,14 @@ public class ImageRecognition extends AppCompatActivity {
 
     }
 
-    private void setFricatives(){
+    private void setFricatives() {
         fricatives = new int[]{R.drawable.fisch, R.drawable.flasche, R.drawable.frosch, R.drawable.hexe, R.drawable.haus, R.drawable.heizung, R.drawable.hase,
                 R.drawable.hund, R.drawable.vogel, R.drawable.eichhoernchen, R.drawable.stuhl, R.drawable.marienkaefer, R.drawable.schiff, R.drawable.schokolade,
                 R.drawable.schere, R.drawable.schlange, R.drawable.schluessel, R.drawable.schuh, R.drawable.schwein, R.drawable.pilz, R.drawable.zange,
                 R.drawable.pflaster, R.drawable.wurst};
     }
 
-    private void setPlosives(){
+    private void setPlosives() {
         plosives = new int[]{R.drawable.anker, R.drawable.apfel, R.drawable.auto, R.drawable.ball, R.drawable.bank, R.drawable.baum, R.drawable.berg, R.drawable.bett,
                 R.drawable.blume, R.drawable.brille, R.drawable.buch, R.drawable.drachen, R.drawable.dusche, R.drawable.elefant, R.drawable.erdbeere, R.drawable.feder,
                 R.drawable.fenster, R.drawable.gabel, R.drawable.gespenst, R.drawable.giesskanne, R.drawable.gitarre, R.drawable.glas, R.drawable.jacke, R.drawable.kanne,
@@ -157,7 +155,7 @@ public class ImageRecognition extends AppCompatActivity {
                 R.drawable.zitrone, R.drawable.zwerg};
     }
 
-    private void setNasal(){
+    private void setNasal() {
         nasal = new int[]{R.drawable.nuss, R.drawable.schornstein, R.drawable.schwein, R.drawable.sonne, R.drawable.spinne, R.drawable.zange, R.drawable.eimer,
                 R.drawable.milch, R.drawable.ananas};
     }
@@ -171,12 +169,12 @@ public class ImageRecognition extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle bundle = msg.getData();
-
+            //saidSomething = true;
             final String state = bundle.getString("State", "Empty");
             if (state.equals("Finished")) {
                 if (path == null) {
                     Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
-                    saidSomething = false;
+
                     return;
                 }
                 File f = new File(path);
@@ -184,18 +182,18 @@ public class ImageRecognition extends AppCompatActivity {
                     float[] int_f0 = RadarFeatures.intonation(path);
                     if (int_f0.length == 1) {
                         Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
-                        saidSomething = false;
+
                         return;
-                    }
-                    if (Float.isNaN(int_f0[0])) {
+                    } else if (Float.isNaN(int_f0[0])) {
                         Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
-                        saidSomething = false;
+
                         return;
                     }
-                    saidSomething = true;
+
                 }
-                saidSomething = true;
+
             }
+
         }
     }
 }

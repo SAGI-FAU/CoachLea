@@ -246,7 +246,7 @@
         <item>schokolade</item>
         <item>schere</item>
         <item>schlange</item>
-        <item>schlüssel</item>
+        <item>schluessel</item>
         <item>schuh</item>
         <item>schwein</item>
         <item>pilz</item>
@@ -261,7 +261,6 @@
         <item>apfel</item>
         <item>auto</item>
         <item>ball</item>
-        <item>bank</item>
         <item>bank</item>
         <item>baum</item>
         <item>berg</item>
@@ -320,6 +319,13 @@
         <item>eimer</item>
         <item>milch</item>
         <item>ananas</item>
+    </string-array>
+
+    <string-array name="animal_sounds">
+        <item>affe</item>
+        <item>esel</item>
+        <item>hund</item>
+        <item>katze</item>
     </string-array>
 
     <string name="needed">Permission needed</string>
