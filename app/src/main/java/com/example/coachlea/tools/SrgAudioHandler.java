@@ -29,7 +29,7 @@ public class SrgAudioHandler {
 
     private void startRecording(){
         if(!isRecording) {
-            recorder.prepare(context.getResources().getString(R.string.Snail_race), 1);
+            recorder.prepare(context.getResources().getString(R.string.Snail_race), null);
             recorder.record();
             isRecording = true;
         }

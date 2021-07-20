@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,13 +39,13 @@ public class ImageRecognition extends AppCompatActivity {
     private int[] images_all = new int[EXERCISE_LENGTH];
     private String[] images_all_str = new String[EXERCISE_LENGTH];
 
-    private Button record;
+    private ImageButton record;
     private SpeechRecorder recorder;
     private static String path;
     private ImageView imageView;
     private boolean isRecording = false;
-    private TextView recordText;
     private int counter = 0;
+    private boolean saidSomething = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,8 @@ public class ImageRecognition extends AppCompatActivity {
         recorder = SpeechRecorder.getInstance(this, new ImageRecognition.VolumeHandler(), "ImageRecognition");
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
-        recordText = findViewById(R.id.textView2);
+        //recordText = findViewById(R.id.textView2);
+        saidSomething = true;
 
         //set images for the game
         setImages_all(fricatives,fricatives_str,2,0);
@@ -85,7 +85,8 @@ public class ImageRecognition extends AppCompatActivity {
             public void onClick(View v) {
                 if (isRecording) {
                     recorder.stopRecording();
-                    recordText.setText(R.string.record);
+                    //recordText.setText(R.string.record);
+                    record.setForeground(getDrawable(R.drawable.ic_mic));
 
                     if (counter < (EXERCISE_LENGTH-1)) {
                         counter++;
@@ -102,10 +103,11 @@ public class ImageRecognition extends AppCompatActivity {
                     isRecording = false;
 
                 } else {
-                    path = recorder.prepare("Image_Recognition",counter);
+                    path = recorder.prepare("Image_Recognition",images_all_str[counter]);
                     recorder.record();
                     isRecording = true;
-                    recordText.setText(R.string.recording);
+                    //recordText.setText(R.string.recording);
+                    record.setForeground(getDrawable(R.drawable.ic_stop));
                 }
                 //TODO
             }
@@ -174,6 +176,7 @@ public class ImageRecognition extends AppCompatActivity {
             if (state.equals("Finished")) {
                 if (path == null) {
                     Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                    saidSomething = false;
                     return;
                 }
                 File f = new File(path);
@@ -181,13 +184,17 @@ public class ImageRecognition extends AppCompatActivity {
                     float[] int_f0 = RadarFeatures.intonation(path);
                     if (int_f0.length == 1) {
                         Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageAgain), Toast.LENGTH_SHORT).show();
+                        saidSomething = false;
                         return;
                     }
                     if (Float.isNaN(int_f0[0])) {
                         Toast.makeText(ImageRecognition.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
+                        saidSomething = false;
                         return;
                     }
+                    saidSomething = true;
                 }
+                saidSomething = true;
             }
         }
     }

@@ -73,11 +73,11 @@ public class SpeechRecorder {
      * @param exercise The exercise that is to be recorded
      * @return File name of .wav if successful, error message otherwise
      */
-    public String prepare(String exercise, int counter){
+    public String prepare(String exercise, String str){
         String date = getCurrentDateAsString();
         Calendar c = Calendar.getInstance();
-        FILE_PCM  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + "_"+ counter +  exercise + ".pcm");
-        FILE_WAV  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + "_"+ counter + exercise + ".wav");
+        FILE_PCM  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + "_"+ str + "_" + exercise + ".pcm");
+        FILE_WAV  = new File(AUDIO_FOLDER.getAbsolutePath() + File.separator + date + "_"+ str + "_" + exercise + ".wav");
         try {
             FILE_PCM.createNewFile();
         } catch (IOException e) {
