@@ -366,5 +366,6 @@
     <string name="Login">Login</string>
     <string name="LoginScreenInformation">Wilkommen bei CITA, der Cochlear-Implantat-Test-App. Diese App ist dazu da, um Daten über Ihre Sprache und Ihr Hörvermögen zu sammeln und auszuwerten. Um Dies zu ermöglichen, müssen Sie eine tägliche Einheit von Übungen abschließen, nach der Sie Ihre Ergebnisse ansehen können. Außerdem haben Sie die Möglichkeit sich ein Profil zu erstellen in dem Sie wichtige Daten über sich speichern können. Um all das zu verwirklichen benötigt CITA den Zugriff auf Ihr Mikrofon und Ihren Speicher. Um das zu erlauben, drücken Sie den Start Knopf und im dann erscheinenden Popup fenster auf \"Zulassen\". Drücken Sie nun den Start Knopf um mit der Erstellung Ihres Profils zu beginnen.\nLos gehts !</string>
     <string name="startExercise">START</string>
-    <string name="settings">Einstellungen</string>
+    <string name="exercise">Übung</string>
+    <string name="dailySession">Tägliche Trainingseinheit</string>
 </resources>

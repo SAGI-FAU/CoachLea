@@ -33,13 +33,16 @@ public class SnailRaceGame extends SurfaceView {
     private  int leaX = lineWidth/2;
     private int leaY = 0;
     private int leaSpeed = 0;
-    private boolean leaStop = false;
+    private boolean leaStop;
     private int currentVolume = 0;
+    private int leaThreshold = 0;
 
     private int emilyX = (lineWidth/2)+lineWidth;
     private int emilyY = 0;
     private int emilySpeed = 1;
-    private boolean emilyStop = false;//TODO value?
+    private boolean emilyStop;//TODO value?
+    private int emThresholdTop=0;
+    private int emThresholdBot = 0;
 
     private int screenHeight = 0;
     private int screenWidth = 0;
@@ -77,6 +80,7 @@ public class SnailRaceGame extends SurfaceView {
         emilyStop= false;
         leaStop = false;
         buttonsAdded = false;
+        emThresholdBot = 0;
 
 
         //for game loop
@@ -156,13 +160,16 @@ public class SnailRaceGame extends SurfaceView {
 
         emilyY = screenHeight - emily.getHeight();
         leaY = screenHeight - lea.getHeight();
+        emThresholdTop = emilyY;
+
+        leaThreshold = leaY + (lea.getHeight()/2);
 
     }
 
     @Override
     protected void onDraw(Canvas canvas){
 
-        //Add bottom navigation Buttons
+        //Add bottom navigation Buttons after finished game
         if(leaStop && emilyStop && !buttonsAdded){
 
             //Buttons can only be accessed from UI Thread
@@ -178,11 +185,11 @@ public class SnailRaceGame extends SurfaceView {
         }
 
 
+        //draw background
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         canvas.drawColor(getResources().getColor(R.color.dark_red));
 
-        canvas.drawBitmap(lea,leaX,leaY,null);
 
         drawRaceField(canvas);
         drawEmily(canvas);
@@ -249,31 +256,86 @@ public class SnailRaceGame extends SurfaceView {
     }
 
 
-
-
     private void drawEmily(Canvas canvas){
         //finish line collision check
-
         if(emilyY <= 0){
             emilySpeed = 0;
             emilyStop = true;
         }
 
-        emilyY = emilyY - emilySpeed;
+        emilyY = emilyY - emilySpeed; //move snail
+
+        //move thresholds
+        emThresholdTop = emilyY - 5;
+        emThresholdBot = emilyY + emily.getHeight() + 5;
+
+        //draw snail
         canvas.drawBitmap(emily,emilyX,emilyY,null);
+
+        //stop drawing thresholds after finish line
+        if(!emilyStop){
+            drawEmThresholds(canvas);
+        }
+
+
+    }
+
+    private void drawEmThresholds(Canvas canvas){
+        //set color and stroke width
+        paint.setColor(getResources().getColor(R.color.black));
+        paint.setStrokeWidth(10);
+        int stepsize = (int)(lineWidth/(float)10);
+
+        for(int i = 0; i < screenWidth; i += stepsize){
+            if(i % (2 *stepsize) == 0){
+                canvas.drawLine(i, emThresholdTop, i + stepsize, emThresholdTop, paint);
+                canvas.drawLine(i, emThresholdBot, i + stepsize, emThresholdBot, paint);
+
+            } else {
+                continue;
+            }
+        }
 
     }
 
 
 
     private void drawLea(Canvas canvas){
+
+        //finish line collision check
         if(leaY <= 0){
             leaSpeed = 0;
             leaStop = true;
         }
 
-        leaY = leaY - leaSpeed;
+        leaY = leaY - leaSpeed; //set new speed
+
+        leaThreshold = leaY + (lea.getHeight()/2); //set new threshold
         canvas.drawBitmap(lea,leaX,leaY,null);
+
+        //draw grey foreground that indicates that the snail has to go faster/slower
+        if(!leaStop){
+            if(leaThreshold < emThresholdTop){ //smaller because the snails start from the bottom -> higher snail means lower y
+                drawLeaThreshold(canvas,true);
+            } else if(leaThreshold > emThresholdBot){
+                drawLeaThreshold(canvas,false);
+            }
+        }
+    }
+
+    //draw grey filter over the game, if ThresholdTop = true over emily, if thresholdTop = false below emily
+    private void drawLeaThreshold(Canvas canvas, boolean thresholdTop){
+
+        paint.setColor(getResources().getColor(R.color.dark_grey));
+        paint.setStyle(Paint.Style.FILL);
+        paint.setAlpha(140);
+
+        if(thresholdTop){
+            canvas.drawRect(0,0,screenWidth,emThresholdTop - 5,paint);
+        } else {
+            canvas.drawRect(0,emThresholdBot+5,screenWidth,screenHeight,paint);
+        }
+
     }
 
 

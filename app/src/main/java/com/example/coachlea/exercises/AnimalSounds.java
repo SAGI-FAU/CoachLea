@@ -21,6 +21,8 @@ import com.example.coachlea.tools.RadarFeatures;
 
 import java.io.File;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AnimalSounds extends AppCompatActivity {
 
@@ -34,7 +36,7 @@ public class AnimalSounds extends AppCompatActivity {
     private int[] animals;
     private String[] animals_str;
     private boolean isRecording, started;
-    private Context c = this;
+    private Context con = this;
 
     private ProgressBar pb;
     int counter = 0;
@@ -65,7 +67,7 @@ public class AnimalSounds extends AppCompatActivity {
             public void onClick(View v) {
                 if(!started){
                     started = true;
-                    MyCountDownTimer myCountDownTimer = new MyCountDownTimer(4000, 1000);
+                    MyCountDownTimer myCountDownTimer = new MyCountDownTimer(100, 1000);
                     myCountDownTimer.Start();
                     if (isRecording) {
 
@@ -86,38 +88,45 @@ public class AnimalSounds extends AppCompatActivity {
 
 
     class MyCountDownTimer {
-        //TODO countdown in wrong direktin and big chunks
-        private long millisInFuture;
+        //TODO countdown in wrong direktion and big chunks
+        //private long millisInFuture;
         private long countDownInterval;
-        public MyCountDownTimer(long pMillisInFuture, long pCountDownInterval) {
-            this.millisInFuture = pMillisInFuture;
+        private long maxMillis;
+        private int c;
+
+        public MyCountDownTimer(long pmaxMillis, long pCountDownInterval) {
+            this.maxMillis = pmaxMillis;
             this.countDownInterval = pCountDownInterval;
+            this.c = 0;
         }
         public void Start()
         {
-            final Handler handler = new Handler();
-            final Runnable counter = new Runnable(){
+
+            final Timer t = new Timer();
+            TimerTask tt = new TimerTask(){
 
                 public void run(){
-                    if(millisInFuture <= 0) {
-                        progress.setProgress((int)(millisInFuture/1000) * 20);
+                    if(c ==maxMillis) {
+                        progress.setProgress(c);
+                        t.cancel();
                         isRecording = false;
                         started = false;
-                        record.setForeground(getDrawable(R.drawable.ic_mic));
-                        Intent intent = new Intent(c, SpeakingExerciseFinished.class);
+                        //record.setForeground(getDrawable(R.drawable.ic_mic));
+                        Intent intent = new Intent(con, SpeakingExerciseFinished.class);
                         intent.putExtra("exercise", "SyllableRepetition");
                         recorder.stopRecording();
                         recorder.release();
-                        c.startActivity(intent);
+                        con.startActivity(intent);
                     } else {
-                        long sec = millisInFuture/1000;
-                        progress.setProgress((int)sec * 20);
-                        millisInFuture -= countDownInterval;
-                        handler.postDelayed(this, countDownInterval);
+                        //long sec = maxMillis/1000;
+                        progress.setProgress(c);
+                        c++;
+
+
                     }
                 }
             };
-            handler.postDelayed(counter, countDownInterval);
+            t.schedule(tt,0,100);
         }
     }
 
