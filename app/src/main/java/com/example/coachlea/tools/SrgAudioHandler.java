@@ -14,13 +14,15 @@ public class SrgAudioHandler {
     private static String path;
     private Context context;
     private int currentVolume;
+    private String vowel;
 
 
 
-    SrgAudioHandler(Context context){ //TODO call like: SrgAudioHandler srgAundioHandler = new SrgAudioHandler(this)
+    SrgAudioHandler(Context context, String vowel){ //TODO call like: SrgAudioHandler srgAundioHandler = new SrgAudioHandler(this)
 
         //initialize
         this.context = context;
+        this.vowel = vowel;
         isRecording = false;
         recorder = SpeechRecorder.getInstance(context, new SrgAudioHandler.VolumeHandler(), "SnailRace");
         startRecording();
@@ -29,7 +31,7 @@ public class SrgAudioHandler {
 
     private void startRecording(){
         if(!isRecording) {
-            recorder.prepare(context.getResources().getString(R.string.Snail_race), null);
+            recorder.prepare(context.getResources().getString(R.string.Snail_race), vowel);
             recorder.record();
             isRecording = true;
         }

@@ -133,7 +133,7 @@ public class MinimalPairs extends AppCompatActivity {
                         intent.putExtra("correct_words", minimal_pairs_correct_str);
                         intent.putExtra("results", minimal_pairs_result);
 
-                        //TODO store data
+
                         try {
                             export_data();
                         } catch (IOException e) {

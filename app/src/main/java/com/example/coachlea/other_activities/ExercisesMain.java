@@ -32,7 +32,7 @@ public class ExercisesMain extends AppCompatActivity {
     }
 
     public void snailRaceBTNClick(View view){
-        Intent intent = new Intent(this, SnailRace.class);
+        Intent intent = new Intent(this, SnailRaceStart.class);
         startActivity(intent);
         //TODO
     }

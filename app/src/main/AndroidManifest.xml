@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachLea">
-        <activity android:name=".other_activities.LoginInfoScreen"></activity>
+        <activity android:name=".other_activities.SnailRaceStart"></activity>
+        <activity android:name=".other_activities.LoginInfoScreen" />
         <activity android:name=".other_activities.ProfileLogin" />
         <activity android:name=".other_activities.ProfileMain" />
         <activity android:name=".exercises.ImageRecognition" />

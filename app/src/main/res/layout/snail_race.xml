@@ -20,10 +20,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        >
 
         <ImageButton
             android:id="@+id/againBTN2"
@@ -66,6 +65,16 @@
             android:paddingHorizontal="50dp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/dark_teal"
+        android:textSize="150dp"
+        android:textStyle="bold">
+    </TextView>
 
 
 

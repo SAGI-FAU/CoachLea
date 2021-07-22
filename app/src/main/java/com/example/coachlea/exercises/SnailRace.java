@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,14 +36,20 @@ public class SnailRace extends AppCompatActivity {
         ImageButton againBTN = findViewById(R.id.againBTN2);
         ImageButton homeBTN = findViewById(R.id.homeBTN);
         ImageButton backBTN = findViewById(R.id.backBTN);
+        TextView countdown = findViewById(R.id.countdown);
 
         //make Buttons invisible, they will appear when the game is over
         againBTN.setVisibility(View.GONE);
         homeBTN.setVisibility(View.GONE);
         backBTN.setVisibility(View.GONE);
 
+
         snailRaceGame = findViewById(R.id.snailRaceGame);
-        snailRaceGame.setButtons(homeBTN,againBTN,backBTN);
+        snailRaceGame.setButtons(homeBTN,againBTN,backBTN,countdown);
+
+        //get and set vowel
+        String vowel = (String) getIntent().getExtras().get("Vowel");
+        snailRaceGame.setVowel(vowel);
 
 
     }

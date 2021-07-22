@@ -89,14 +89,11 @@ public class AnimalSounds extends AppCompatActivity {
 
     class MyCountDownTimer {
         //TODO countdown in wrong direktion and big chunks
-        //private long millisInFuture;
-        private long countDownInterval;
         private long maxMillis;
         private int c;
 
         public MyCountDownTimer(long pmaxMillis, long pCountDownInterval) {
             this.maxMillis = pmaxMillis;
-            this.countDownInterval = pCountDownInterval;
             this.c = 0;
         }
         public void Start()

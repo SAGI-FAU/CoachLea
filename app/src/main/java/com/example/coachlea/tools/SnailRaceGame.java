@@ -6,12 +6,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,6 +54,8 @@ public class SnailRaceGame extends SurfaceView {
     private ImageButton homeBTN;
     private ImageButton againBTN;
     private ImageButton backBTN;
+    private TextView countdown;
+    private boolean countdownFinished;
 
     long UPDATE_MILLIS = 30;
 
@@ -60,6 +64,9 @@ public class SnailRaceGame extends SurfaceView {
     //private boolean isRecording = false;
 
     private static final String TAG = SnailRace.class.getSimpleName();
+
+    private String vowel;
+
 
 
 
@@ -75,14 +82,26 @@ public class SnailRaceGame extends SurfaceView {
 
         //initialize
         emilySpeed = 1;
-        audioHandler = new SrgAudioHandler(context);
+
         currentVolume = 0;
         emilyStop= false;
         leaStop = false;
         buttonsAdded = false;
         emThresholdBot = 0;
+        countdownFinished= false;
 
+        //start countdown
+        //Countdown countdown = new Countdown();
+        //countdown.countdown();
 
+        startGameLoop();
+
+    }
+
+    private void startGameLoop(){
+
+        //start game
+        audioHandler = new SrgAudioHandler(context,vowel);
         //for game loop
         gameThread = new GameThread(this);
         holder = getHolder();
@@ -121,13 +140,44 @@ public class SnailRaceGame extends SurfaceView {
         });
 
 
+    }
+
+    class Countdown{
+         long millisInFuture = 3000;
+         long countDownInterval = 1000;
+
+        public void countdown(){
+            final Handler handler = new Handler();
+            final Runnable counter = new Runnable(){
+
+            public void run(){
+                    if(millisInFuture <= 0) {
+                        countdown.setText("" + millisInFuture/1000);
+                        countdownFinished = true;
+                    } else {
+                        long sec = millisInFuture/1000;
+                        countdown.setText("" + sec);
+                        millisInFuture -= countDownInterval;
+                        handler.postDelayed(this, countDownInterval);
+                    }
+                }
+            };
+            handler.postDelayed(counter, countDownInterval);
+
+        }
 
     }
 
-    public void setButtons(ImageButton homeBTN, ImageButton againBTN, ImageButton backBTN){
+
+    public void setVowel(String vowel){
+        this.vowel = vowel;
+    }
+
+    public void setButtons(ImageButton homeBTN, ImageButton againBTN, ImageButton backBTN, TextView countdown){
         this.homeBTN = homeBTN;
         this.againBTN = againBTN;
         this.backBTN = backBTN;
+        this.countdown = countdown;
 
     }
 
@@ -169,6 +219,12 @@ public class SnailRaceGame extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas){
 
+        //TODO richtige idee, ruft aber dann immer den gameloop neu auf
+        //TODO erst drawRaceField & drawEmily & drawLea, dann countdown, dann gameloop
+        //if(countdownFinished){
+        //    startGameLoop();
+        //}
+
         //Add bottom navigation Buttons after finished game
         if(leaStop && emilyStop && !buttonsAdded){
 
@@ -179,16 +235,14 @@ public class SnailRaceGame extends SurfaceView {
                     againBTN.setVisibility(View.VISIBLE);
                     homeBTN.setVisibility(View.VISIBLE);
                     backBTN.setVisibility(View.VISIBLE);
+                    leaY = 0;
+                    emilyY= 0;
+                    destroyThread(); //stop game loop
                     buttonsAdded = true;
                 }
             });
         }
 
-
-        //draw background
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        canvas.drawColor(getResources().getColor(R.color.dark_red));
 
 
         drawRaceField(canvas);
@@ -205,6 +259,10 @@ public class SnailRaceGame extends SurfaceView {
     }
 
     private void drawRaceField(Canvas canvas){
+        //draw background
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
+        canvas.drawColor(getResources().getColor(R.color.dark_red));
 
         //draw field
         paint.setColor(getResources().getColor(R.color.white));

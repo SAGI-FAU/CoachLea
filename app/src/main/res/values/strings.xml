@@ -228,7 +228,7 @@
         <item>mund</item>
         <item>hund</item>
     </string-array>
-    
+
     <string-array name="image_recognition_fricative">
         <item>fisch</item>
         <item>flasche</item>
@@ -369,4 +369,5 @@
     <string name="exercise">Übungen</string>
     <string name="dailySession">Tägliche \nTrainingseinheit</string>
     <string name="settings">Einstellungen</string>
+    <string name="vowelText">Sag den Vokal</string>
 </resources>
