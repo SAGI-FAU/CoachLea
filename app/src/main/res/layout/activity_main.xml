@@ -10,26 +10,89 @@
     android:padding="20dp"
     tools:context=".other_activities.MainActivity">
 
-    <Button
-        android:weight = "1"
-        android:id="@+id/exercises"
-        android:background="@drawable/layout_square_button"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="325dp"
-        android:layout_height="325dp"
-        android:text="@string/exercise"
-        android:layout_marginBottom="20dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/exercises"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="50dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_square_button"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="170dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/lea"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/exercise"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_teal"
+                    android:textSize="35dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
-    <Button
-        android:weight="1"
-        android:id="@+id/profile"
-        android:background="@drawable/layout_square_button"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="325dp"
-        android:layout_height="325dp"
-        android:text="@string/dailySession"
-         />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/profile"
+            android:background="@drawable/layout_square_button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:text="@string/dailySession"
+            app:cardCornerRadius="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_square_button"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="170dp"
+                    android:layout_height="130dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/emily"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/dailySession"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_teal"
+                    android:textSize="35dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
