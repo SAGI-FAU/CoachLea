@@ -370,4 +370,5 @@
     <string name="dailySession">Tägliche \nTrainingseinheit</string>
     <string name="settings">Einstellungen</string>
     <string name="vowelText">Sag den Vokal</string>
+    <string name="timefornotifications">Zeit für Benachrichtigungen</string>
 </resources>

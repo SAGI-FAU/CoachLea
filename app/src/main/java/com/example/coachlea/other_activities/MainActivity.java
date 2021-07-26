@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -78,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.settings:
-                Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(this, Settings.class);
+                startActivity(intent2);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
