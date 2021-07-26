@@ -371,4 +371,6 @@
     <string name="settings">Einstellungen</string>
     <string name="vowelText">Sag den Vokal</string>
     <string name="timefornotifications">Zeit für Benachrichtigungen</string>
+    <string name="title_notification">CoachLea</string>
+    <string name="content_notify">Mache dein tägliches Training um dich weiter zu verbessern!</string>
 </resources>

@@ -4,6 +4,7 @@ package com.example.coachlea.other_activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.coachlea.R;
+import com.example.coachlea.tools.NotificationReceiver;
+import com.example.coachlea.tools.Notifier;
 
 public class MainActivity extends AppCompatActivity {
     private int All_Code = 1;
@@ -84,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    //start notifier
+    public void setAlarm() {
+        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
+        int hour = p.getInt("Notification Time", 9);
+        Notifier notifier = new Notifier(this);
+        notifier.setReminder(this, NotificationReceiver.class, hour, 0);
     }
 
 }
