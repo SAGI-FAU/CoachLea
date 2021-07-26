@@ -55,13 +55,11 @@ public class SnailRaceGame extends SurfaceView {
     private ImageButton againBTN;
     private ImageButton backBTN;
     private TextView countdown;
-    private boolean countdownFinished;
 
-    long UPDATE_MILLIS = 30;
+    private boolean countdownRunning;
 
     private Bitmap lea, emily;
     private Context context;
-    //private boolean isRecording = false;
 
     private static final String TAG = SnailRace.class.getSimpleName();
 
@@ -88,11 +86,12 @@ public class SnailRaceGame extends SurfaceView {
         leaStop = false;
         buttonsAdded = false;
         emThresholdBot = 0;
-        countdownFinished= false;
+
 
         //start countdown
-        //Countdown countdown = new Countdown();
-        //countdown.countdown();
+        countdownRunning = true;
+        Countdown countdown = new Countdown();
+        countdown.countdown();
 
         startGameLoop();
 
@@ -153,7 +152,8 @@ public class SnailRaceGame extends SurfaceView {
             public void run(){
                     if(millisInFuture <= 0) {
                         countdown.setText("" + millisInFuture/1000);
-                        countdownFinished = true;
+                        countdownRunning = false;
+                        countdown.setVisibility(View.GONE);
                     } else {
                         long sec = millisInFuture/1000;
                         countdown.setText("" + sec);
@@ -219,19 +219,12 @@ public class SnailRaceGame extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas){
 
-        //TODO richtige idee, ruft aber dann immer den gameloop neu auf
-        //TODO erst drawRaceField & drawEmily & drawLea, dann countdown, dann gameloop
-        //if(countdownFinished){
-        //    startGameLoop();
-        //}
-
         //Add bottom navigation Buttons after finished game
         if(leaStop && emilyStop && !buttonsAdded){
 
             //Buttons can only be accessed from UI Thread
             ((SnailRace)context).runOnUiThread(new Runnable() {
                 public void run(){
-                    //TODO why are the snails at the Bottom after thisss????
                     againBTN.setVisibility(View.VISIBLE);
                     homeBTN.setVisibility(View.VISIBLE);
                     backBTN.setVisibility(View.VISIBLE);
@@ -321,6 +314,15 @@ public class SnailRaceGame extends SurfaceView {
             emilyStop = true;
         }
 
+        //countdown check
+        if(countdownRunning){
+            emilySpeed = 0;
+        } else {
+            emilySpeed = 1;
+        }
+
+
+
         emilyY = emilyY - emilySpeed; //move snail
 
         //move thresholds
@@ -364,6 +366,11 @@ public class SnailRaceGame extends SurfaceView {
         if(leaY <= 0){
             leaSpeed = 0;
             leaStop = true;
+        }
+
+        //countdown check
+        if(countdownRunning){
+            leaSpeed = 0;
         }
 
         leaY = leaY - leaSpeed; //set new speed

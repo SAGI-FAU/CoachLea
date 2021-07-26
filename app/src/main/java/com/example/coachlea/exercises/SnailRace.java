@@ -7,12 +7,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.R;
+import com.example.coachlea.other_activities.ExercisesMain;
 import com.example.coachlea.other_activities.MainActivity;
+import com.example.coachlea.other_activities.SnailRaceStart;
 import com.example.coachlea.tools.SnailRaceGame;
 
 public class SnailRace extends AppCompatActivity {
@@ -51,11 +52,37 @@ public class SnailRace extends AppCompatActivity {
         String vowel = (String) getIntent().getExtras().get("Vowel");
         snailRaceGame.setVowel(vowel);
 
+        homeBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPause();
+                Intent intent = new Intent(SnailRace.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        againBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPause();
+                Intent intent = new Intent(SnailRace.this, SnailRaceStart.class);
+                startActivity(intent);
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onPause();
+                Intent intent = new Intent(SnailRace.this, ExercisesMain.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
     protected void onPause(){
-        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
         snailRaceGame.destroyThread();
         super.onPause();
     }
@@ -66,13 +93,6 @@ public class SnailRace extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void homeBTNClick(View view){
-
-        onPause();
-        Intent intent = new Intent(this, MainActivity.class);
-
-        startActivity(intent);
-    }
 
 
 }
