@@ -7,6 +7,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,9 @@ public class ImageRecognition extends AppCompatActivity {
     private boolean isRecording = false;
     private int counter = 0;
 
+    private ProgressBar pb;
+    private int currentProgress = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +72,10 @@ public class ImageRecognition extends AppCompatActivity {
         recorder = SpeechRecorder.getInstance(this, new ImageRecognition.VolumeHandler(), "ImageRecognition");
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
-        //recordText = findViewById(R.id.textView2);
+        pb = findViewById(R.id.imageRecognitionProgress);
+        currentProgress = 100 / EXERCISE_LENGTH;
+        pb.setProgress(currentProgress);
+        pb.setMax(100);
 
         //set images for the game
         setImages_all(fricatives, fricatives_str, 2, 0);
@@ -89,6 +96,9 @@ public class ImageRecognition extends AppCompatActivity {
                     if (counter < (EXERCISE_LENGTH - 1)) {
                         counter++;
                         imageView.setImageResource(images_all[counter]);
+                        currentProgress += (100 / EXERCISE_LENGTH);
+                        pb.setProgress(currentProgress);
+                        pb.setMax(100);
 
 
                     } else {

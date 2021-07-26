@@ -38,7 +38,6 @@ public class AnimalSounds extends AppCompatActivity {
     private boolean isRecording, started;
     private Context con = this;
 
-    private ProgressBar pb;
     int counter = 0;
 
 

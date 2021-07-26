@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -53,6 +54,9 @@ public class MinimalPairs extends AppCompatActivity {
     private ImageButton topIMG;
     private ImageButton botIMG;
     private MediaPlayer player;
+    private ProgressBar pb;
+    private int currentProgress = 0;
+
 
 
     @Override
@@ -84,6 +88,10 @@ public class MinimalPairs extends AppCompatActivity {
         topIMG = findViewById(R.id.topIMG);
         botIMG = findViewById(R.id.botIMG);
         ImageButton play = findViewById(R.id.playBTN);
+        pb = findViewById(R.id.minimalPairsProgress);
+        currentProgress = 100 / EXERCISE_LENGTH;
+        pb.setProgress(currentProgress);
+        pb.setMax(100);
 
 
 
@@ -275,6 +283,9 @@ public class MinimalPairs extends AppCompatActivity {
 
             //set next Buttons
             public void run() {
+                currentProgress += (100 / EXERCISE_LENGTH);
+                pb.setProgress(currentProgress);
+                pb.setMax(100);
                 imageButton.setBackgroundResource(0);
                 topIMG.setImageResource(minimal_pairs[a]);
                 botIMG.setImageResource(minimal_pairs[b]);

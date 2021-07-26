@@ -8,6 +8,14 @@
     android:background="@color/light_beige"
     tools:context=".exercises.ImageRecognition">
 
+    <ProgressBar
+        android:id="@+id/imageRecognitionProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layoutDirection="ltr"
+        android:progressDrawable="@drawable/exercise_progress_custom" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
