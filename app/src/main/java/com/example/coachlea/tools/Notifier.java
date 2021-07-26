@@ -18,8 +18,8 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.coachlea.other_activities.MainActivity;
 import com.example.coachlea.R;
+import com.example.coachlea.other_activities.MainActivity;
 
 import java.util.Calendar;
 

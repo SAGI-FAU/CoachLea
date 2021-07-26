@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+
+        setAlarm();
     }
 
     //create overflow menu for profile and settings
