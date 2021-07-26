@@ -10,7 +10,6 @@ import androidx.annotation.RequiresApi;
 import com.example.coachlea.R;
 
 public class NotificationReceiver extends BroadcastReceiver {
-    //comment
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
