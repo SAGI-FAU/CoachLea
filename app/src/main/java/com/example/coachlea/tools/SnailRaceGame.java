@@ -317,7 +317,7 @@ public class SnailRaceGame extends SurfaceView {
         //countdown check
         if(countdownRunning){
             emilySpeed = 0;
-        } else {
+        } else if (!emilyStop){
             emilySpeed = 1;
         }
 
