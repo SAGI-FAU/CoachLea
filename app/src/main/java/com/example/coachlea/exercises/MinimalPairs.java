@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,6 +57,7 @@ public class MinimalPairs extends AppCompatActivity {
     private MediaPlayer player;
     private ProgressBar pb;
     private int currentProgress = 0;
+    private TextView progressText;
 
 
 
@@ -92,6 +94,8 @@ public class MinimalPairs extends AppCompatActivity {
         currentProgress = 100 / EXERCISE_LENGTH;
         pb.setProgress(currentProgress);
         pb.setMax(100);
+        progressText = findViewById(R.id.minimalPairsText);
+        progressText.setText((choose+1) + "/"+EXERCISE_LENGTH);
 
 
 
@@ -196,7 +200,7 @@ public class MinimalPairs extends AppCompatActivity {
                     intent.putExtra("correct_words", minimal_pairs_correct_str);
                     intent.putExtra("results", minimal_pairs_result);
 
-                    //TODO store data
+
                     try {
                         export_data();
                     } catch (IOException e) {
@@ -283,9 +287,15 @@ public class MinimalPairs extends AppCompatActivity {
 
             //set next Buttons
             public void run() {
-                currentProgress += (100 / EXERCISE_LENGTH);
+                if((choose + 1) != EXERCISE_LENGTH){
+                    currentProgress += (100 / EXERCISE_LENGTH);
+                }  else {
+                    currentProgress = 100;
+                }
+                progressText.setText((choose+1) + "/"+EXERCISE_LENGTH);
                 pb.setProgress(currentProgress);
                 pb.setMax(100);
+
                 imageButton.setBackgroundResource(0);
                 topIMG.setImageResource(minimal_pairs[a]);
                 botIMG.setImageResource(minimal_pairs[b]);
@@ -306,33 +316,6 @@ public class MinimalPairs extends AppCompatActivity {
         oldPos += 2;
     }
 
-    /*
-    //randomly choose minimal pairs & correct words
-    private void setMinimal_pairs() {
-        Random random = new Random();
-        int position = random.nextInt(EXERCISE_LENGTH * 2) * 2;
-
-
-        ArrayList<Integer> usedNumber = new ArrayList<>();
-        for (int i = 0; i < EXERCISE_LENGTH; i++) {
-
-            while (usedNumber.contains(position)) {
-                position = random.nextInt(EXERCISE_LENGTH * 2) * 2;
-            }
-            int corr = random.nextInt(2);
-            int flse = (corr + 1) % 2;
-            minimal_pairs_correct_str[i] = minimal_pairs_all_str[position + corr];
-            minimal_pairs_false_str[i] = minimal_pairs_all_str[position + flse];
-            minimal_pairs_correct[i] = minimal_pairs_all[position + corr];
-            minimal_pairs[i * 2] = minimal_pairs_all[position];
-            minimal_pairs[i * 2 + 1] = minimal_pairs_all[position + 1];
-
-            usedNumber.add(position);
-
-        }
-
-    }
-     */
 
 
     private void setMinimal_pairs(int[] minimal_pairs, String[] minimal_pairs_str,int amount, int pos){

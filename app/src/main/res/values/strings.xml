@@ -373,4 +373,8 @@
     <string name="timefornotifications">Zeit für Benachrichtigungen</string>
     <string name="title_notification">CoachLea</string>
     <string name="content_notify">Mache dein tägliches Training um dich weiter zu verbessern!</string>
+    <string name="questionmark">\?</string>
+    <string name="minimal_pairs">Minimalpaare</string>
+    <string name="image_recognition">Bilder erkennen</string>
+    <string name="animal_sounds">Tierlaute</string>
 </resources>

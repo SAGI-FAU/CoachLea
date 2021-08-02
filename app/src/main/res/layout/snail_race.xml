@@ -41,7 +41,6 @@
 
         <ImageButton
             android:id="@+id/homeBTN"
-            android:onClick="homeBTNClick"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_weight="0.25"

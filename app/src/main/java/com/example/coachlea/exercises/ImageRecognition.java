@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +50,7 @@ public class ImageRecognition extends AppCompatActivity {
 
     private ProgressBar pb;
     private int currentProgress = 0;
+    private TextView progressText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,8 @@ public class ImageRecognition extends AppCompatActivity {
         currentProgress = 100 / EXERCISE_LENGTH;
         pb.setProgress(currentProgress);
         pb.setMax(100);
+        progressText = findViewById(R.id.imageRecognitionText);
+        progressText.setText((counter+1)+"/"+EXERCISE_LENGTH);
 
         //set images for the game
         setImages_all(fricatives, fricatives_str, 2, 0);
@@ -97,6 +101,7 @@ public class ImageRecognition extends AppCompatActivity {
                         counter++;
                         imageView.setImageResource(images_all[counter]);
                         currentProgress += (100 / EXERCISE_LENGTH);
+                        progressText.setText((counter+1)+"/"+EXERCISE_LENGTH);
                         pb.setProgress(currentProgress);
                         pb.setMax(100);
 
@@ -129,8 +134,8 @@ public class ImageRecognition extends AppCompatActivity {
 
             int position = random.nextInt(images.length);
 
-            //check if both words were already used
-            while (used.contains(images_str[position]) && used.contains(images_str[position + 1])) {
+            //check if word was already used
+            while (used.contains(images_str[position])) {
                 position = random.nextInt(images.length);
             }
 
