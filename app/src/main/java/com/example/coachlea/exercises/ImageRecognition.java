@@ -1,10 +1,17 @@
 package com.example.coachlea.exercises;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -27,8 +34,9 @@ public class ImageRecognition extends AppCompatActivity {
 
     private static final int EXERCISE_LENGTH = 5;
 
-    ArrayList<String> used;
-    Random random;
+    private ArrayList<String> used;
+    private Random random;
+    private Dialog explanationDialog;
 
     private int[] fricatives;
     private int[] plosives;
@@ -56,6 +64,8 @@ public class ImageRecognition extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_recognition);
+        getSupportActionBar().setTitle(R.string.image_recognition);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         used = new ArrayList<>(); //some images are in multiple sets
         random = new Random();
@@ -71,6 +81,7 @@ public class ImageRecognition extends AppCompatActivity {
         setNasal();
 
         //initialize
+        explanationDialog = new Dialog(this);
         recorder = SpeechRecorder.getInstance(this, new ImageRecognition.VolumeHandler(), "ImageRecognition");
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
@@ -173,6 +184,60 @@ public class ImageRecognition extends AppCompatActivity {
     private void setNasal() {
         nasal = new int[]{R.drawable.nuss, R.drawable.schornstein, R.drawable.schwein, R.drawable.sonne, R.drawable.spinne, R.drawable.zange, R.drawable.eimer,
                 R.drawable.milch, R.drawable.ananas};
+    }
+
+    //explanation menu
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate((R.menu.explanation_menu), menu);
+        return true;
+
+    }
+
+    //This allows you to return to the activity before
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == R.id.explanation_menu){
+            TextView close;
+            TextView title_e;
+            TextView explanation;
+            ImageButton explanation_mp3;
+
+            explanationDialog.setContentView(R.layout.popup_explanation);
+
+
+            title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
+            explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
+            explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
+            close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
+
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    explanationDialog.dismiss();
+                }
+            });
+
+            title_e.setText(R.string.image_recognition);
+            explanation.setText(R.string.imageRecognition_explanation);
+
+
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
+            layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+
+            explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            explanationDialog.getWindow().setAttributes(layoutParams);
+            explanationDialog.show();
+        } else {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

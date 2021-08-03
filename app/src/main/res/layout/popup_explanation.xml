@@ -1,65 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="550dp"
-    android:layout_width="350dp"
-    android:padding="5dp"
-    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/chat_bubble"
+    android:background="@android:color/transparent"
     >
 
-
-    <TextView
-        android:id="@+id/txtclose"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:textColor="@color/dark_teal"
-        android:text="X"
-        android:textStyle="bold"
-        android:layout_gravity="end"
-        android:gravity="center"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/circle_background"
-        />
-
-    <TextView
-
-        android:id="@+id/explanation_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:gravity="center_horizontal"
-        android:textAllCaps="false"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/dark_teal"/>
-
-    <ScrollView
-        android:id="@+id/scroller_explanation"
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
+    <LinearLayout
+        android:layout_height="450dp"
+        android:layout_width="350dp"
         android:padding="5dp"
-        android:fillViewport="true"
-        android:scrollbars="vertical">
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/chat_bubble"
+        >
+        <TextView
+            android:id="@+id/txtclose"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:textColor="@color/dark_teal"
+            android:text="X"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circle_background"
+            />
 
         <TextView
-            android:id="@+id/text_explanation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/dark_teal"
-            android:textAllCaps="false"
-            android:textSize="20dp"/>
-    </ScrollView>
 
-    <ImageButton
-        android:id="@+id/play_explanation"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/layout_round_button"
-        android:foreground="@drawable/ic_play"/>
+            android:id="@+id/explanation_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_teal"/>
+
+        <ScrollView
+            android:id="@+id/scroller_explanation"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="10dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/text_explanation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/dark_teal"
+                android:textAllCaps="false"
+                android:textSize="20dp"/>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/play_explanation"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/layout_round_button"
+            android:foreground="@drawable/ic_play"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/lea"
+        android:layout_gravity="end"
+        android:paddingRight="1dp"/>
 
 </LinearLayout>

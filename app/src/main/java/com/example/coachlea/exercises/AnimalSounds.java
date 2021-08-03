@@ -1,15 +1,23 @@
 package com.example.coachlea.exercises;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +34,7 @@ import java.util.TimerTask;
 
 public class AnimalSounds extends AppCompatActivity {
 
-
+    Dialog explanationDialog;
     private ProgressBar progress;
     private ImageButton record;
     private Button home;
@@ -45,8 +53,11 @@ public class AnimalSounds extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.animal_sounds);
+        getSupportActionBar().setTitle(R.string.animal_sounds);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //initialize
+        explanationDialog = new Dialog(this);
         record = findViewById(R.id.record);
         imageView = findViewById(R.id.imageView);
         recorder = SpeechRecorder.getInstance(this, new AnimalSounds.VolumeHandler(), "AnimalSounds");
@@ -162,6 +173,60 @@ public class AnimalSounds extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    //explanation menu
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate((R.menu.explanation_menu), menu);
+        return true;
+
+    }
+
+    //This allows you to return to the activity before
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == R.id.explanation_menu){
+            TextView close;
+            TextView title_e;
+            TextView explanation;
+            ImageButton explanation_mp3;
+
+            explanationDialog.setContentView(R.layout.popup_explanation);
+
+
+            title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
+            explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
+            explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
+            close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
+
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    explanationDialog.dismiss();
+                }
+            });
+
+            title_e.setText(R.string.animal_sounds);
+            explanation.setText(R.string.animalSounds_explanation);
+
+
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
+            layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+
+            explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            explanationDialog.getWindow().setAttributes(layoutParams);
+            explanationDialog.show();
+        } else {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -1,11 +1,18 @@
 package com.example.coachlea.exercises;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,8 +31,9 @@ public class MinimalPairs extends AppCompatActivity {
 
     private static final int EXERCISE_LENGTH = 9;
 
-    ArrayList<String> usedPair;
-    Random random;
+    private ArrayList<String> usedPair;
+    private Random random;
+    private Dialog explanationDialog;
 
     private int[] minimal_pairs_all;
     private int[] minimal_pairs_plosives;
@@ -65,6 +73,8 @@ public class MinimalPairs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.minimal_pairs);
+        getSupportActionBar().setTitle(R.string.minimal_pairs);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         usedPair = new ArrayList<>(); // some minimal pairs are in multiple sets
         random = new Random();
@@ -87,6 +97,7 @@ public class MinimalPairs extends AppCompatActivity {
 
 
         //Initialize
+        explanationDialog = new Dialog(this);
         topIMG = findViewById(R.id.topIMG);
         botIMG = findViewById(R.id.botIMG);
         ImageButton play = findViewById(R.id.playBTN);
@@ -410,6 +421,59 @@ public class MinimalPairs extends AppCompatActivity {
     private void setMinimal_pairs_others(){
         minimal_pairs_others = new int[]{R.drawable.maehen, R.drawable.naehen, R.drawable.schwamm, R.drawable.schwan, R.drawable.ringe, R.drawable.rinne, R.drawable.nase,
                 R.drawable.hase, R.drawable.maus, R.drawable.haus, R.drawable.mund, R.drawable.hund};
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate((R.menu.explanation_menu), menu);
+        return true;
+
+    }
+
+    //This allows you to return to the activity before
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == R.id.explanation_menu){
+            TextView close;
+            TextView title_e;
+            TextView explanation;
+            ImageButton explanation_mp3;
+
+            explanationDialog.setContentView(R.layout.popup_explanation);
+
+
+            title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
+            explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
+            explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
+            close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
+
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    explanationDialog.dismiss();
+                }
+            });
+
+            title_e.setText(R.string.minimal_pairs);
+            explanation.setText(R.string.minimalPairs_explanation);
+
+
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
+            layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+
+            explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            explanationDialog.getWindow().setAttributes(layoutParams);
+            explanationDialog.show();
+        } else {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
