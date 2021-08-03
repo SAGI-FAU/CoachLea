@@ -18,7 +18,7 @@
             android:layout_width="350dp"
             android:layout_height="75dp"
             android:layout_marginBottom="20dp"
-            app:cardCornerRadius="30dp">
+            app:cardCornerRadius="50dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -30,6 +30,7 @@
                     android:id="@+id/button3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:onClick="minimalPairsBTNClick"
                     android:text="@string/minimal_pairs"
                     android:textColor="@color/dark_teal"
@@ -42,6 +43,7 @@
                     android:id="@+id/explanationMinimalPairs"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:layout_weight="1"
                     android:text="@string/questionmark"
                     android:textSize="40dp"
@@ -73,6 +75,7 @@
                     android:id="@+id/button4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:onClick="imageRecognitionBTNClick"
                     android:text="@string/image_recognition"
                     android:textColor="@color/dark_teal"
@@ -86,6 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:text="@string/questionmark"
                     android:textSize="40dp"
                     />
@@ -119,6 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:onClick="snailRaceBTNClick"
+                    android:background="@android:color/transparent"
                     android:text="@string/Snail_race"
                     android:textColor="@color/dark_teal"
                     android:textSize="23dp"
@@ -131,6 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:text="@string/questionmark"
                     android:textSize="40dp"
                     />
@@ -159,6 +165,7 @@
                 >
                 <Button
                     android:id="@+id/button6"
+                    android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:onClick="animalSoundsBTNClick"
@@ -170,6 +177,7 @@
                     android:layout_weight="5"
                     />
                 <Button
+                    android:background="@android:color/transparent"
                     android:id="@+id/explanationAnimalSounds"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
