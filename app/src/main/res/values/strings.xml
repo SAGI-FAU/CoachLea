@@ -381,4 +381,10 @@
     <string name="minimalPairs_explanation">Hilf mir das richtige Bild zu finden! Dir werden in diesem Spiel immer zwei Bilder angezeigt. Wenn  du auf den Start Knopf drückst, sage ich dir, welches das richtige ist. Drücke auf eines der Bilder um es auszuwählen.</string>
     <string name="imageRecognition_explanation">Ich habe einen Stapel Bilder in meinem Schneckenhaus gefunden und möchte herausfinden was sie zeigen. Hilf mir dabei indem du mir sagst was auf dem Bild, welches ich dir zeige, dargestellt ist. Um mit mir zu sprechen musst du nur auf die Aufnahme-Taste drücken </string>
     <string name="animalSounds_explanation">Lass uns zusammen Tierlaute nachmachen! Ahme das Tier nach welches ich dir zeige. Drücke dazu auf den Aufnahme-Knopf und mache das Geräusch, bis die Zeit abgelaufen ist</string>
+    <string-array name="motivations">
+        <item>Weiter so!</item>
+        <item>Gut gemacht!</item>
+        <item>Super!</item>
+        <item>Sehr gut!</item>
+    </string-array>
 </resources>

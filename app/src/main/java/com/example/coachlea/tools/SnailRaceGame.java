@@ -1,3 +1,4 @@
+
 package com.example.coachlea.tools;
 
 import android.annotation.SuppressLint;
@@ -38,6 +39,7 @@ public class SnailRaceGame extends SurfaceView {
     private boolean leaStop;
     private int currentVolume = 0;
     private int leaThreshold = 0;
+    private int leaWantedPitch = 20; //when the user hits this pitch (in dB), lea has the same speed as emily
 
     private int emilyX = (lineWidth/2)+lineWidth;
     private int emilyY = 0;
@@ -46,10 +48,11 @@ public class SnailRaceGame extends SurfaceView {
     private int emThresholdTop=0;
     private int emThresholdBot = 0;
 
+
     private int screenHeight = 0;
     private int screenWidth = 0;
 
-    private boolean buttonsAdded = false;
+    private boolean buttonsAdded;
 
     private ImageButton homeBTN;
     private ImageButton againBTN;
@@ -79,13 +82,14 @@ public class SnailRaceGame extends SurfaceView {
 
 
         //initialize
-        emilySpeed = 1;
+        emilySpeed = 2;
 
         currentVolume = 0;
         emilyStop= false;
         leaStop = false;
         buttonsAdded = false;
         emThresholdBot = 0;
+        leaWantedPitch = 18;
 
 
         //start countdown
@@ -244,8 +248,17 @@ public class SnailRaceGame extends SurfaceView {
         //20*log10(maxPercent)
         //TODO connect currentvolume with lea speed
         currentVolume = audioHandler.getCurrentVolume();
-        Log.d(TAG,"currentVolume: " + currentVolume);
-        leaSpeed = (int)(currentVolume / (float)30);
+        double volume_in_db = 0;
+        if (currentVolume > 1){
+            volume_in_db= 20* Math.log10(currentVolume);
+        }
+
+        int volume_db = (int) volume_in_db;
+        //leaSpeed = (int)(currentVolume / (float)30);
+        double leaSpeedTemp = (volume_in_db /((double) 50));
+        leaSpeed = (int)(volume_db / (float)leaWantedPitch) * 2;
+        Log.d(TAG,"volume in db: " + volume_in_db);
+        Log.d(TAG,"leaSpeed: " + leaSpeed);
         drawLea(canvas);
 
 
@@ -318,7 +331,7 @@ public class SnailRaceGame extends SurfaceView {
         if(countdownRunning){
             emilySpeed = 0;
         } else if (!emilyStop){
-            emilySpeed = 1;
+            emilySpeed = 2;
         }
 
 

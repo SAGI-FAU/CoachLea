@@ -2,6 +2,7 @@ package com.example.coachlea.exercises;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -76,8 +77,23 @@ public class MinimalPairs extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.minimal_pairs);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
+
         usedPair = new ArrayList<>(); // some minimal pairs are in multiple sets
         random = new Random();
+        explanationDialog = new Dialog(this);
+
+        //check if MinimalPairs is used for the first time
+        SharedPreferences prefs = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        int login = prefs.getInt("MinimalPairsUsed", 0);
+
+        if(login == 0){
+            openPopup();
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("MinimalPairsUsed",13);
+            editor.apply();
+        }
 
         //set String arrays
         minimal_pairs_all_str = getResources().getStringArray(R.array.Minimal_Pairs);
@@ -97,7 +113,6 @@ public class MinimalPairs extends AppCompatActivity {
 
 
         //Initialize
-        explanationDialog = new Dialog(this);
         topIMG = findViewById(R.id.topIMG);
         botIMG = findViewById(R.id.botIMG);
         ImageButton play = findViewById(R.id.playBTN);
@@ -116,6 +131,8 @@ public class MinimalPairs extends AppCompatActivity {
         setMinimal_pairs(minimal_pairs_lateral,minimal_pairs_lateral_str,1, 6);
         setMinimal_pairs(minimal_pairs_trills,minimal_pairs_trills_str,1, 7);
         setMinimal_pairs(minimal_pairs_others,minimal_pairs_others_str,1, 8);
+
+        shuffleArrays();
 
 
         //setMinimal_pairs();
@@ -255,7 +272,7 @@ public class MinimalPairs extends AppCompatActivity {
                     player.seekTo(0);
                     player.start();
                 } else {
-                    String file = minimal_pairs_correct_str[choose];
+                    String file = chooseAudio();
                     int resId = getResources().getIdentifier(file, "raw", getPackageName());
                     String path = "a" + resId;
                     String path2 = path.substring(1);
@@ -266,6 +283,25 @@ public class MinimalPairs extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private String chooseAudio(){
+        String file = minimal_pairs_correct_str[choose];
+
+        if(choose <= 1){
+            file = file;
+        } else if(choose <= 3){
+            file = file + "_snr25";
+        } else if(choose <= 5){
+            file = file + "_snr20";
+        } else if(choose <= 7){
+            file = file + "_snr15";
+        } else if(choose == 8){
+            file = file + "_snr10";
+        }
+
+        return file;
 
     }
 
@@ -362,6 +398,37 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
+    private void shuffleArrays(){
+        int rand;
+
+        int[] temp_minimalPair = new int[2];
+        int temp_minimalPairCorr;
+        String temp_mpCorrStr;
+        String temp_mpFalseStr;
+
+        for(int i = EXERCISE_LENGTH-1;i>0;i--){
+            rand = random.nextInt(i+1);
+
+            temp_minimalPair[0] = minimal_pairs[i*2];
+            temp_minimalPair[1] = minimal_pairs[(i*2)+1];
+            temp_minimalPairCorr = minimal_pairs_correct[i];
+            temp_mpCorrStr = minimal_pairs_correct_str[i];
+            temp_mpFalseStr = minimal_pairs_false_str[i];
+
+            minimal_pairs[i*2] = minimal_pairs[rand*2];
+            minimal_pairs[(i*2)+1] = minimal_pairs[(rand*2)+1];
+            minimal_pairs[rand*2] = temp_minimalPair[0];
+            minimal_pairs[(rand*2)+1] = temp_minimalPair[1];
+
+            minimal_pairs_correct[i] = minimal_pairs_correct[rand];
+            minimal_pairs_correct_str[i] = minimal_pairs_correct_str[rand];
+            minimal_pairs_false_str[i] = minimal_pairs_false_str[rand];
+            minimal_pairs_correct[rand] =  temp_minimalPairCorr;
+            minimal_pairs_correct_str[rand] = temp_mpCorrStr;
+            minimal_pairs_false_str[rand] = temp_mpFalseStr;
+        }
+    }
+
 
 
     private void export_data() throws IOException {
@@ -435,45 +502,50 @@ public class MinimalPairs extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.explanation_menu){
-            TextView close;
-            TextView title_e;
-            TextView explanation;
-            ImageButton explanation_mp3;
-
-            explanationDialog.setContentView(R.layout.popup_explanation);
-
-
-            title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
-            explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
-            explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
-            close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
-
-
-            close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    explanationDialog.dismiss();
-                }
-            });
-
-            title_e.setText(R.string.minimal_pairs);
-            explanation.setText(R.string.minimalPairs_explanation);
-
-
-            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-            layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
-            layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
-            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-
-            explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            explanationDialog.getWindow().setAttributes(layoutParams);
-            explanationDialog.show();
+            openPopup();
         } else {
             finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openPopup(){
+        TextView close;
+        TextView title_e;
+        TextView explanation;
+        ImageButton explanation_mp3;
+
+        explanationDialog.setContentView(R.layout.popup_explanation);
+
+
+        title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
+        explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
+        explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
+        close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
+
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                explanationDialog.dismiss();
+            }
+        });
+
+        title_e.setText(R.string.minimal_pairs);
+        explanation.setText(R.string.minimalPairs_explanation);
+
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
+        layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+
+        explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        explanationDialog.getWindow().setAttributes(layoutParams);
+        explanationDialog.show();
+
     }
 
 }

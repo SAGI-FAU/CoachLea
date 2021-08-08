@@ -2,6 +2,7 @@ package com.example.coachlea.exercises;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -69,6 +70,18 @@ public class ImageRecognition extends AppCompatActivity {
 
         used = new ArrayList<>(); //some images are in multiple sets
         random = new Random();
+        explanationDialog = new Dialog(this);
+
+        //check if ImageRecognition is used for the first time
+        SharedPreferences prefs = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        int login = prefs.getInt("ImageRecognitionUsed", 0);
+
+        if(login == 0){
+            openPopup();
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("ImageRecognitionUsed",13);
+            editor.apply();
+        }
 
         //set String arrays
         fricatives_str = getResources().getStringArray(R.array.image_recognition_fricative);
@@ -81,7 +94,6 @@ public class ImageRecognition extends AppCompatActivity {
         setNasal();
 
         //initialize
-        explanationDialog = new Dialog(this);
         recorder = SpeechRecorder.getInstance(this, new ImageRecognition.VolumeHandler(), "ImageRecognition");
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
@@ -199,45 +211,49 @@ public class ImageRecognition extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.explanation_menu){
-            TextView close;
-            TextView title_e;
-            TextView explanation;
-            ImageButton explanation_mp3;
-
-            explanationDialog.setContentView(R.layout.popup_explanation);
-
-
-            title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
-            explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
-            explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
-            close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
-
-
-            close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    explanationDialog.dismiss();
-                }
-            });
-
-            title_e.setText(R.string.image_recognition);
-            explanation.setText(R.string.imageRecognition_explanation);
-
-
-            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-            layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
-            layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
-            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-
-            explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            explanationDialog.getWindow().setAttributes(layoutParams);
-            explanationDialog.show();
+           openPopup();
         } else {
             finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openPopup(){
+        TextView close;
+        TextView title_e;
+        TextView explanation;
+        ImageButton explanation_mp3;
+
+        explanationDialog.setContentView(R.layout.popup_explanation);
+
+
+        title_e = (TextView) explanationDialog.findViewById(R.id.explanation_title);
+        explanation = (TextView)  explanationDialog.findViewById(R.id.text_explanation);
+        explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
+        close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
+
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                explanationDialog.dismiss();
+            }
+        });
+
+        title_e.setText(R.string.image_recognition);
+        explanation.setText(R.string.imageRecognition_explanation);
+
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
+        layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+
+        explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        explanationDialog.getWindow().setAttributes(layoutParams);
+        explanationDialog.show();
     }
 
 

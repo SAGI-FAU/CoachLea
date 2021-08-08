@@ -44,7 +44,7 @@
 
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -82,15 +82,12 @@
             <ImageButton
                 android:id="@+id/playBTN"
                 android:layout_gravity="center"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="7dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:paddingVertical="3dp"
                 android:background="@drawable/layout_round_button"
                 android:foreground="@drawable/ic_play"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/botIMG" />
+                />
     </LinearLayout>
 
 </LinearLayout>

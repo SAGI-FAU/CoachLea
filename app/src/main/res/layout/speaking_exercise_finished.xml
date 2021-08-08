@@ -1,41 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/light_beige"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
     tools:context=".other_activities.SpeakingExerciseFinished">
 
-    <TextView
-        android:id="@+id/motivationTXT"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="@string/motivation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/motivationTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="55dp"
+            android:textColor="@color/dark_teal"
+            android:textAllCaps="false"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/doneBTN"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:onClick="DoneBTNClick"
-        android:text="@string/done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/motivationTXT" />
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:background="@drawable/lea"
+            />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/againBTN"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
-        android:onClick="AgainBTNClick"
-        android:text="@string/again"
+        android:orientation="horizontal"
+        android:padding="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        >
+
+        <ImageButton
+            android:id="@+id/againBTN"
+            android:onClick="AgainBTNClick"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/layout_round_button"
+            android:foreground="@drawable/ic_again"
+            android:paddingHorizontal="50dp"
+            />
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/homeBTN"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/layout_round_button"
+            android:foreground="@drawable/ic_home"
+            android:paddingHorizontal="50dp" />
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/doneBTN"
+            android:onClick="DoneBTNClick"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/layout_round_button"
+            android:foreground="@drawable/ic_back"
+            android:paddingHorizontal="50dp" />
+
+    </LinearLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
