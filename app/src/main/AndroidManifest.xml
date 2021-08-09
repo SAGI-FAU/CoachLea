@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachLea">
-        <activity android:name=".other_activities.Trainingset_Finished"></activity>
+        <activity android:name=".other_activities.TrainingsetExerciseFinished"></activity>
+        <activity android:name=".other_activities.Trainingset_Finished" />
         <activity android:name=".other_activities.Trainingset" />
         <activity
             android:name=".other_activities.Settings"
