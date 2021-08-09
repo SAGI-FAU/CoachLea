@@ -387,4 +387,7 @@
         <item>Super!</item>
         <item>Sehr gut!</item>
     </string-array>
+    <string name="trainingset_capion">Starte deine tägliche Trainingseinheit!</string>
+    <string name="trainingset_text">Deine heutigen Aufgaben sind:</string>
+    <string name="trainingset_already_done">Du hast deine tägliche Trainingseinheit schon absolviert. Super gemacht!</string>
 </resources>
