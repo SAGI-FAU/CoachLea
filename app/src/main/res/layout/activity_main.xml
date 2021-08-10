@@ -59,7 +59,7 @@
         android:gravity="center">
         <androidx.cardview.widget.CardView
 
-            android:id="@+id/profile"
+            android:id="@+id/dailySession"
             android:background="@drawable/layout_square_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="250dp"

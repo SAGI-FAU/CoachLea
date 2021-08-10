@@ -19,10 +19,9 @@ import com.example.coachlea.exercises.AnimalSounds;
 import com.example.coachlea.exercises.ImageRecognition;
 import com.example.coachlea.exercises.MinimalPairs;
 
-//TODO change dialog into popup inflater?
+
 public class ExercisesMain extends AppCompatActivity {
     Dialog explanationDialog;
-    //LayoutInflater inflater;
     private Button explanationSnailRace;
     private Button explanationMinimalPairs;
     private Button explanationAnimalSounds;

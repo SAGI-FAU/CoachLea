@@ -390,4 +390,7 @@
     <string name="trainingset_capion">Starte deine tägliche Trainingseinheit!</string>
     <string name="trainingset_text">Deine heutigen Aufgaben sind:</string>
     <string name="trainingset_already_done">Du hast deine tägliche Trainingseinheit schon absolviert. Super gemacht!</string>
+    <string name="trainingsetTitle">Tägliche Trainingseinheit</string>
+    <string name="errorMessage">Da ist etwas schiefgelaufen!</string>
+    <string name="nextTaskIntroduction">Deine nächste Aufgabe ist:</string>
 </resources>

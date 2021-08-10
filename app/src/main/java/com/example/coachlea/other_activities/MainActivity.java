@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //initialize
-        CardView profile = findViewById(R.id.profile);
+        CardView dailySession = findViewById(R.id.dailySession);
         CardView exercises = findViewById(R.id.exercises);
 
         exercises.setOnClickListener(new View.OnClickListener() {
@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        dailySession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ProfileMain.class);
+                Intent intent = new Intent(v.getContext(), Trainingset.class);
                 v.getContext().startActivity(intent);
             }
         });
