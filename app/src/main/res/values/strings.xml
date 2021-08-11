@@ -394,4 +394,5 @@
     <string name="errorMessage">Da ist etwas schiefgelaufen!</string>
     <string name="nextTaskIntroduction">Deine nächste Aufgabe ist:</string>
     <string name="TrainingsetLastExerciseFinished">Du hast alle Aufgaben für heute erledingt!</string>
+    <string name="minimalPairsError">Drücke zuerst auf den Start-Button!</string>
 </resources>

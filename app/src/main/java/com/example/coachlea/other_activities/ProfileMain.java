@@ -85,8 +85,8 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
         profile_name = findViewById(R.id.profile_name);
         pds = new PatientDataService(getApplicationContext());
         patientData = pds.getPatient();
-        takePicture = (CircleImageView) findViewById(R.id.takePicture);
-        profile_picture = (CircleImageView) findViewById(R.id.circleImageView);
+        //takePicture = (CircleImageView) findViewById(R.id.takePicture);
+       // profile_picture = (CircleImageView) findViewById(R.id.circleImageView);
         RadioButton rb_male = findViewById(R.id.rbGenderMale);
         RadioButton rb_female = findViewById(R.id.rbGenderFemale);
         RadioButton rb_other = findViewById(R.id.rbGenderOther);
@@ -300,9 +300,9 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.editTextTextbirthdate:
                 datePickerDialog.show();break;
-            case R.id.takePicture:
-                pictureDialog();
-                break;
+ //           case R.id.takePicture:
+ //               pictureDialog();
+ //               break;
         }
     }
 

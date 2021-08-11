@@ -141,6 +141,7 @@ public class ImageRecognition extends AppCompatActivity {
                             intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
                             intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
                             intent.putExtra("exerciseCounter", exerciseCounter);
+                            intent.putExtra("trainingset",true);
                         }
                         record.setEnabled(false);
                         recorder.release();

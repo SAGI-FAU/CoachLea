@@ -235,6 +235,7 @@ public class SnailRaceGame extends SurfaceView {
 
                     if(dailySession){
                         homeBTN.setVisibility(View.VISIBLE);
+                        homeBTN.setForeground(getResources().getDrawable(R.drawable.ic_next));
                     } else {
                         againBTN.setVisibility(View.VISIBLE);
                         homeBTN.setVisibility(View.VISIBLE);

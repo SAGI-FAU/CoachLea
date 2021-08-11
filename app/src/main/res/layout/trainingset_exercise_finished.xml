@@ -8,8 +8,6 @@
     android:background="@color/grey_blue"
     tools:context=".other_activities.Trainingset">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,8 +17,9 @@
             <LinearLayout
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
-                android:layout_width="360dp"
+                android:layout_width="match_parent"
                 android:padding="8dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
@@ -73,7 +72,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="60dp"
                                 android:layout_marginBottom="20dp"
-                                app:cardCornerRadius="10dp"
+                                app:cardCornerRadius="15dp"
                                 android:layout_marginHorizontal="20dp"
                                 >
                                 <LinearLayout
@@ -121,7 +120,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="5"
-        android:paddingTop="4dp">
+        android:paddingTop="15dp">
         <LinearLayout
             android:paddingLeft="20dp"
             android:layout_width="wrap_content"
@@ -131,8 +130,8 @@
             android:gravity="center_horizontal">
             <ImageButton
                 android:id="@+id/again_trainingsetExercise"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/layout_round_button"
                 android:foreground="@drawable/ic_again"/>
 
@@ -147,8 +146,8 @@
             android:gravity="center_horizontal">
             <ImageButton
                 android:id="@+id/next_trainingsetExercise"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/layout_round_button"
                 android:foreground="@drawable/ic_next"/>
         </LinearLayout>

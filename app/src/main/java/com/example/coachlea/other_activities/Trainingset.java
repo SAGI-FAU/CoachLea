@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,9 @@ public class Trainingset extends AppCompatActivity {
     private TextView setExercise2;
     private TextView setExercise3;
     private ImageButton startTrainingset;
+    private Button trainingset_explanation1;
+    private Button trainingset_explanation2;
+    private Button trainingset_explanation3;
 
 
 
@@ -50,6 +54,9 @@ public class Trainingset extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.trainingset);
+        getSupportActionBar().setTitle(getResources().getString(R.string.trainingsetTitle)); // for set actionbar title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Set<String> session = new HashSet<String>();
 
@@ -68,19 +75,19 @@ public class Trainingset extends AppCompatActivity {
         SharedPreferences exercise = getApplicationContext().getSharedPreferences("ExerciseFinished", 0);
         SharedPreferences.Editor editor1 = exercise.edit();
 
+        //initialize
+        explanationDialog = new Dialog(this); //for explanation popup
+        setExercise1 = findViewById(R.id.SetExercise1);
+        setExercise2 = findViewById(R.id.SetExercise2);
+        setExercise3 = findViewById(R.id.SetExercise3);
+        startTrainingset = findViewById(R.id.start_trainingset);
+        exercise_list = new String[3];
+        trainingset_explanation1= findViewById(R.id.trainingset_explanation1);
+        trainingset_explanation2= findViewById(R.id.trainingset_explanation2);
+        trainingset_explanation3= findViewById(R.id.trainingset_explanation3);
+
 
         if(!weekDay.equals(state)){
-
-            setContentView(R.layout.trainingset);
-            getSupportActionBar().setTitle(getResources().getString(R.string.trainingsetTitle)); // for set actionbar title
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            //initialize
-            explanationDialog = new Dialog(this); //for explanation popup
-            setExercise1 = findViewById(R.id.SetExercise1);
-            setExercise2 = findViewById(R.id.SetExercise2);
-            setExercise3 = findViewById(R.id.SetExercise3);
-            startTrainingset = findViewById(R.id.start_trainingset);
 
             String hearing_exercise=getResources().getString(R.string.minimal_pairs);
             String[] speaking_exercise ={getResources().getString(R.string.animal_sounds),getResources().getString(R.string.image_recognition), getResources().getString(R.string.Snail_race)};
@@ -112,35 +119,10 @@ public class Trainingset extends AppCompatActivity {
 
         } else if(weekDay.equals(state) && sessionFinished){ //check if daily session already has been done
 
-            setContentView(R.layout.trainingset__finished);
-            getSupportActionBar().setTitle(getResources().getString(R.string.trainingsetTitle)); // for set actionbar title
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            ImageButton home = findViewById(R.id.home_trainingset);
-
-            //home Button leads to main activity
-            home.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(),MainActivity.class);
-                    startActivity(intent);
-                }
-            });
+            Intent intent = new Intent(this, Trainingset_Finished.class);
+            startActivity(intent);
 
         } else {
-            setContentView(R.layout.trainingset);
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.dark_blue)));
-            getSupportActionBar().setTitle(getResources().getString(R.string.trainingsetTitle)); // for set actionbar title
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            //initialize
-            explanationDialog = new Dialog(this); //for explanation popup
-            setExercise1 = findViewById(R.id.SetExercise1);
-            setExercise2 = findViewById(R.id.SetExercise2);
-            setExercise3 = findViewById(R.id.SetExercise3);
-            startTrainingset = findViewById(R.id.start_trainingset);
-            exercise_list = new String[3];
-
           
             session = pref.getStringSet("ExerciseList",null);
 
@@ -157,7 +139,16 @@ public class Trainingset extends AppCompatActivity {
             }
         }
 
+        //check if Trainingset is used for the first time
+        SharedPreferences prefs = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        int login = prefs.getInt("TrainingsetUsed", 0);
 
+        if(login == 0){
+            showPopup("Trainingset_explanation");
+            SharedPreferences.Editor editor2 = prefs.edit();
+            editor2.putInt("TrainingsetUsed",13);
+            editor2.apply();
+        }
 
         startTrainingset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,9 +187,26 @@ public class Trainingset extends AppCompatActivity {
             }
         });
 
+        trainingset_explanation1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup( exercise_list[0]);
+            }
+        });
 
+        trainingset_explanation2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup( exercise_list[1]);
+            }
+        });
 
-
+        trainingset_explanation3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup( exercise_list[2]);
+            }
+        });
     }
 
 
@@ -231,18 +239,19 @@ public class Trainingset extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.explanation_menu){
-            openPopup();
+            showPopup("Trainingset_explanation");
         } else {
             finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void openPopup(){
+    public void showPopup( String title){
         TextView close;
         TextView title_e;
         TextView explanation;
         ImageButton explanation_mp3;
+
 
         explanationDialog.setContentView(R.layout.popup_explanation);
 
@@ -260,9 +269,35 @@ public class Trainingset extends AppCompatActivity {
             }
         });
 
-        title_e.setText(R.string.trainingsetTitle);
-        explanation.setText(R.string.animalSounds_explanation); //TODO explanation trainingset schreiben
+        switch(title){
+            case "Minimalpaare":
+                //TODO
+                title_e.setText(R.string.minimal_pairs);
+                explanation.setText(R.string.minimalPairs_explanation);
+                break;
+            case "Bilder erkennen":
+                //TODO
+                title_e.setText(R.string.image_recognition);
+                explanation.setText(R.string.imageRecognition_explanation);
+                break;
+            case "Schneckenrennen":
+                title_e.setText(R.string.Snail_race);
+                explanation.setText(R.string.snailrace_explanation);
+                break;
+            case "Tierlaute":
+                //TODO
+                explanation.setText(R.string.animalSounds_explanation);
+                title_e.setText(R.string.animal_sounds);
+                break;
+            case "Trainingset_explanation":
+                //TODO
+                title_e.setText(R.string.trainingsetTitle);
+                explanation.setText(R.string.animalSounds_explanation); //TODO explanation trainingset schreiben
+                break;
+            default:
+                break;
 
+        }
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
@@ -273,6 +308,7 @@ public class Trainingset extends AppCompatActivity {
         explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         explanationDialog.getWindow().setAttributes(layoutParams);
         explanationDialog.show();
+
 
     }
 }

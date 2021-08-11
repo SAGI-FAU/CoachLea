@@ -141,8 +141,10 @@ public class AnimalSounds extends AppCompatActivity {
                             intent = new Intent(con, TrainingsetExerciseFinished.class);
                             intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
                             intent.putExtra("exerciseCounter", exerciseCounter);
+                            intent.putExtra("trainingset",true);
                         }
                         recorder.stopRecording();
+                        record.setEnabled(false);
                         recorder.release();
                         con.startActivity(intent);
                     } else {
@@ -184,12 +186,6 @@ public class AnimalSounds extends AppCompatActivity {
                     if (Float.isNaN(int_f0[0])) {
                         Toast.makeText(AnimalSounds.this, getResources().getString(R.string.messageEmpty), Toast.LENGTH_SHORT).show();
                         return;
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
-                        intent.putExtra("exercise", "Animal sounds");
-                        record.setEnabled(false);
-                        recorder.release();
-                        getApplicationContext().startActivity(intent);
                     }
                 }
             }

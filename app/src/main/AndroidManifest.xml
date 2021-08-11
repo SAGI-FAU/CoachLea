@@ -29,7 +29,6 @@
         <activity android:name=".other_activities.SpeakingExerciseFinished" />
         <activity android:name=".exercises.SnailRace" />
         <activity android:name=".exercises.AnimalSounds" />
-        <activity android:name=".other_activities.MinimalPairsExerciseFinished" />
         <activity android:name=".exercises.MinimalPairs" />
         <activity android:name=".other_activities.ExercisesMain" />
         <activity android:name=".other_activities.MainActivity">

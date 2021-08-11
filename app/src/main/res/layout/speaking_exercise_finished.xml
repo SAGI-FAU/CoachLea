@@ -6,39 +6,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:backgroundTint="@color/grey_blue"
     android:padding="5dp"
     tools:context=".other_activities.SpeakingExerciseFinished">
 
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/motivationTXT"
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="55dp"
-            android:textColor="@color/dark_teal"
-            android:textAllCaps="false"
-            android:textStyle="bold"/>
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/chat_bubble"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="27dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/motivationTXT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Super gemacht!"
+                        android:textAllCaps="false"
+                        android:textSize="29dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/dark_teal"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <ImageView
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:background="@drawable/lea"
+                    android:layout_marginRight="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:background="@drawable/lea"
-            />
-    </LinearLayout>
+
 
     <LinearLayout
         android:layout_weight="1"
@@ -50,7 +82,7 @@
         >
 
         <ImageButton
-            android:id="@+id/againBTN"
+            android:id="@+id/againBTN1"
             android:onClick="AgainBTNClick"
             android:layout_width="0dp"
             android:layout_height="70dp"
@@ -66,7 +98,7 @@
             android:background="@android:color/transparent" />
 
         <ImageButton
-            android:id="@+id/homeBTN"
+            android:id="@+id/homeBTN1"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_weight="0.25"
@@ -80,7 +112,7 @@
             android:background="@android:color/transparent" />
 
         <ImageButton
-            android:id="@+id/doneBTN"
+            android:id="@+id/backBTN1"
             android:onClick="DoneBTNClick"
             android:layout_width="0dp"
             android:layout_height="70dp"

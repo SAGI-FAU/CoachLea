@@ -17,12 +17,13 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.CSVFileWriter;
-import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
+import com.example.coachlea.other_activities.SpeakingExerciseFinished;
 import com.example.coachlea.other_activities.TrainingsetExerciseFinished;
 
 import java.io.IOException;
@@ -79,7 +80,6 @@ public class MinimalPairs extends AppCompatActivity {
         setContentView(R.layout.minimal_pairs);
         getSupportActionBar().setTitle(R.string.minimal_pairs);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
 
 
@@ -165,7 +165,7 @@ public class MinimalPairs extends AppCompatActivity {
                 if (playPressed) {
                     if (oldPos >= 2 * EXERCISE_LENGTH) {
 
-                        Intent intent = new Intent(MinimalPairs.this, MinimalPairsExerciseFinished.class);
+                        Intent intent = new Intent(MinimalPairs.this, SpeakingExerciseFinished.class);
 
                         if (topIMG.getTag() == "correct") {
                             topIMG.setBackgroundResource(R.color.limegreen);
@@ -178,6 +178,7 @@ public class MinimalPairs extends AppCompatActivity {
 
                         intent.putExtra("correct_words", minimal_pairs_correct_str);
                         intent.putExtra("results", minimal_pairs_result);
+                        intent.putExtra("exercise","MinimalPairs");
 
 
                         try {
@@ -191,6 +192,7 @@ public class MinimalPairs extends AppCompatActivity {
                             intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
                             intent.putExtra("exerciseList",getIntent().getExtras().getStringArray("exerciseList"));
                             intent.putExtra("exerciseCounter",exerciseCounter);
+                            intent.putExtra("trainingset",true);
                         }
 
 
@@ -218,7 +220,10 @@ public class MinimalPairs extends AppCompatActivity {
                         }
                     }
 
+                } else {
+                    Toast.makeText(MinimalPairs.this,getResources().getString(R.string.minimalPairsError),Toast.LENGTH_SHORT).show();
                 }
+
             }
 
         });
@@ -227,60 +232,66 @@ public class MinimalPairs extends AppCompatActivity {
         botIMG.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                if (oldPos >= 2 * EXERCISE_LENGTH) {
-                    Intent intent = new Intent(MinimalPairs.this, MinimalPairsExerciseFinished.class);
+                if (playPressed) {
+                    if (oldPos >= 2 * EXERCISE_LENGTH) {
+                        Intent intent = new Intent(MinimalPairs.this, SpeakingExerciseFinished.class);
 
-                    if (botIMG.getTag() == "correct") {
-                        botIMG.setBackgroundResource(R.color.limegreen);
-                        minimal_pairs_result[choose] = 1;
-                        minimal_pairs_result_str[choose] = minimal_pairs_correct_str[choose];
-                    } else {
-                        minimal_pairs_result[choose] = 0;
-                        minimal_pairs_result_str[choose] = minimal_pairs_false_str[choose];
-                    }
-
-                    intent.putExtra("correct_words", minimal_pairs_correct_str);
-                    intent.putExtra("results", minimal_pairs_result);
-
-
-                    try {
-                        export_data();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    //check if part of daily session
-                    if (getIntent().getBooleanExtra("trainingset",false)){
-                        intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
-                        intent.putExtra("exerciseList",getIntent().getExtras().getStringArray("exerciseList"));
-                        intent.putExtra("exerciseCounter",exerciseCounter);
-                    }
-
-
-                    // time delay for green frame
-                    Handler handler = new Handler();
-                    Intent finalIntent = intent;
-                    handler.postDelayed(new Runnable() {
-
-                        public void run() {
-                            v.getContext().startActivity(finalIntent);
+                        if (botIMG.getTag() == "correct") {
+                            botIMG.setBackgroundResource(R.color.limegreen);
+                            minimal_pairs_result[choose] = 1;
+                            minimal_pairs_result_str[choose] = minimal_pairs_correct_str[choose];
+                        } else {
+                            minimal_pairs_result[choose] = 0;
+                            minimal_pairs_result_str[choose] = minimal_pairs_false_str[choose];
                         }
 
-                    }, 400);
+                        intent.putExtra("correct_words", minimal_pairs_correct_str);
+                        intent.putExtra("results", minimal_pairs_result);
+                        intent.putExtra("exercise","MinimalPairs");
 
+
+                        try {
+                            export_data();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        //check if part of daily session
+                        if (getIntent().getBooleanExtra("trainingset", false)) {
+                            intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
+                            intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
+                            intent.putExtra("exerciseCounter", exerciseCounter);
+                            intent.putExtra("trainingset",true);
+                        }
+
+
+                        // time delay for green frame
+                        Handler handler = new Handler();
+                        Intent finalIntent = intent;
+                        handler.postDelayed(new Runnable() {
+
+                            public void run() {
+                                v.getContext().startActivity(finalIntent);
+                            }
+
+                        }, 400);
+
+
+                    } else {
+                        playPressed = false;
+
+                        nextButtons(botIMG);
+
+                        if (player != null) {
+                            player.stop();
+                            player.release();
+                            player = null;
+                        }
+                    }
 
                 } else {
-                    playPressed = false;
-
-                    nextButtons(botIMG);
-
-                    if (player != null) {
-                        player.stop();
-                        player.release();
-                        player = null;
-                    }
+                    Toast.makeText(MinimalPairs.this,getResources().getString(R.string.minimalPairsError),Toast.LENGTH_SHORT).show();
                 }
-
             }
 
         });
@@ -457,12 +468,13 @@ public class MinimalPairs extends AppCompatActivity {
     private void export_data() throws IOException {
         String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/RESULTS/";
         CSVFileWriter mCSVFileWriter = new CSVFileWriter("MinimalPairs", PATH); // TODO exerciseName ändern falls name geändert wird
-        String[] start = {"correct_word", "chosen_word"};
+        String[] start = {"correct_word", "chosen_word", "noise_amount"};
         mCSVFileWriter.write(start);
 
+        String[] noise_amount = {"no_noise", "no_noise", "SNR = 25", "SNR = 25", "SNR = 20", "SNR = 20", "SNR = 15", "SNR = 15", "SNR = 10"};
 
         for (int i = 0; i < EXERCISE_LENGTH; i++) {
-            String[] correct_result = {minimal_pairs_correct_str[i], minimal_pairs_false_str[i]};
+            String[] correct_result = {minimal_pairs_correct_str[i], minimal_pairs_false_str[i], noise_amount[i]};
             mCSVFileWriter.write(correct_result);
         }
         mCSVFileWriter.close();
