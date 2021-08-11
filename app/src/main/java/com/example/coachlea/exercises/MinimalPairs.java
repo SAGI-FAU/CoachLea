@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.CSVFileWriter;
 import com.example.coachlea.other_activities.MinimalPairsExerciseFinished;
+import com.example.coachlea.other_activities.TrainingsetExerciseFinished;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,6 +68,8 @@ public class MinimalPairs extends AppCompatActivity {
     private ProgressBar pb;
     private int currentProgress = 0;
     private TextView progressText;
+
+    private int exerciseCounter;
 
 
 
@@ -113,6 +116,9 @@ public class MinimalPairs extends AppCompatActivity {
 
 
         //Initialize
+        if(getIntent().getExtras() != null){
+            exerciseCounter = getIntent().getExtras().getInt("exerciseCounter",0);
+        }
         topIMG = findViewById(R.id.topIMG);
         botIMG = findViewById(R.id.botIMG);
         ImageButton play = findViewById(R.id.playBTN);
@@ -180,13 +186,21 @@ public class MinimalPairs extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+                        //check if part of daily session
+                        if (getIntent().getBooleanExtra("trainingset",false)){
+                            intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
+                            intent.putExtra("exerciseList",getIntent().getExtras().getStringArray("exerciseList"));
+                            intent.putExtra("exerciseCounter",exerciseCounter);
+                        }
+
 
                         // time delay for green frame
                         Handler handler = new Handler();
+                        Intent finalIntent = intent;
                         handler.postDelayed(new Runnable() {
 
                             public void run() {
-                                v.getContext().startActivity(intent);
+                                v.getContext().startActivity(finalIntent);
                             }
 
                         }, 400);
@@ -235,12 +249,21 @@ public class MinimalPairs extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+                    //check if part of daily session
+                    if (getIntent().getBooleanExtra("trainingset",false)){
+                        intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
+                        intent.putExtra("exerciseList",getIntent().getExtras().getStringArray("exerciseList"));
+                        intent.putExtra("exerciseCounter",exerciseCounter);
+                    }
+
+
                     // time delay for green frame
                     Handler handler = new Handler();
+                    Intent finalIntent = intent;
                     handler.postDelayed(new Runnable() {
 
                         public void run() {
-                            v.getContext().startActivity(intent);
+                            v.getContext().startActivity(finalIntent);
                         }
 
                     }, 400);

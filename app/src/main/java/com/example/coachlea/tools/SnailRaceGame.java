@@ -28,6 +28,7 @@ public class SnailRaceGame extends SurfaceView {
     private SurfaceHolder holder;
     private GameThread gameThread;
     private SrgAudioHandler audioHandler;
+    private boolean dailySession;
 
     private int lineWidth = getWidth()*(5/12);
 
@@ -172,7 +173,9 @@ public class SnailRaceGame extends SurfaceView {
 
     }
 
-
+    public void setDailySession(boolean bool){
+        this.dailySession = bool;
+    }
     public void setVowel(String vowel){
         this.vowel = vowel;
     }
@@ -229,9 +232,14 @@ public class SnailRaceGame extends SurfaceView {
             //Buttons can only be accessed from UI Thread
             ((SnailRace)context).runOnUiThread(new Runnable() {
                 public void run(){
-                    againBTN.setVisibility(View.VISIBLE);
-                    homeBTN.setVisibility(View.VISIBLE);
-                    backBTN.setVisibility(View.VISIBLE);
+
+                    if(dailySession){
+                        homeBTN.setVisibility(View.VISIBLE);
+                    } else {
+                        againBTN.setVisibility(View.VISIBLE);
+                        homeBTN.setVisibility(View.VISIBLE);
+                        backBTN.setVisibility(View.VISIBLE);
+                    }
                     leaY = 0;
                     emilyY= 0;
                     destroyThread(); //stop game loop

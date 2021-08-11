@@ -154,21 +154,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="end">
+        >
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:paddingRight="30dp">
+
+            <ImageButton
+                android:layout_marginTop="70dp"
+                android:id="@+id/start_trainingset"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:background="@drawable/layout_round_button"
+                android:foreground="@drawable/ic_play" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
             <ImageView
+                android:gravity="end"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:background="@drawable/lea"
                 android:paddingRight="1dp"/>
 
+        </LinearLayout>
+
+
+
+
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/start_trainingset"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:background="@drawable/layout_round_button"
-        android:foreground="@drawable/ic_play"/>
+
 </LinearLayout>

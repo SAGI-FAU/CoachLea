@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.SpeechRecorder;
 import com.example.coachlea.other_activities.SpeakingExerciseFinished;
+import com.example.coachlea.other_activities.TrainingsetExerciseFinished;
 import com.example.coachlea.tools.RadarFeatures;
 
 import java.io.File;
@@ -60,6 +61,7 @@ public class ImageRecognition extends AppCompatActivity {
     private ProgressBar pb;
     private int currentProgress = 0;
     private TextView progressText;
+    private int exerciseCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,9 @@ public class ImageRecognition extends AppCompatActivity {
         setNasal();
 
         //initialize
+        if(getIntent().getExtras() != null)
+            exerciseCounter = getIntent().getExtras().getInt("exerciseCounter", 0);
+
         recorder = SpeechRecorder.getInstance(this, new ImageRecognition.VolumeHandler(), "ImageRecognition");
         record = findViewById(R.id.record2);
         imageView = findViewById(R.id.imageRecognitionView);
@@ -132,6 +137,11 @@ public class ImageRecognition extends AppCompatActivity {
                     } else {
                         Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
                         intent.putExtra("exercise", "Image Recognition");
+                        if (getIntent().getBooleanExtra("trainingset", false)) {
+                            intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
+                            intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
+                            intent.putExtra("exerciseCounter", exerciseCounter);
+                        }
                         record.setEnabled(false);
                         recorder.release();
                         getApplicationContext().startActivity(intent);
@@ -145,7 +155,6 @@ public class ImageRecognition extends AppCompatActivity {
                     isRecording = true;
                     record.setForeground(getDrawable(R.drawable.ic_stop));
                 }
-                //TODO
             }
         });
 

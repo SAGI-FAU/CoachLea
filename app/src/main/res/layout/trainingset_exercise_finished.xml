@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/green_blue"
+    android:background="@color/grey_blue"
     tools:context=".other_activities.Trainingset">
 
 
@@ -83,7 +83,7 @@
                                     android:gravity="center"
                                     >
                                     <TextView
-                                        android:id="@+id/SetExercise1"
+                                        android:id="@+id/nextExercise"
                                         android:background="@drawable/layout_square_frame"
                                         android:gravity="center"
                                         android:text="@string/minimal_pairs"

@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.coachlea.R;
 import com.example.coachlea.data_access.SpeechRecorder;
 import com.example.coachlea.other_activities.SpeakingExerciseFinished;
+import com.example.coachlea.other_activities.TrainingsetExerciseFinished;
 import com.example.coachlea.tools.RadarFeatures;
 
 import java.io.File;
@@ -46,6 +47,7 @@ public class AnimalSounds extends AppCompatActivity {
     private String[] animals_str;
     private boolean isRecording, started;
     private Context con = this;
+    private int exerciseCounter;
 
     int counter = 0;
 
@@ -63,6 +65,8 @@ public class AnimalSounds extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         recorder = SpeechRecorder.getInstance(this, new AnimalSounds.VolumeHandler(), "AnimalSounds");
         progress=findViewById(R.id.timerProgress);
+        if(getIntent().getExtras() != null)
+            exerciseCounter = getIntent().getExtras().getInt("exerciseCounter", 0);
 
         //check if AnimalSounds is used for the first time
         SharedPreferences prefs = getSharedPreferences("LoginPref", MODE_PRIVATE);
@@ -132,7 +136,12 @@ public class AnimalSounds extends AppCompatActivity {
                         started = false;
                         //record.setForeground(getDrawable(R.drawable.ic_mic));
                         Intent intent = new Intent(con, SpeakingExerciseFinished.class);
-                        intent.putExtra("exercise", "SyllableRepetition");
+                        intent.putExtra("exercise", "AnimalSounds");
+                        if (getIntent().getBooleanExtra("trainingset", false)) {
+                            intent = new Intent(con, TrainingsetExerciseFinished.class);
+                            intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
+                            intent.putExtra("exerciseCounter", exerciseCounter);
+                        }
                         recorder.stopRecording();
                         recorder.release();
                         con.startActivity(intent);

@@ -14,11 +14,13 @@ import com.example.coachlea.R;
 import com.example.coachlea.other_activities.ExercisesMain;
 import com.example.coachlea.other_activities.MainActivity;
 import com.example.coachlea.other_activities.SnailRaceStart;
+import com.example.coachlea.other_activities.TrainingsetExerciseFinished;
 import com.example.coachlea.tools.SnailRaceGame;
 
 public class SnailRace extends AppCompatActivity {
 
     private SnailRaceGame snailRaceGame;
+    private int exerciseCounter;
 
     //all the stuff happens in SnailRaceGame.java
     @Override
@@ -33,6 +35,8 @@ public class SnailRace extends AppCompatActivity {
 
         setContentView(R.layout.snail_race);
 
+        if(getIntent().getExtras() != null)
+            exerciseCounter = getIntent().getExtras().getInt("exerciseCounter", 0);
 
         ImageButton againBTN = findViewById(R.id.againBTN2);
         ImageButton homeBTN = findViewById(R.id.homeBTN);
@@ -52,11 +56,21 @@ public class SnailRace extends AppCompatActivity {
         String vowel = (String) getIntent().getExtras().get("Vowel");
         snailRaceGame.setVowel(vowel);
 
+        if (getIntent().getBooleanExtra("trainingset", false)) {
+            snailRaceGame.setDailySession(true);
+            homeBTN.setForeground(getResources().getDrawable(R.drawable.ic_next));
+        }
+
         homeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onPause();
                 Intent intent = new Intent(SnailRace.this, MainActivity.class);
+                if (getIntent().getBooleanExtra("trainingset", false)) {
+                    intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
+                    intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
+                    intent.putExtra("exerciseCounter", exerciseCounter);
+                }
                 startActivity(intent);
             }
         });

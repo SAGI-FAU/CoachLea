@@ -393,4 +393,5 @@
     <string name="trainingsetTitle">Tägliche Trainingseinheit</string>
     <string name="errorMessage">Da ist etwas schiefgelaufen!</string>
     <string name="nextTaskIntroduction">Deine nächste Aufgabe ist:</string>
+    <string name="TrainingsetLastExerciseFinished">Du hast alle Aufgaben für heute erledingt!</string>
 </resources>

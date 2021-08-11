@@ -72,7 +72,6 @@ public class Trainingset extends AppCompatActivity {
         if(!weekDay.equals(state)){
 
             setContentView(R.layout.trainingset);
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.dark_blue)));
             getSupportActionBar().setTitle(getResources().getString(R.string.trainingsetTitle)); // for set actionbar title
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
