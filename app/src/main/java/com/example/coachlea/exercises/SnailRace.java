@@ -59,17 +59,21 @@ public class SnailRace extends AppCompatActivity {
         if (getIntent().getBooleanExtra("trainingset", false)) {
             snailRaceGame.setDailySession(true);
             homeBTN.setForeground(getResources().getDrawable(R.drawable.ic_next));
+        } else {
+            snailRaceGame.setDailySession(false);
         }
 
         homeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onPause();
-                Intent intent = new Intent(SnailRace.this, MainActivity.class);
+                Intent intent;
                 if (getIntent().getBooleanExtra("trainingset", false)) {
                     intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
                     intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
                     intent.putExtra("exerciseCounter", exerciseCounter);
+                } else {
+                   intent = new Intent(SnailRace.this, MainActivity.class);
                 }
                 startActivity(intent);
             }

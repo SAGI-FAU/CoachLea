@@ -98,7 +98,7 @@ public class SnailRaceGame extends SurfaceView {
         Countdown countdown = new Countdown();
         countdown.countdown();
 
-        startGameLoop();
+
 
     }
 
@@ -175,6 +175,7 @@ public class SnailRaceGame extends SurfaceView {
 
     public void setDailySession(boolean bool){
         this.dailySession = bool;
+        startGameLoop(); //start gameloop after variables have been set
     }
     public void setVowel(String vowel){
         this.vowel = vowel;
