@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,28 +47,28 @@ public class ExercisesMain extends AppCompatActivity {
         explanationSnailRace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v, getResources().getString(R.string.Snail_race));
+                showPopup( getResources().getString(R.string.Snail_race));
             }
         });
 
         explanationMinimalPairs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v,getResources().getString(R.string.minimal_pairs));
+                showPopup(getResources().getString(R.string.minimal_pairs));
             }
         });
 
         explanationAnimalSounds.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                showPopup(v,getResources().getString(R.string.animal_sounds));
+                showPopup(getResources().getString(R.string.animal_sounds));
             }
         });
 
         explanationImageRecognition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v,getResources().getString(R.string.image_recognition));
+                showPopup(getResources().getString(R.string.image_recognition));
             }
         });
     }
@@ -95,12 +96,15 @@ public class ExercisesMain extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showPopup(View view, String title){
+    public void showPopup( String title){
         TextView close;
         TextView title_e;
         TextView explanation;
         ImageButton explanation_mp3;
-
+        String mp3_file = null;
+        final MediaPlayer[] player = {null};
+        int resId;
+        String path;
 
         explanationDialog.setContentView(R.layout.popup_explanation);
 
@@ -114,35 +118,62 @@ public class ExercisesMain extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player[0].stop();
+                player[0].release();
+                player[0] = null;
                 explanationDialog.dismiss();
-                //popupWindow.dismiss();
             }
         });
 
         switch(title){
             case "Minimalpaare":
-                //TODO
+
                 title_e.setText(R.string.minimal_pairs);
                 explanation.setText(R.string.minimalPairs_explanation);
+                resId = getResources().getIdentifier("minimal_pairs_explanation", "raw", getPackageName());
+                path = "a" + resId;
+                mp3_file  = path.substring(1);
                 break;
             case "Bilder erkennen":
-                //TODO
+
                 title_e.setText(R.string.image_recognition);
                 explanation.setText(R.string.imageRecognition_explanation);
+                resId = getResources().getIdentifier("image_recognition_explanation", "raw", getPackageName());
+                path = "a" + resId;
+                mp3_file  = path.substring(1);
                 break;
             case "Schneckenrennen":
                 title_e.setText(R.string.Snail_race);
                 explanation.setText(R.string.snailrace_explanation);
+                resId = getResources().getIdentifier("snail_race_explanation", "raw", getPackageName());
+                path = "a" + resId;
+                mp3_file  = path.substring(1);
                 break;
             case "Tierlaute":
-                //TODO
                 explanation.setText(R.string.animalSounds_explanation);
                 title_e.setText(R.string.animal_sounds);
+                resId = getResources().getIdentifier("animal_sounds_explanation", "raw", getPackageName());
+                path = "a" + resId;
+                mp3_file  = path.substring(1);
                 break;
             default:
                 break;
 
         }
+
+        String finalMp3_file = mp3_file;
+        explanation_mp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (player[0] != null) {
+                    player[0].seekTo(0);
+                    player[0].start();
+                } else {
+                    player[0] = MediaPlayer.create(v.getContext(), Integer.parseInt(finalMp3_file));
+                    player[0].start();
+                }
+            }
+        });
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
@@ -152,6 +183,7 @@ public class ExercisesMain extends AppCompatActivity {
 
         explanationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         explanationDialog.getWindow().setAttributes(layoutParams);
+        explanationDialog.setCancelable(false);
         explanationDialog.show();
 
 

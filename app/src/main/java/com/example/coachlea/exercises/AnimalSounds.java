@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -114,7 +115,6 @@ public class AnimalSounds extends AppCompatActivity {
 
 
     class MyCountDownTimer {
-        //TODO countdown in wrong direktion and big chunks
         private long maxMillis;
         private int c;
 
@@ -217,6 +217,10 @@ public class AnimalSounds extends AppCompatActivity {
         TextView title_e;
         TextView explanation;
         ImageButton explanation_mp3;
+        String mp3_file = null;
+        final MediaPlayer[] player = {null};
+        int resId;
+        String path;
 
         explanationDialog.setContentView(R.layout.popup_explanation);
 
@@ -230,12 +234,32 @@ public class AnimalSounds extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player[0].stop();
+                player[0].release();
+                player[0] = null;
                 explanationDialog.dismiss();
             }
         });
 
-        title_e.setText(R.string.animal_sounds);
         explanation.setText(R.string.animalSounds_explanation);
+        title_e.setText(R.string.animal_sounds);
+        resId = getResources().getIdentifier("animal_sounds_explanation", "raw", getPackageName());
+        path = "a" + resId;
+        mp3_file  = path.substring(1);
+
+        String finalMp3_file = mp3_file;
+        explanation_mp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (player[0] != null) {
+                    player[0].seekTo(0);
+                    player[0].start();
+                } else {
+                    player[0] = MediaPlayer.create(v.getContext(), Integer.parseInt(finalMp3_file));
+                    player[0].start();
+                }
+            }
+        });
 
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
