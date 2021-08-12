@@ -474,7 +474,7 @@ public class MinimalPairs extends AppCompatActivity {
         String[] noise_amount = {"no_noise", "no_noise", "SNR = 25", "SNR = 25", "SNR = 20", "SNR = 20", "SNR = 15", "SNR = 15", "SNR = 10"};
 
         for (int i = 0; i < EXERCISE_LENGTH; i++) {
-            String[] correct_result = {minimal_pairs_correct_str[i], minimal_pairs_false_str[i], noise_amount[i]};
+            String[] correct_result = {minimal_pairs_correct_str[i], minimal_pairs_result_str[i], noise_amount[i]};
             mCSVFileWriter.write(correct_result);
         }
         mCSVFileWriter.close();

@@ -58,6 +58,7 @@ public class SnailRaceGame extends SurfaceView {
     private ImageButton homeBTN;
     private ImageButton againBTN;
     private ImageButton backBTN;
+    private ImageButton nextBTN;
     private TextView countdown;
 
     private boolean countdownRunning;
@@ -181,10 +182,11 @@ public class SnailRaceGame extends SurfaceView {
         this.vowel = vowel;
     }
 
-    public void setButtons(ImageButton homeBTN, ImageButton againBTN, ImageButton backBTN, TextView countdown){
+    public void setButtons(ImageButton homeBTN, ImageButton againBTN, ImageButton backBTN,ImageButton nextBTN, TextView countdown){
         this.homeBTN = homeBTN;
         this.againBTN = againBTN;
         this.backBTN = backBTN;
+        this.nextBTN = nextBTN;
         this.countdown = countdown;
 
     }
@@ -235,8 +237,7 @@ public class SnailRaceGame extends SurfaceView {
                 public void run(){
 
                     if(dailySession){
-                        homeBTN.setVisibility(View.VISIBLE);
-                        homeBTN.setForeground(getResources().getDrawable(R.drawable.ic_next));
+                       nextBTN.setVisibility(View.VISIBLE);
                     } else {
                         againBTN.setVisibility(View.VISIBLE);
                         homeBTN.setVisibility(View.VISIBLE);
@@ -263,10 +264,26 @@ public class SnailRaceGame extends SurfaceView {
             volume_in_db= 20* Math.log10(currentVolume);
         }
 
+        if (volume_in_db < 20){
+            leaSpeed = 0;
+        } else if (volume_in_db >= 20 && volume_in_db < 25){
+            leaSpeed = 1;
+        } else if(volume_in_db >= 25 && volume_in_db < 30) {
+            leaSpeed = 2;
+        } else if(volume_in_db >= 30 && volume_in_db < 35){
+            leaSpeed = 3;
+        } else if(volume_in_db >= 35 && volume_in_db < 40){
+            leaSpeed = 4;
+        } else if( volume_in_db >= 40){
+            leaSpeed = 5;
+        }
+
+        /*
         int volume_db = (int) volume_in_db;
         //leaSpeed = (int)(currentVolume / (float)30);
         double leaSpeedTemp = (volume_in_db /((double) 50));
-        leaSpeed = (int)(volume_db / (float)leaWantedPitch) * 2;
+        leaSpeed = (int)(volume_db / (float)leaWantedPitch) * 2;*/
+
         Log.d(TAG,"volume in db: " + volume_in_db);
         Log.d(TAG,"leaSpeed: " + leaSpeed);
         drawLea(canvas);

@@ -191,7 +191,7 @@ public class ProfileMain extends AppCompatActivity implements View.OnClickListen
 
         findViewById(R.id.button_continue).setOnClickListener(this);
         findViewById(R.id.button_back1).setOnClickListener(this);
-        takePicture.setOnClickListener(this);
+       // takePicture.setOnClickListener(this);
     }
 
     private void parseData() {

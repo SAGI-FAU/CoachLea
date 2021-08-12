@@ -41,16 +41,18 @@ public class SnailRace extends AppCompatActivity {
         ImageButton againBTN = findViewById(R.id.againBTN2);
         ImageButton homeBTN = findViewById(R.id.homeBTN);
         ImageButton backBTN = findViewById(R.id.backBTN);
+        ImageButton nextBTN = findViewById(R.id.snailRace_nextBTN);
         TextView countdown = findViewById(R.id.countdown);
 
         //make Buttons invisible, they will appear when the game is over
         againBTN.setVisibility(View.GONE);
         homeBTN.setVisibility(View.GONE);
         backBTN.setVisibility(View.GONE);
+        nextBTN.setVisibility(View.GONE);
 
 
         snailRaceGame = findViewById(R.id.snailRaceGame);
-        snailRaceGame.setButtons(homeBTN,againBTN,backBTN,countdown);
+        snailRaceGame.setButtons(homeBTN,againBTN,backBTN,nextBTN,countdown);
 
         //get and set vowel
         String vowel = (String) getIntent().getExtras().get("Vowel");
@@ -67,14 +69,7 @@ public class SnailRace extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onPause();
-                Intent intent;
-                if (getIntent().getBooleanExtra("trainingset", false)) {
-                    intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
-                    intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
-                    intent.putExtra("exerciseCounter", exerciseCounter);
-                } else {
-                   intent = new Intent(SnailRace.this, MainActivity.class);
-                }
+                Intent intent = new Intent(SnailRace.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,6 +88,17 @@ public class SnailRace extends AppCompatActivity {
             public void onClick(View v){
                 onPause();
                 Intent intent = new Intent(SnailRace.this, ExercisesMain.class);
+                startActivity(intent);
+            }
+        });
+
+        nextBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPause();
+                Intent intent = new Intent(SnailRace.this, TrainingsetExerciseFinished.class);
+                intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
+                intent.putExtra("exerciseCounter", exerciseCounter);
                 startActivity(intent);
             }
         });

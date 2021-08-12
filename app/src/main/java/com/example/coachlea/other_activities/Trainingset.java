@@ -131,10 +131,12 @@ public class Trainingset extends AppCompatActivity {
             } else {
                 session.toArray(exercise_list);
 
+                exercise_list[0] = "Schneckenrennen"; //TODO entfernen
                 //set texts
                 setExercise1.setText(exercise_list[0]);
                 setExercise2.setText(exercise_list[1]);
                 setExercise3.setText(exercise_list[2]);
+
 
             }
         }
@@ -292,7 +294,7 @@ public class Trainingset extends AppCompatActivity {
             case "Trainingset_explanation":
                 //TODO
                 title_e.setText(R.string.trainingsetTitle);
-                explanation.setText(R.string.animalSounds_explanation); //TODO explanation trainingset schreiben
+                explanation.setText(R.string.trainingsetExplanation); //TODO explanation trainingset schreiben
                 break;
             default:
                 break;

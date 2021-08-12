@@ -62,6 +62,11 @@ public class SnailRaceStart extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SnailRaceStart.this, SnailRace.class);
                 intent.putExtra("Vowel",vowel);
+                if(getIntent().getBooleanExtra("trainingset", false)){
+                    intent.putExtra("trainingset",true);
+                    intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
+                    intent.putExtra("exerciseCounter", getIntent().getExtras().getInt("exerciseCounter", 0));
+                }
                 v.getContext().startActivity(intent);
             }
         });

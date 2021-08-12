@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.coachlea.R;
 import com.example.coachlea.exercises.AnimalSounds;
@@ -24,6 +25,7 @@ public class TrainingsetExerciseFinished extends AppCompatActivity {
     private TextView nextExercise;
     private TextView nextTaskIntroduction;
     private ImageButton done, again;
+    private CardView cardView;
     private int exerciseCounter;
 
     @Override
@@ -42,6 +44,7 @@ public class TrainingsetExerciseFinished extends AppCompatActivity {
         nextTaskIntroduction = findViewById(R.id.nextTaskIntroduction);
         done = findViewById(R.id.next_trainingsetExercise);
         again = findViewById(R.id.again_trainingsetExercise);
+        cardView = findViewById(R.id.set_cardview);
 
         String[] motivation = getResources().getStringArray(R.array.motivations);
         textMotivation.setText(motivation[random.nextInt(motivation.length)]);
@@ -53,7 +56,8 @@ public class TrainingsetExerciseFinished extends AppCompatActivity {
         if(exerciseCounter >= Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getStringArray("exerciseList")).length) {
             nextTaskIntroduction.setText(R.string.TrainingsetLastExerciseFinished);
             nextExercise.setText("");
-            nextExercise.setBackground(getResources().getDrawable(R.drawable.empty_background));
+            nextExercise.setVisibility(View.GONE);
+            cardView.setVisibility(View.GONE);
             done.setForeground(getResources().getDrawable(R.drawable.ic_home));
         } else {
             nextExercise.setText(getIntent().getExtras().getStringArray("exerciseList")[exerciseCounter]);

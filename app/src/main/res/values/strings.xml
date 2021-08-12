@@ -364,7 +364,7 @@
     <string name="UploadPicturesGallery">Laden Sie Bilder von Ihrer Gallerie hoch!</string>
     <string name="Gallery">Gallerie</string>
     <string name="Login">Login</string>
-    <string name="LoginScreenInformation">Wilkommen bei CITA, der Cochlear-Implantat-Test-App. Diese App ist dazu da, um Daten über Ihre Sprache und Ihr Hörvermögen zu sammeln und auszuwerten. Um Dies zu ermöglichen, müssen Sie eine tägliche Einheit von Übungen abschließen, nach der Sie Ihre Ergebnisse ansehen können. Außerdem haben Sie die Möglichkeit sich ein Profil zu erstellen in dem Sie wichtige Daten über sich speichern können. Um all das zu verwirklichen benötigt CITA den Zugriff auf Ihr Mikrofon und Ihren Speicher. Um das zu erlauben, drücken Sie den Start Knopf und im dann erscheinenden Popup fenster auf \"Zulassen\". Drücken Sie nun den Start Knopf um mit der Erstellung Ihres Profils zu beginnen.\nLos gehts !</string>
+    <string name="LoginScreenInformation">Willkommen bei CoachLea, der Cochlea-Implantat-Test-App für Kinder. Diese App ist dazu da, um Daten über die Sprache und das Hörvermögen von Kindern mit Cochlea-Implantat zu sammeln und auszuwerten. Um dies zu ermöglichen, muss eine tägliche Einheit von Übungen abgeschlossen werden. Dabei wird das Kind von der Schnecke Lea begleitet. Lea ist Teil der verschieden Übungen, erklärt diese, und gibt nach absolvierter Übung ermutigendes Feedback. Außerdem gibt es die Möglichkeit ein Profil zu erstellen, in dem wichtige Daten über das Kind gespeichert werden. Um all das zu verwirklichen benötigt CoachLea den Zugriff auf das Mikrofon und den Speicher dieses Gerätes. Um das zu erlauben, drücken Sie den Start Knopf und im dann erscheinenden Popup-Fenser auf \“Zulassen“\. Drücken Sie nun den Start Knopf um mit der Erstellung des Profils zu beginnen. \nLos geht’s!</string>
     <string name="startExercise">START</string>
     <string name="exercise">Übungen</string>
     <string name="dailySession">Tägliche \nTrainingseinheit</string>
@@ -377,9 +377,9 @@
     <string name="minimal_pairs">Minimalpaare</string>
     <string name="image_recognition">Bilder erkennen</string>
     <string name="animal_sounds">Tierlaute</string>
-    <string name="snailrace_explanation">Komm mit mir zusammen zu einem Wettrennen mit meiner Freundin Emily! Aber vorsicht: Schneckenwettrennen funktionieren anders als normale Wettrennen. Weil wir Schnecken so langsam sind, waren wir es irgenwann satt möglichst schnell sein zu müssen. Deshalb versuchen wir jetzt bei unseren Wettrennen genau die selbe Geschwindigkeit zu haben wie unser Partner. Du kannst mich beim Wettrennen unterstützen, indem du einen Vokal immer in der selben Lautstärke hältst. Wirst du lauter, laufe ich schneller, und wirst du leiser, laufe ich langsamer. Versuche, mich immer auf der selben Geschwindigkeit zu halten wie Emily!</string>
-    <string name="minimalPairs_explanation">Hilf mir das richtige Bild zu finden! Dir werden in diesem Spiel immer zwei Bilder angezeigt. Wenn  du auf den Start Knopf drückst, sage ich dir, welches das richtige ist. Drücke auf eines der Bilder um es auszuwählen.</string>
-    <string name="imageRecognition_explanation">Ich habe einen Stapel Bilder in meinem Schneckenhaus gefunden und möchte herausfinden was sie zeigen. Hilf mir dabei indem du mir sagst was auf dem Bild, welches ich dir zeige, dargestellt ist. Um mit mir zu sprechen musst du nur auf die Aufnahme-Taste drücken </string>
+    <string name="snailrace_explanation">Komm mit mir zu einem Wettrennen mit meiner Freundin Emily! Aber Vorsicht: Schneckenwettrennen funktionieren anders als normale Wettrennen. Weil wir Schnecken so langsam sind, waren wir es irgendwann satt möglichst schnell sein zu müssen. Deshalb versuchen wir jetzt bei unseren Wettrennen genau dieselbe Geschwindigkeit zu haben wie unser Partner. Du kannst mich beim Wettrennen unterstützen, indem du einen Vokal immer in derselben Lautstärke kontinuierlich hältst. Wirst du lauter, laufe ich schneller, und wirst du leiser, laufe ich langsamer. Versuche, mich immer auf derselben Geschwindigkeit zu halten wie meine Freundin Emily!</string>
+    <string name="minimalPairs_explanation">Hilf mir, das richtige Bild zu finden! Dir werden in diesem Spiel immer zwei Bilder angezeigt. Wenn du auf den Start Knopf drückst, sage ich dir, welches das richtige ist. Drücke auf das richtige Bild um es auszuwählen. </string>
+    <string name="imageRecognition_explanation">Ich habe einen Stapel Bilder in meinem Schneckenhaus gefunden und möchte herausfinden was sie zeigen. Hilf mir dabei, indem du mir sagst was auf dem Bild, welches ich dir zeige, dargestellt ist. Drücke dazu auf die Aufnahme -Taste und sage, was du auf dem Bild siehst.  </string>
     <string name="animalSounds_explanation">Lass uns zusammen Tierlaute nachmachen! Ahme das Tier nach welches ich dir zeige. Drücke dazu auf den Aufnahme-Knopf und mache das Geräusch, bis die Zeit abgelaufen ist</string>
     <string-array name="motivations">
         <item>Weiter so!</item>
@@ -391,6 +391,7 @@
     <string name="trainingset_text">Deine heutigen Aufgaben sind:</string>
     <string name="trainingset_already_done">Du hast deine tägliche Trainingseinheit schon absolviert. Super gemacht!</string>
     <string name="trainingsetTitle">Tägliche Trainingseinheit</string>
+    <string name="trainingsetExplanation">Hier findest du deine tägliche Trainingseinheit. Diese besteht aus drei Übungen, die ich jeden Tag neu für dich aussuche. Drücke auf den Start- Knopf um mit der Trainingseinheit zu beginnen!</string>
     <string name="errorMessage">Da ist etwas schiefgelaufen!</string>
     <string name="nextTaskIntroduction">Deine nächste Aufgabe ist:</string>
     <string name="TrainingsetLastExerciseFinished">Du hast alle Aufgaben für heute erledingt!</string>
