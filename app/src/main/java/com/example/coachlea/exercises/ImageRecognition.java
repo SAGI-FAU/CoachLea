@@ -252,9 +252,11 @@ public class ImageRecognition extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player[0].stop();
-                player[0].release();
-                player[0] = null;
+                if(player[0]!= null){
+                    player[0].stop();
+                    player[0].release();
+                    player[0] = null;
+                }
                 explanationDialog.dismiss();
             }
         });

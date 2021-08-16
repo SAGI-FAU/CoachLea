@@ -87,7 +87,6 @@ public class ExercisesMain extends AppCompatActivity {
     public void snailRaceBTNClick(View view){
         Intent intent = new Intent(this, SnailRaceStart.class);
         startActivity(intent);
-        //TODO
     }
 
 
@@ -118,9 +117,11 @@ public class ExercisesMain extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                player[0].stop();
-                player[0].release();
-                player[0] = null;
+                if(player[0]!= null){
+                    player[0].stop();
+                    player[0].release();
+                    player[0] = null;
+                }
                 explanationDialog.dismiss();
             }
         });
