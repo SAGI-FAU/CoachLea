@@ -1,85 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_beige"
+    android:orientation="vertical"
     tools:context=".exercises.ImageRecognition">
 
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:id="@+id/linearLayoutIR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="1dp"
+        android:weightSum="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ProgressBar
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="7dp"
-            android:layout_weight="8"
             android:id="@+id/imageRecognitionProgress"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="9"
             android:layoutDirection="ltr"
             android:progressDrawable="@drawable/exercise_progress_custom" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:width="60dp"
             android:id="@+id/imageRecognitionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="normal"
+            android:layout_weight="1"
+            android:gravity="center"
             android:textColor="@color/dark_teal"
-            android:textSize="20dp">
+            android:textSize="20sp"
+            android:textStyle="normal">
+
         </TextView>
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageRecognitionView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/guideline25"
+        app:layout_constraintStart_toStartOf="@id/guideline24"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutIR"
+        app:layout_constraintBottom_toBottomOf="@id/guideline28"
+        app:srcCompat="@drawable/baum" />
 
+    <ImageButton
+        android:id="@+id/record2"
+        android:layout_gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/layout_round_button"
+        android:foreground="@drawable/ic_mic"
+        app:layout_constraintEnd_toEndOf="@id/guideline27"
+        app:layout_constraintStart_toStartOf="@id/guideline26"
+        app:layout_constraintTop_toBottomOf="@id/guideline28"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        android:layout_weight="2">
+        app:layout_constraintGuide_percent="0.1" />
 
-        <ImageView
-
-            android:id="@+id/imageRecognitionView"
-            android:layout_weight="0.9"
-            android:layout_width="370dp"
-            android:layout_height="370dp"
-            android:gravity="center_vertical"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/baum" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="1">
+        app:layout_constraintGuide_percent="0.9" />
 
-        <ImageButton
-            android:id="@+id/record2"
-            android:paddingVertical="10dp"
-            android:layout_gravity="center"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:background="@drawable/layout_round_button"
-            android:foreground="@drawable/ic_mic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
