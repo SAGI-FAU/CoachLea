@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,61 +8,66 @@
     tools:context=".other_activities.ExercisesMain">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/LinearLayoutex1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
-        >
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@id/guideline19"
+        app:layout_constraintStart_toStartOf="@id/guideline20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline21">
+
         <androidx.cardview.widget.CardView
-            android:layout_width="350dp"
-            android:layout_height="75dp"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:cardCornerRadius="50dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/layout_square_button"
-                android:orientation="horizontal"
                 android:gravity="center_horizontal"
-                >
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="5"
                     android:background="@android:color/transparent"
                     android:onClick="minimalPairsBTNClick"
                     android:text="@string/minimal_pairs"
+                    android:textAllCaps="false"
                     android:textColor="@color/dark_teal"
                     android:textSize="23dp"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:layout_weight="5"
-                    />
+                    android:textStyle="bold" />
+
                 <Button
                     android:id="@+id/explanationMinimalPairs"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:text="@string/questionmark"
-                    android:textSize="40dp"
-                    />
+                    android:textSize="40dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/guideline19"
+        app:layout_constraintStart_toStartOf="@id/guideline20"
+        app:layout_constraintTop_toTopOf="@id/guideline21"
+        app:layout_constraintBottom_toTopOf="@id/guideline22"
         >
         <androidx.cardview.widget.CardView
-            android:layout_width="350dp"
-            android:layout_height="75dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:cardCornerRadius="50dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,18 +102,17 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/guideline19"
+        app:layout_constraintStart_toStartOf="@id/guideline20"
+        app:layout_constraintTop_toTopOf="@id/guideline22"
+        app:layout_constraintBottom_toTopOf="@id/guideline23"
         >
         <androidx.cardview.widget.CardView
-            android:layout_width="350dp"
-            android:layout_height="75dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:cardCornerRadius="50dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,17 +148,18 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/guideline19"
+        app:layout_constraintStart_toStartOf="@id/guideline20"
+        app:layout_constraintTop_toTopOf="@id/guideline23"
+        app:layout_constraintBottom_toBottomOf="parent"
         >
         <androidx.cardview.widget.CardView
-            android:layout_width="350dp"
-            android:layout_height="75dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:cardCornerRadius="50dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,4 +193,42 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
