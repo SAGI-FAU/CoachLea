@@ -1,97 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:clickable="false"
-    android:gravity="center_horizontal"
     tools:context=".other_activities.MainActivity">
 
+
+    <ImageButton
+        android:id="@+id/exercises"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/layout_square_button"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/guideline11"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/guideline8"
+        app:layout_constraintStart_toStartOf="@id/guideline7"
+        app:layout_constraintTop_toTopOf="@id/guideline10" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:gravity="center"
-        >
-        <androidx.cardview.widget.CardView
-            android:id="@+id/exercises"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="50dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/layout_square_button"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/lea"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="@string/exercise"
-                    android:textAllCaps="false"
-                    android:textColor="@color/dark_teal"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        app:layout_constraintBottom_toBottomOf="@+id/exercises"
+        app:layout_constraintEnd_toEndOf="@+id/exercises"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/exercises"
+        app:layout_constraintTop_toTopOf="@+id/exercises"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="@drawable/lea"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/exercise"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_teal"
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
-
+    <ImageButton
+        android:id="@+id/dailySession"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/layout_square_button"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/guideline9"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/guideline8"
+        app:layout_constraintStart_toStartOf="@id/guideline7"
+        app:layout_constraintTop_toBottomOf="@id/guideline12"
+         />
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:gravity="center">
-        <androidx.cardview.widget.CardView
+        app:layout_constraintBottom_toBottomOf="@+id/dailySession"
+        app:layout_constraintEnd_toEndOf="@+id/dailySession"
+        app:layout_constraintStart_toStartOf="@+id/dailySession"
+        app:layout_constraintTop_toTopOf="@+id/dailySession">
 
-            android:id="@+id/dailySession"
-            android:background="@drawable/layout_square_button"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="@drawable/emily"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
             android:text="@string/dailySession"
-            app:cardCornerRadius="50dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/layout_square_button"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/emily"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="@string/dailySession"
-                    android:textAllCaps="false"
-                    android:textColor="@color/dark_teal"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:textAllCaps="false"
+            android:textColor="@color/dark_teal"
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.475" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.525" />
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

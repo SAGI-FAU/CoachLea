@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -43,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //initialize
-        CardView dailySession = findViewById(R.id.dailySession);
-        CardView exercises = findViewById(R.id.exercises);
+        ImageButton dailySession = findViewById(R.id.dailySession);
+        ImageButton exercises = findViewById(R.id.exercises);
 
         exercises.setOnClickListener(new View.OnClickListener() {
             @Override
