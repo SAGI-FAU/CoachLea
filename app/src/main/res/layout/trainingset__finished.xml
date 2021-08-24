@@ -1,75 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/grey_blue"
+    android:orientation="vertical"
     tools:context=".other_activities.Trainingset">
 
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/chat_bubble"
         android:orientation="vertical"
-        android:layout_weight="1">
-        <LinearLayout
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:padding="8dp"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:background="@drawable/chat_bubble"
-            >
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline57"
+        app:layout_constraintStart_toStartOf="@id/guideline56"
+        app:layout_constraintTop_toTopOf="@id/guideline55">
 
-            <TextView
-                android:layout_marginVertical="20dp"
-                android:layout_marginHorizontal="27dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/trainingset_already_done"
-                android:textAllCaps="false"
-                android:textSize="29dp"
-                android:textStyle="bold"
-                android:textColor="@color/dark_teal"
-                />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
-
-            <ImageView
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:background="@drawable/lea"
-                android:layout_marginRight="10dp"/>
-
-        </LinearLayout>
+            android:layout_marginHorizontal="27dp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            android:text="@string/trainingset_already_done"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_teal"
+            android:textSize="29dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/lea"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline58"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+    <ImageButton
+        android:id="@+id/home_trainingset"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/layout_round_button"
+        android:foreground="@drawable/ic_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline58"
+        app:layout_constraintStart_toStartOf="@id/guideline59"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline55"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_weight="2">
-        <ImageButton
-            android:id="@+id/home_trainingset"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:background="@drawable/layout_round_button"
-            android:foreground="@drawable/ic_home"/>
+        app:layout_constraintGuide_percent="0.1" />
 
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
