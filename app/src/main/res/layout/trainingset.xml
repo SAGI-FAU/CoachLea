@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:background="@drawable/chat_bubble"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:padding="15dp"
         app:layout_constraintEnd_toEndOf="@id/guideline47"
         app:layout_constraintStart_toStartOf="@id/guideline46"
         app:layout_constraintTop_toTopOf="@id/guideline48">

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,10 +24,12 @@ import com.example.coachlea.R;
 import com.example.coachlea.exercises.AnimalSounds;
 import com.example.coachlea.exercises.ImageRecognition;
 import com.example.coachlea.exercises.MinimalPairs;
+import com.example.coachlea.exercises.SnailRace;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Random;
@@ -49,6 +52,8 @@ public class Trainingset extends AppCompatActivity {
     private Button trainingset_explanation2;
     private Button trainingset_explanation3;
 
+    private static final String TAG = SnailRace.class.getSimpleName();
+
 
 
 
@@ -65,7 +70,9 @@ public class Trainingset extends AppCompatActivity {
         //get date
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.GERMANY);
         Calendar calendar = Calendar.getInstance();
-        String weekDay = dayFormat.format(calendar.getTime());
+        //String weekDay = dayFormat.format(calendar.getTimeInMillis());
+        String weekDay =  new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        Log.d(TAG, "onCreate: " + weekDay);
 
         //shared preferences
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);

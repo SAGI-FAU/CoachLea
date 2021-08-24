@@ -19,11 +19,10 @@
         app:layout_constraintStart_toStartOf="@id/guideline7"
         app:layout_constraintTop_toTopOf="@id/guideline10" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/exercises"
         app:layout_constraintEnd_toEndOf="@+id/exercises"
         app:layout_constraintHorizontal_bias="0.0"
@@ -32,24 +31,38 @@
         app:layout_constraintVertical_bias="1.0">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/imageView10"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="5"
             android:background="@drawable/lea"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1" />
+            app:layout_constraintBottom_toBottomOf="@id/guideline67"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:gravity="center"
             android:text="@string/exercise"
             android:textAllCaps="false"
             android:textColor="@color/dark_teal"
             android:textSize="30sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline67"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.64" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/dailySession"
@@ -65,10 +78,9 @@
          />
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/dailySession"
         app:layout_constraintEnd_toEndOf="@+id/dailySession"
@@ -76,24 +88,38 @@
         app:layout_constraintTop_toTopOf="@+id/dailySession">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/imageView11"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="5"
             android:background="@drawable/emily"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1" />
+            app:layout_constraintBottom_toBottomOf="@id/guideline69"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:gravity="center"
             android:text="@string/dailySession"
             android:textAllCaps="false"
             android:textColor="@color/dark_teal"
             android:textSize="30sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.64" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"

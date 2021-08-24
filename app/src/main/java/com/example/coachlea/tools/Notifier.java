@@ -80,6 +80,8 @@ public class Notifier {
                 .setContentText(text)
                 .setSound(alarmSound)
                 .setContentIntent(pendingIntent)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(text))
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(icon)
                         .bigLargeIcon(icon))
