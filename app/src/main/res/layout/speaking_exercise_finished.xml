@@ -1,128 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/light_beige"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/light_beige"
     android:backgroundTint="@color/grey_blue"
-    android:padding="5dp"
     tools:context=".other_activities.SpeakingExerciseFinished">
 
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/chat_bubble"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        >
-        <LinearLayout
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline41"
+        app:layout_constraintStart_toStartOf="@id/guideline40"
+        app:layout_constraintTop_toTopOf="@id/guideline42">
+
+        <TextView
+            android:id="@+id/motivationTXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <LinearLayout
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="20dp"
-                android:padding="8dp"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:background="@drawable/chat_bubble"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="20dp"
-                    android:layout_marginHorizontal="27dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/motivationTXT"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Super gemacht!"
-                        android:textAllCaps="false"
-                        android:textSize="29dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/dark_teal"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end">
-
-                <ImageView
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
-                    android:background="@drawable/lea"
-                    android:layout_marginRight="10dp"/>
-            </LinearLayout>
-        </LinearLayout>
+            android:gravity="center"
+            android:text="Super gemacht!"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_teal"
+            android:textSize="29dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/lea"
+        app:layout_constraintBottom_toBottomOf="@id/guideline43"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/againBTN1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/layout_round_button"
+        android:foreground="@drawable/ic_again"
+        app:layout_constraintBottom_toBottomOf="@id/guideline45"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/homeBTN1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline44" />
+
+    <ImageButton
+        android:id="@+id/homeBTN1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/layout_round_button"
+        android:foreground="@drawable/ic_home"
+        app:layout_constraintBottom_toBottomOf="@id/guideline45"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/backBTN1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/againBTN1"
+        app:layout_constraintTop_toTopOf="@id/guideline44" />
+
+    <ImageButton
+        android:id="@+id/backBTN1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/layout_round_button"
+        android:foreground="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="@id/guideline45"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/homeBTN1"
+        app:layout_constraintTop_toTopOf="@id/guideline44" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline42"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintGuide_percent="0.2" />
 
-        <ImageButton
-            android:id="@+id/againBTN1"
-            android:onClick="AgainBTNClick"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="0.25"
-            android:background="@drawable/layout_round_button"
-            android:foreground="@drawable/ic_again"
-            android:paddingHorizontal="50dp"
-            />
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:background="@android:color/transparent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
-        <ImageButton
-            android:id="@+id/homeBTN1"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="0.25"
-            android:background="@drawable/layout_round_button"
-            android:foreground="@drawable/ic_home"
-            android:paddingHorizontal="50dp" />
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:background="@android:color/transparent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
 
-        <ImageButton
-            android:id="@+id/backBTN1"
-            android:onClick="DoneBTNClick"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="0.25"
-            android:background="@drawable/layout_round_button"
-            android:foreground="@drawable/ic_back"
-            android:paddingHorizontal="50dp" />
-
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 
 
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>
