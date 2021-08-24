@@ -137,7 +137,7 @@ public class ImageRecognition extends AppCompatActivity {
 
                     } else {
                         Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
-                        intent.putExtra("exercise", "Image Recognition");
+                        intent.putExtra("exercise", "ImageRecognition");
                         if (getIntent().getBooleanExtra("trainingset", false)) {
                             intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
                             intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));

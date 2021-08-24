@@ -59,7 +59,7 @@ public class SpeakingExerciseFinished extends AppCompatActivity {
         againBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+                Intent intent ;
                 switch (Objects.requireNonNull(getIntent().getExtras().getString("exercise"))){
                     case "MinimalPairs":
                         intent = new Intent(v.getContext(), MinimalPairs.class);
