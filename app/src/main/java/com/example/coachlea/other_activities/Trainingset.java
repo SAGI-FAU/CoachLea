@@ -132,7 +132,6 @@ public class Trainingset extends AppCompatActivity {
             } else {
                 session.toArray(exercise_list);
 
-                exercise_list[0] = "Schneckenrennen"; //TODO entfernen
                 //set texts
                 setExercise1.setText(exercise_list[0]);
                 setExercise2.setText(exercise_list[1]);
