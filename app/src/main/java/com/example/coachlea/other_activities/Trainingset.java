@@ -3,6 +3,7 @@ package com.example.coachlea.other_activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -60,6 +61,7 @@ public class Trainingset extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.trainingset);
         getSupportActionBar().setTitle(getResources().getString(R.string.trainingsetTitle)); // for set actionbar title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

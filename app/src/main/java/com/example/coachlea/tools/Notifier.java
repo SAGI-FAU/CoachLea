@@ -82,9 +82,9 @@ public class Notifier {
                 .setContentIntent(pendingIntent)
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(text))
-                .setStyle(new NotificationCompat.BigPictureStyle()
+                /*.setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(icon)
-                        .bigLargeIcon(icon))
+                        .bigLargeIcon(icon))*/
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         mBuilder.setAutoCancel(true);

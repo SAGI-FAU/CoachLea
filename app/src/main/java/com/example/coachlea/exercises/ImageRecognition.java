@@ -3,6 +3,7 @@ package com.example.coachlea.exercises;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -67,6 +68,7 @@ public class ImageRecognition extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.image_recognition);
         getSupportActionBar().setTitle(R.string.image_recognition);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

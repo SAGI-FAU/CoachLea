@@ -3,6 +3,7 @@ package com.example.coachlea.other_activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -29,6 +30,7 @@ public class SnailRaceStart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.snail_race_start);
         getSupportActionBar().setTitle(R.string.Snail_race);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

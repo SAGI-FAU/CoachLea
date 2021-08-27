@@ -2,6 +2,7 @@ package com.example.coachlea.other_activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -31,6 +32,7 @@ public class ExercisesMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.exercises_main);
         getSupportActionBar().setTitle(R.string.exercise);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
