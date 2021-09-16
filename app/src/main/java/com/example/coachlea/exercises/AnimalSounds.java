@@ -96,7 +96,7 @@ public class AnimalSounds extends AppCompatActivity {
             public void onClick(View v) {
                 if(!started){
                     started = true;
-                    MyCountDownTimer myCountDownTimer = new MyCountDownTimer(100, 1000);
+                    MyCountDownTimer myCountDownTimer = new MyCountDownTimer(80, 1000);
                     myCountDownTimer.Start();
                     if (isRecording) {
 
@@ -152,7 +152,9 @@ public class AnimalSounds extends AppCompatActivity {
                     } else {
                         //long sec = maxMillis/1000;
                         progress.setProgress(c);
+                        //c++;
                         c++;
+
 
 
                     }

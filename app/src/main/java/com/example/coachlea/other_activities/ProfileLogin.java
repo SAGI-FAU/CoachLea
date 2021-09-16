@@ -211,21 +211,19 @@ public class ProfileLogin extends AppCompatActivity implements View.OnClickListe
     }
 
     private void export_profile()  throws IOException {
-        String PATH = Environment.getExternalStorageDirectory() + "/CITA/METADATA/PROFILE/";
+        String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/PROFILE/";
         CSVFileWriter mCSVFileWriter = new CSVFileWriter("Profile", PATH);
 
         String[] Name={"Name", patientData.getUsername()};
         String[] Birthday={"Birthday", DateFormat.getDateInstance().format(patientData.getBirthday())};
         String[] ID={"Telephone-Number", String.valueOf(patientData.getGovtId())};
         String[] Gender={"Gender", patientData.getGender()};
-        String[] Smoker={"Smoker", String.valueOf(patientData.getSmoker())};
         String[] Side={"Side", patientData.getSide()};
         String[] Type={"Type", patientData.getType()};
         mCSVFileWriter.write(Name);
         mCSVFileWriter.write(Birthday);
         mCSVFileWriter.write(ID);
         mCSVFileWriter.write(Gender);
-        mCSVFileWriter.write(Smoker);
         mCSVFileWriter.write(Side);
         mCSVFileWriter.write(Type);
         mCSVFileWriter.close();

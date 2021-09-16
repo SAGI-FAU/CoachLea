@@ -84,7 +84,7 @@ public class SnailRaceGame extends SurfaceView {
 
 
         //initialize
-        emilySpeed = 2;
+        emilySpeed = 3;
 
         currentVolume = 0;
         emilyStop= false;
@@ -256,8 +256,6 @@ public class SnailRaceGame extends SurfaceView {
         drawRaceField(canvas);
         drawEmily(canvas);
 
-        //20*log10(maxPercent)
-        //TODO connect currentvolume with lea speed
         currentVolume = audioHandler.getCurrentVolume();
         double volume_in_db = 0;
         if (currentVolume > 1){
@@ -278,11 +276,6 @@ public class SnailRaceGame extends SurfaceView {
             leaSpeed = 5;
         }
 
-        /*
-        int volume_db = (int) volume_in_db;
-        //leaSpeed = (int)(currentVolume / (float)30);
-        double leaSpeedTemp = (volume_in_db /((double) 50));
-        leaSpeed = (int)(volume_db / (float)leaWantedPitch) * 2;*/
 
         Log.d(TAG,"volume in db: " + volume_in_db);
         Log.d(TAG,"leaSpeed: " + leaSpeed);
@@ -358,7 +351,7 @@ public class SnailRaceGame extends SurfaceView {
         if(countdownRunning){
             emilySpeed = 0;
         } else if (!emilyStop){
-            emilySpeed = 2;
+            emilySpeed = 3;
         }
 
 
