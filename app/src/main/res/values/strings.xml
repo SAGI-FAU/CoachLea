@@ -394,6 +394,6 @@
     <string name="trainingsetExplanation">Hier findest du deine tägliche Trainingseinheit. Diese besteht aus drei Übungen, die ich jeden Tag neu für dich aussuche. Drücke auf den Start- Knopf um mit der Trainingseinheit zu beginnen!</string>
     <string name="errorMessage">Da ist etwas schiefgelaufen!</string>
     <string name="nextTaskIntroduction">Deine nächste Aufgabe ist:</string>
-    <string name="TrainingsetLastExerciseFinished">Du hast alle Aufgaben für heute erledingt!</string>
+    <string name="TrainingsetLastExerciseFinished">Du hast alle Aufgaben für heute erledigt!</string>
     <string name="minimalPairsError">Drücke zuerst auf den Start-Button!</string>
 </resources>

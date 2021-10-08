@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         //check if CoachLea is used for the first time
         int login = prefs.getInt("UserCreated", 0);
+        
 
 
         if (login == 0) {

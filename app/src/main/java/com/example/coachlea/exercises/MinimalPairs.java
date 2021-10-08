@@ -89,7 +89,7 @@ public class MinimalPairs extends AppCompatActivity {
         random = new Random();
         explanationDialog = new Dialog(this);
 
-        //check if MinimalPairs is used for the first time
+        //check if MinimalPairs is used for the first time, if yes open explanation popup
         SharedPreferences prefs = getSharedPreferences("LoginPref", MODE_PRIVATE);
         int login = prefs.getInt("MinimalPairsUsed", 0);
 
@@ -140,6 +140,7 @@ public class MinimalPairs extends AppCompatActivity {
         setMinimal_pairs(minimal_pairs_trills,minimal_pairs_trills_str,1, 7);
         setMinimal_pairs(minimal_pairs_others,minimal_pairs_others_str,1, 8);
 
+        //shuffle so that noise is not always on the same minimal pairs
         shuffleArrays();
 
 
@@ -169,6 +170,7 @@ public class MinimalPairs extends AppCompatActivity {
 
                         Intent intent = new Intent(MinimalPairs.this, SpeakingExerciseFinished.class);
 
+                        //check chosen image, store result & set green background if correct
                         if (topIMG.getTag() == "correct") {
                             topIMG.setBackgroundResource(R.color.limegreen);
                             minimal_pairs_result[choose] = 1;
@@ -210,7 +212,7 @@ public class MinimalPairs extends AppCompatActivity {
                         }, 400);
 
 
-                    } else {
+                    } else { //set next buttons
                         playPressed = false;
 
                         nextButtons(topIMG);
@@ -238,6 +240,7 @@ public class MinimalPairs extends AppCompatActivity {
                     if (oldPos >= 2 * EXERCISE_LENGTH) {
                         Intent intent = new Intent(MinimalPairs.this, SpeakingExerciseFinished.class);
 
+                        //check chosen image, store result & set green background if correct
                         if (botIMG.getTag() == "correct") {
                             botIMG.setBackgroundResource(R.color.limegreen);
                             minimal_pairs_result[choose] = 1;
@@ -279,7 +282,7 @@ public class MinimalPairs extends AppCompatActivity {
                         }, 400);
 
 
-                    } else {
+                    } else { //set next buttons
                         playPressed = false;
 
                         nextButtons(botIMG);
@@ -308,6 +311,7 @@ public class MinimalPairs extends AppCompatActivity {
                     player.seekTo(0);
                     player.start();
                 } else {
+                    //play to correct image corresponding audio
                     String file = chooseAudio();
                     int resId = getResources().getIdentifier(file, "raw", getPackageName());
                     String path = "a" + resId;
@@ -322,7 +326,7 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
-    private String chooseAudio(){
+    private String chooseAudio(){ //choose audi with increasing amount of noise through the exercise
         String file = minimal_pairs_correct_str[choose];
 
         if(choose <= 1){
@@ -469,7 +473,7 @@ public class MinimalPairs extends AppCompatActivity {
 
     private void export_data() throws IOException {
         String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/RESULTS/";
-        CSVFileWriter mCSVFileWriter = new CSVFileWriter("MinimalPairs", PATH); // TODO exerciseName ändern falls name geändert wird
+        CSVFileWriter mCSVFileWriter = new CSVFileWriter("MinimalPairs", PATH); //exerciseName ändern falls name geändert wird
         String[] start = {"correct_word", "chosen_word", "noise_amount"};
         mCSVFileWriter.write(start);
 
