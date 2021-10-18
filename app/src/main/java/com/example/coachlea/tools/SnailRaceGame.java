@@ -453,7 +453,7 @@ public class SnailRaceGame extends SurfaceView {
         }
 
         if(!audioHandler.stopRecording()){
-            //TODO fehlerbehandlung
+
         }
 
         //free storage of bitmaps
