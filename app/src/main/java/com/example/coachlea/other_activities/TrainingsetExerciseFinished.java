@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.other_activities;
 
 import android.content.Intent;
@@ -39,7 +43,6 @@ public class TrainingsetExerciseFinished extends AppCompatActivity {
 
 
         //initialize
-        Intent intent;
         Random random = new Random();
         textMotivation = findViewById(R.id.textMotivation);
         nextExercise = findViewById(R.id.nextExercise);
@@ -48,37 +51,39 @@ public class TrainingsetExerciseFinished extends AppCompatActivity {
         again = findViewById(R.id.again_trainingsetExercise);
         cardView = findViewById(R.id.set_cardview);
 
+        //set motivational feedback
         String[] motivation = getResources().getStringArray(R.array.motivations);
         textMotivation.setText(motivation[random.nextInt(motivation.length)]);
 
+        //increase exercise counter
         if (getIntent().getExtras() != null){
             exerciseCounter = getIntent().getExtras().getInt("exerciseCounter", 0) + 1;
         }
 
-        if(exerciseCounter >= Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getStringArray("exerciseList")).length) {
+        if(exerciseCounter >= Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getStringArray("exerciseList")).length) { //daily session finished
             nextTaskIntroduction.setText(R.string.TrainingsetLastExerciseFinished);
             nextExercise.setText("");
             nextExercise.setVisibility(View.GONE);
             cardView.setVisibility(View.GONE);
             done.setForeground(getResources().getDrawable(R.drawable.ic_home));
-        } else {
+        } else { //set name for next exercise
             nextExercise.setText(getIntent().getExtras().getStringArray("exerciseList")[exerciseCounter]);
         }
 
+        //move to next exercise of the daily session
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
 
-                if(exerciseCounter >= Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getStringArray("exerciseList")).length) {
+                if(exerciseCounter >= Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getStringArray("exerciseList")).length) { //error check
                     intent = new Intent(v.getContext(),MainActivity.class);
-
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean("SessionFinished", true);
                     editor.apply();
                     v.getContext().startActivity(intent);
-                } else {
+                } else { //open next exercise
                     switch (Objects.requireNonNull(getIntent().getExtras().getStringArray("exerciseList"))[exerciseCounter]){
                         case "Minimalpaare":
                             intent = new Intent(v.getContext(), MinimalPairs.class);
@@ -115,11 +120,12 @@ public class TrainingsetExerciseFinished extends AppCompatActivity {
 
         });
 
+        //redo the last activity
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                exerciseCounter -= 1;
+                exerciseCounter -= 1; //decrease exercise counter to redo exercise
                 switch (Objects.requireNonNull(getIntent().getExtras().getStringArray("exerciseList"))[exerciseCounter]){
                     case "Minimalpaare":
                         intent = new Intent(v.getContext(), MinimalPairs.class);

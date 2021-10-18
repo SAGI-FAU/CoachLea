@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.exercises;
 
 import android.content.Intent;
@@ -37,13 +41,14 @@ public class SnailRace extends AppCompatActivity {
 
         setContentView(R.layout.snail_race);
 
-        if(getIntent().getExtras() != null)
+        if(getIntent().getExtras() != null) // for daily session
             exerciseCounter = getIntent().getExtras().getInt("exerciseCounter", 0);
 
+        //set buttons
         ImageButton againBTN = findViewById(R.id.againBTN2);
         ImageButton homeBTN = findViewById(R.id.homeBTN);
         ImageButton backBTN = findViewById(R.id.backBTN);
-        ImageButton nextBTN = findViewById(R.id.snailRace_nextBTN);
+        ImageButton nextBTN = findViewById(R.id.snailRace_nextBTN); //for daily session
         TextView countdown = findViewById(R.id.countdown);
 
         //make Buttons invisible, they will appear when the game is over
@@ -60,6 +65,7 @@ public class SnailRace extends AppCompatActivity {
         String vowel = (String) getIntent().getExtras().get("Vowel");
         snailRaceGame.setVowel(vowel);
 
+        //daily session check
         if (getIntent().getBooleanExtra("trainingset", false)) {
             snailRaceGame.setDailySession(true);
             homeBTN.setForeground(getResources().getDrawable(R.drawable.ic_next));
@@ -67,6 +73,7 @@ public class SnailRace extends AppCompatActivity {
             snailRaceGame.setDailySession(false);
         }
 
+        //set buttons
         homeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,12 +115,13 @@ public class SnailRace extends AppCompatActivity {
 
     }
 
+    //onPause method is always called when an intend is left, makes sure thread is destroyed
     protected void onPause(){
         snailRaceGame.destroyThread();
         super.onPause();
     }
 
-
+    //onPause method is always called when an intend is left, makes sure thread is destroyed
     public void onBackPressed(){
         this.onPause();
         super.onBackPressed();

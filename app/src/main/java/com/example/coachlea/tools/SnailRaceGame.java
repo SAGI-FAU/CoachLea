@@ -1,3 +1,6 @@
+/**
+ * Created by Paula Schaefer
+ */
 
 package com.example.coachlea.tools;
 
@@ -9,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -45,7 +47,7 @@ public class SnailRaceGame extends SurfaceView {
     private int emilyX = (lineWidth/2)+lineWidth;
     private int emilyY = 0;
     private int emilySpeed = 1;
-    private boolean emilyStop;//TODO value?
+    private boolean emilyStop;
     private int emThresholdTop=0;
     private int emThresholdBot = 0;
 
@@ -253,6 +255,7 @@ public class SnailRaceGame extends SurfaceView {
         drawRaceField(canvas);
         drawEmily(canvas);
 
+        //set leas speed depending on volume
         currentVolume = audioHandler.getCurrentVolume();
         double volume_in_db = 0;
         if (currentVolume > 1){
@@ -273,9 +276,9 @@ public class SnailRaceGame extends SurfaceView {
             leaSpeed = 5;
         }
 
-
-        Log.d(TAG,"volume in db: " + volume_in_db);
-        Log.d(TAG,"leaSpeed: " + leaSpeed);
+        //for debugging:
+        //Log.d(TAG,"volume in db: " + volume_in_db);
+        //Log.d(TAG,"leaSpeed: " + leaSpeed);
         drawLea(canvas);
 
 

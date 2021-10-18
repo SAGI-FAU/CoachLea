@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.tools;
 
 import android.annotation.SuppressLint;

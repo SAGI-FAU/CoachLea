@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.exercises;
 
 import android.app.Dialog;
@@ -326,7 +330,7 @@ public class MinimalPairs extends AppCompatActivity {
 
     }
 
-    private String chooseAudio(){ //choose audi with increasing amount of noise through the exercise
+    private String chooseAudio(){ //choose audio with increasing amount of noise through the exercise
         String file = minimal_pairs_correct_str[choose];
 
         if(choose <= 1){
@@ -473,7 +477,7 @@ public class MinimalPairs extends AppCompatActivity {
 
     private void export_data() throws IOException {
         String PATH = Environment.getExternalStorageDirectory() + "/CoachLea/METADATA/RESULTS/";
-        CSVFileWriter mCSVFileWriter = new CSVFileWriter("MinimalPairs", PATH); //exerciseName ändern falls name geändert wird
+        CSVFileWriter mCSVFileWriter = new CSVFileWriter("MinimalPairs", PATH);
         String[] start = {"correct_word", "chosen_word", "noise_amount"};
         mCSVFileWriter.write(start);
 
@@ -551,8 +555,9 @@ public class MinimalPairs extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //explanation popup
     private void openPopup(){
+        //initialize variables
         TextView close;
         TextView title_e;
         TextView explanation;
@@ -570,7 +575,7 @@ public class MinimalPairs extends AppCompatActivity {
         explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
         close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
 
-
+        // x button in the right corner, closes popup
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -583,12 +588,14 @@ public class MinimalPairs extends AppCompatActivity {
             }
         });
 
+        //set correct values to the variables
         explanation.setText(R.string.minimalPairs_explanation);
         title_e.setText(R.string.minimal_pairs);
         resId = getResources().getIdentifier("minimal_pairs_explanation", "raw", getPackageName());
         path = "a" + resId;
         mp3_file  = path.substring(1);
 
+        //button plays explanation audio file
         String finalMp3_file = mp3_file;
         explanation_mp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -603,7 +610,7 @@ public class MinimalPairs extends AppCompatActivity {
             }
         });
 
-
+        // set popup layout attributes
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
         layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;

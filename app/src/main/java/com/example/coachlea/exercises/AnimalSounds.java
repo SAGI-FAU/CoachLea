@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.exercises;
 
 import android.app.Dialog;
@@ -91,6 +95,7 @@ public class AnimalSounds extends AppCompatActivity {
         imageView.setImageResource(animals[choose]);
         String filename = animals_str[choose];
 
+        // record button -> start timer and recording
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +120,7 @@ public class AnimalSounds extends AppCompatActivity {
     }
 
 
-
+    //Timer -> Fill progress bar for 8 secs with TimerTask
     class MyCountDownTimer {
         private long maxMillis;
         private int c;
@@ -136,7 +141,6 @@ public class AnimalSounds extends AppCompatActivity {
                         t.cancel();
                         isRecording = false;
                         started = false;
-                        //record.setForeground(getDrawable(R.drawable.ic_mic));
                         Intent intent = new Intent(con, SpeakingExerciseFinished.class);
                         intent.putExtra("exercise", "AnimalSounds");
                         if (getIntent().getBooleanExtra("trainingset", false)) {
@@ -150,9 +154,7 @@ public class AnimalSounds extends AppCompatActivity {
                         recorder.release();
                         con.startActivity(intent);
                     } else {
-                        //long sec = maxMillis/1000;
                         progress.setProgress(c);
-                        //c++;
                         c++;
 
 
@@ -164,7 +166,7 @@ public class AnimalSounds extends AppCompatActivity {
         }
     }
 
-
+    //VolumeHandler class for the recording
     private class VolumeHandler extends Handler {
         public VolumeHandler() {
         }
@@ -216,7 +218,9 @@ public class AnimalSounds extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //explanation popup
     private void openPopup(){
+        //initialize variables
         TextView close;
         TextView title_e;
         TextView explanation;
@@ -235,6 +239,7 @@ public class AnimalSounds extends AppCompatActivity {
         close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
 
 
+        // x button in the right corner, closes popup
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,12 +252,14 @@ public class AnimalSounds extends AppCompatActivity {
             }
         });
 
+        //set correct values to the variables
         explanation.setText(R.string.animalSounds_explanation);
         title_e.setText(R.string.animal_sounds);
         resId = getResources().getIdentifier("animal_sounds_explanation", "raw", getPackageName());
         path = "a" + resId;
         mp3_file  = path.substring(1);
 
+        //button plays explanation audio file
         String finalMp3_file = mp3_file;
         explanation_mp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,10 +274,10 @@ public class AnimalSounds extends AppCompatActivity {
             }
         });
 
-
+        // set popup layout attributes
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
-        layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
 
 

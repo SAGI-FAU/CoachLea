@@ -1,3 +1,6 @@
+/**
+ * Created by Paula Schaefer
+ */
 
 package com.example.coachlea.other_activities;
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         int login = prefs.getInt("UserCreated", 0);
         
 
-
+        //open login screen if used for the first time
         if (login == 0) {
             Intent intent = new Intent(this, LoginInfoScreen.class);
             this.startActivity(intent);
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //overflow menu in action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

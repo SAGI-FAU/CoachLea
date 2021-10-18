@@ -1,3 +1,8 @@
+/**
+ * Created by Paula Schaefer
+ */
+
+
 package com.example.coachlea.other_activities;
 
 import android.app.Dialog;
@@ -59,12 +64,14 @@ public class SnailRaceStart extends AppCompatActivity {
 
         v.setText(vowel);
 
-
+        // start snail race game
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SnailRaceStart.this, SnailRace.class);
                 intent.putExtra("Vowel",vowel);
+
+                //daily session check
                 if(getIntent().getBooleanExtra("trainingset", false)){
                     intent.putExtra("trainingset",true);
                     intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
@@ -96,7 +103,9 @@ public class SnailRaceStart extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //explanation popup
     private void openPopup(){
+        //initialize variables
         TextView close;
         TextView title_e;
         TextView explanation;
@@ -114,7 +123,7 @@ public class SnailRaceStart extends AppCompatActivity {
         explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
         close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
 
-
+        // x button in the right corner, closes popup
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,12 +136,14 @@ public class SnailRaceStart extends AppCompatActivity {
             }
         });
 
+        //set correct values to the variables
         explanation.setText(R.string.snailrace_explanation);
         title_e.setText(R.string.Snail_race);
         resId = getResources().getIdentifier("snail_race_explanation", "raw", getPackageName());
         path = "a" + resId;
         mp3_file  = path.substring(1);
 
+        //button plays explanation audio file
         String finalMp3_file = mp3_file;
         explanation_mp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +158,7 @@ public class SnailRaceStart extends AppCompatActivity {
             }
         });
 
-
+        // set popup layout attributes
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
         layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;

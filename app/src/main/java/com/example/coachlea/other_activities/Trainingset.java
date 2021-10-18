@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.other_activities;
 
 import android.app.Dialog;
@@ -72,7 +76,6 @@ public class Trainingset extends AppCompatActivity {
         //get date
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.GERMANY);
         Calendar calendar = Calendar.getInstance();
-        //String weekDay = dayFormat.format(calendar.getTimeInMillis());
         String weekDay =  new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Log.d(TAG, "onCreate: " + weekDay);
 
@@ -97,8 +100,9 @@ public class Trainingset extends AppCompatActivity {
         trainingset_explanation3= findViewById(R.id.trainingset_explanation3);
 
 
-        if(!weekDay.equals(state)){
+        if(!weekDay.equals(state)){ //create new daily session
 
+            //choose minimal pairs exercise + 2 speaking exercises
             String hearing_exercise=getResources().getString(R.string.minimal_pairs);
             String[] speaking_exercise ={getResources().getString(R.string.animal_sounds),getResources().getString(R.string.image_recognition), getResources().getString(R.string.Snail_race)};
 
@@ -115,7 +119,7 @@ public class Trainingset extends AppCompatActivity {
             editor.commit();
 
             exercise_list = new String[]{hearing_exercise, speaking_exercise[choose], speaking_exercise[(choose + 1) % 3]};
-            exercise_list = shuffleArray(exercise_list);
+            exercise_list = shuffleArray(exercise_list); //shuffle array to get random order of exercises
             editor1.putBoolean("Finished", false);
             editor1.apply();
 
@@ -154,13 +158,14 @@ public class Trainingset extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("LoginPref", MODE_PRIVATE);
         int login = prefs.getInt("TrainingsetUsed", 0);
 
-        if(login == 0){
+        if(login == 0){ //open explanation popup if used for the first time
             showPopup("Trainingset_explanation");
             SharedPreferences.Editor editor2 = prefs.edit();
             editor2.putInt("TrainingsetUsed",13);
             editor2.apply();
         }
 
+        //start first exercise depending on exercise name
         startTrainingset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,6 +202,8 @@ public class Trainingset extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+
+        //explanations for trainingset exercises
 
         trainingset_explanation1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,7 +264,9 @@ public class Trainingset extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //explanation popup
     public void showPopup( String title){
+        //initialize variables
         TextView close;
         TextView title_e;
         TextView explanation;
@@ -275,7 +284,7 @@ public class Trainingset extends AppCompatActivity {
         explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
         close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
 
-
+        // x button in the right corner, closes popup
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,9 +297,9 @@ public class Trainingset extends AppCompatActivity {
             }
         });
 
+        //set correct values to the variables depending on exercise title
         switch(title){
             case "Minimalpaare":
-                //TODO
                 title_e.setText(R.string.minimal_pairs);
                 explanation.setText(R.string.minimalPairs_explanation);
                 resId = getResources().getIdentifier("minimal_pairs_explanation", "raw", getPackageName());
@@ -298,7 +307,6 @@ public class Trainingset extends AppCompatActivity {
                 mp3_file  = path.substring(1);
                 break;
             case "Bilder erkennen":
-                //TODO
                 title_e.setText(R.string.image_recognition);
                 explanation.setText(R.string.imageRecognition_explanation);
                 resId = getResources().getIdentifier("image_recognition_explanation", "raw", getPackageName());
@@ -313,7 +321,6 @@ public class Trainingset extends AppCompatActivity {
                 mp3_file  = path.substring(1);
                 break;
             case "Tierlaute":
-                //TODO
                 explanation.setText(R.string.animalSounds_explanation);
                 title_e.setText(R.string.animal_sounds);
                 resId = getResources().getIdentifier("animal_sounds_explanation", "raw", getPackageName());
@@ -321,7 +328,6 @@ public class Trainingset extends AppCompatActivity {
                 mp3_file  = path.substring(1);
                 break;
             case "Trainingset_explanation":
-                //TODO
                 title_e.setText(R.string.trainingsetTitle);
                 explanation.setText(R.string.trainingsetExplanation);
                 resId = getResources().getIdentifier("daily_session_explanation", "raw", getPackageName());
@@ -347,6 +353,7 @@ public class Trainingset extends AppCompatActivity {
             }
         });
 
+        // set popup layout attributes
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
         layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;

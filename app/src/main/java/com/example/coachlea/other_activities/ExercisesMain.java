@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.other_activities;
 
 import android.app.Dialog;
@@ -39,7 +43,6 @@ public class ExercisesMain extends AppCompatActivity {
 
         //initialize
         explanationDialog = new Dialog(this);
-        //inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         explanationSnailRace = findViewById(R.id.explanationSnailRace);
         explanationMinimalPairs = findViewById(R.id.explanationMinimalPairs);
         explanationAnimalSounds = findViewById(R.id.explanationAnimalSounds);
@@ -97,7 +100,9 @@ public class ExercisesMain extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //explanation popup
     public void showPopup( String title){
+        //initialize variables
         TextView close;
         TextView title_e;
         TextView explanation;
@@ -115,7 +120,7 @@ public class ExercisesMain extends AppCompatActivity {
         explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
         close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
 
-
+        // x button in the right corner, closes popup
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +133,7 @@ public class ExercisesMain extends AppCompatActivity {
             }
         });
 
+        //set correct values to the variables depending on button title
         switch(title){
             case "Minimalpaare":
 
@@ -164,6 +170,7 @@ public class ExercisesMain extends AppCompatActivity {
 
         }
 
+        //button plays explanation audio file
         String finalMp3_file = mp3_file;
         explanation_mp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +185,7 @@ public class ExercisesMain extends AppCompatActivity {
             }
         });
 
+        // set popup layout attributes
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
         layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;

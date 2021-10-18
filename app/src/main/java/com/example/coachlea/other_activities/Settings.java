@@ -40,16 +40,7 @@ public class Settings extends AppCompatActivity {
         //initialize
         dialog = new Dialog(this);
 
-        /*
-        ImageView help = findViewById(R.id.help);
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopUp(v);
-            }
-        });
 
-         */
     }
 
     private void setListeners() {

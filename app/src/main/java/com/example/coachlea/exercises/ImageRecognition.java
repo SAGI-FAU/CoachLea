@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.exercises;
 
 import android.app.Dialog;
@@ -120,15 +124,16 @@ public class ImageRecognition extends AppCompatActivity {
 
         imageView.setImageResource(images_all[counter]);
 
+        //record button
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isRecording) {
+                if (isRecording) { // stop recording on second button click
                     recorder.stopRecording();
                     record.setForeground(getDrawable(R.drawable.ic_mic));
 
 
-                    if (counter < (EXERCISE_LENGTH - 1)) {
+                    if (counter < (EXERCISE_LENGTH - 1)) { //set next image, fill progress bar
                         counter++;
                         imageView.setImageResource(images_all[counter]);
                         currentProgress += (100 / EXERCISE_LENGTH);
@@ -137,9 +142,11 @@ public class ImageRecognition extends AppCompatActivity {
                         pb.setMax(100);
 
 
-                    } else {
+                    } else { //when eercise is finished, open feedback intent
                         Intent intent = new Intent(getApplicationContext(), SpeakingExerciseFinished.class);
                         intent.putExtra("exercise", "ImageRecognition");
+
+                        //daily session check
                         if (getIntent().getBooleanExtra("trainingset", false)) {
                             intent = new Intent(v.getContext(), TrainingsetExerciseFinished.class);
                             intent.putExtra("exerciseList", getIntent().getExtras().getStringArray("exerciseList"));
@@ -153,7 +160,7 @@ public class ImageRecognition extends AppCompatActivity {
                     isRecording = false;
 
 
-                } else {
+                } else { //start recording on first button click
                     path = recorder.prepare("Image_Recognition", images_all_str[counter]);
                     recorder.record();
                     isRecording = true;
@@ -232,7 +239,9 @@ public class ImageRecognition extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //explanation popup
     private void openPopup(){
+        //initialize variables
         TextView close;
         TextView title_e;
         TextView explanation;
@@ -250,7 +259,7 @@ public class ImageRecognition extends AppCompatActivity {
         explanation_mp3 = (ImageButton)  explanationDialog.findViewById(R.id.play_explanation);
         close = (TextView)  explanationDialog.findViewById(R.id.txtclose);
 
-
+        // x button in the right corner, closes popup
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,12 +272,14 @@ public class ImageRecognition extends AppCompatActivity {
             }
         });
 
+        //set correct values to the variables
         explanation.setText(R.string.imageRecognition_explanation);
         title_e.setText(R.string.image_recognition);
         resId = getResources().getIdentifier("image_recognition_explanation", "raw", getPackageName());
         path = "a" + resId;
         mp3_file  = path.substring(1);
 
+        //button plays explanation audio file
         String finalMp3_file = mp3_file;
         explanation_mp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,7 +294,7 @@ public class ImageRecognition extends AppCompatActivity {
             }
         });
 
-
+        // set popup layout attributes
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(explanationDialog.getWindow().getAttributes());
         layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
@@ -296,7 +307,7 @@ public class ImageRecognition extends AppCompatActivity {
 
     }
 
-
+    //VolumeHandler class for the recording
     private class VolumeHandler extends Handler {
         public VolumeHandler() {
         }

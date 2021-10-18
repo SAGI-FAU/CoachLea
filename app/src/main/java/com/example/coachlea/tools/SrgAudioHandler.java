@@ -1,3 +1,7 @@
+/**
+ * Created by Paula Schaefer
+ */
+
 package com.example.coachlea.tools;
 
 import android.content.Context;
@@ -18,7 +22,7 @@ public class SrgAudioHandler {
 
 
 
-    SrgAudioHandler(Context context, String vowel){ //TODO call like: SrgAudioHandler srgAundioHandler = new SrgAudioHandler(this)
+    SrgAudioHandler(Context context, String vowel){ //call like: SrgAudioHandler srgAundioHandler = new SrgAudioHandler(this)
 
         //initialize
         this.context = context;
@@ -37,7 +41,7 @@ public class SrgAudioHandler {
         }
     }
 
-    //returns true if succesful, false if not
+    //returns true if successful, false if not
     public boolean stopRecording(){
         if(isRecording){
             recorder.stopRecording();
@@ -64,7 +68,7 @@ public class SrgAudioHandler {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle bundle = msg.getData();
-            currentVolume = (int) bundle.getDouble("Volume");
+            currentVolume = (int) bundle.getDouble("Volume"); //set current volume
 
             /*
             final String state = bundle.getString("State", "Empty");
@@ -86,8 +90,6 @@ public class SrgAudioHandler {
                     }
                 }
             } */
-
-
         }
     }
 
